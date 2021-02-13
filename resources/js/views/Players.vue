@@ -11,7 +11,23 @@
 				label="Speler 2"
 				v-model="data.user_two"
 			/>
+			<div class="flex flex-col w-full">
+				<label
+					for="set_start_score"
+					class="mb-2 text-xl font-semibold"
+				>Start score</label>
+				<input
+					type="number"
+					min=201
+					max=501
+					name="set_start_score"
+					id="set_start_score"
+					class="border-2 border-blue-200 py-4 px-5 rounded-lg text-xl"
+					v-model="start_score"
+				>
+			</div>
 		</div>
+
 		<div class="flex flex-col w-full font-bold text-2xl text-white">
 			<a
 				@click="handleNextStep"
@@ -40,6 +56,7 @@ export default {
 				user_one: "",
 				user_two: ""
 			},
+			start_score: 501,
 			all_users: null
 		}
 	},
@@ -62,10 +79,13 @@ export default {
 		...mapMutations([
 			'setUsers',
 			'goToNextStep',
+			'setStartScore'
 		]),
 
 		handleNextStep() {
 			if (!this.canProceed) return;
+
+			this.setStartScore(this.start_score);
 
 			fetch('http://localhost/api/users', {
 				method: 'POST',

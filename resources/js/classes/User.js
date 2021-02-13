@@ -4,10 +4,12 @@ export default class User{
 		this.name = name
 		this.turns = [];
 		this.start_score = start_score;
+		this.checkout = '';
 	}
 
-	addTurn(turn){
+	addTurnAndGetCheckout(turn){
 		this.turns.push(turn);
+		this.getCheckout();
 	}
 
 	get score_to_throw_from(){
@@ -18,5 +20,15 @@ export default class User{
 
 	get last_turn(){
 		return this.turns.slice(-1)[0];
+	}
+
+	getCheckout(){
+		if(this.score_to_throw_from > 170) return;
+			
+		fetch('http://localhost/api/checkout/' + this.score_to_throw_from)
+		.then(response => response.json())
+		.then(response => {
+			this.checkout = response.join(" ");
+		})
 	}
 }

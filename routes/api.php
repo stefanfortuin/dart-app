@@ -17,3 +17,4 @@ use App\Http\Controllers\DartController;
 
 Route::post('/users', [DartController::class, 'users']);
 Route::post('/game', [DartController::class, 'game']);
+Route::get('/checkout/{score}', [DartController::class, 'checkout']);

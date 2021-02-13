@@ -15,16 +15,24 @@
 		>
 			<div
 				:key="current_user.id + 2"
-				class="text-left text-blue-500 font-bold text-6xl mb-6"
+				class="flex justify-between font-bold mb-6"
 			>
-				{{(current_user.last_turn != undefined) ? current_user.last_turn.new_score_to_throw_from : current_user.start_score}}
+				<div class="text-blue-500 text-6xl">
+					{{current_user.score_to_throw_from}}
+				</div>
+				<div class="text-2xl flex items-end">
+					{{current_user.checkout}}
+				</div>
 			</div>
 		</transition>
 		<transition
 			name="component-fade"
 			mode="out-in"
 		>
-			<div :key="current_user.id + 3" class="italic">
+			<div
+				:key="current_user.id + 3"
+				class="italic"
+			>
 				<div
 					v-for="turn in current_user.turns"
 					:key="turn.thrown_score + turn.new_score_to_throw_from"
@@ -67,10 +75,10 @@ export default {
 		handleTurn(event) {
 			const score = parseInt(event.target.value);
 
-			if(score < event.target.min || score > event.target.max) return;
+			if (score < event.target.min || score > event.target.max) return;
 
 			const turn = new Turn(this.current_user.id, score, this.current_user.score_to_throw_from)
-			this.current_user.addTurn(turn)
+			this.current_user.addTurnAndGetCheckout(turn)
 			this.saveTurnToGame(turn)
 			event.target.value = '';
 
@@ -83,7 +91,7 @@ export default {
 				this.switchUserThatDoesTurn();
 			}, 1000);
 
-		}
+		},
 	},
 	computed: {
 		...mapGetters({

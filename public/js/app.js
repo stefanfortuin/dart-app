@@ -135,6 +135,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -144,6 +160,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         user_one: "",
         user_two: ""
       },
+      start_score: 501,
       all_users: null
     };
   },
@@ -161,11 +178,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return this.data.user_one != "" && this.data.user_two != "";
     }
   },
-  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapMutations)(['setUsers', 'goToNextStep'])), {}, {
+  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapMutations)(['setUsers', 'goToNextStep', 'setStartScore'])), {}, {
     handleNextStep: function handleNextStep() {
       var _this = this;
 
       if (!this.canProceed) return;
+      this.setStartScore(this.start_score);
       fetch('http://localhost/api/users', {
         method: 'POST',
         headers: {
@@ -258,6 +276,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -268,7 +294,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var score = parseInt(event.target.value);
       if (score < event.target.min || score > event.target.max) return;
       var turn = new _classes_Turn__WEBPACK_IMPORTED_MODULE_0__.default(this.current_user.id, score, this.current_user.score_to_throw_from);
-      this.current_user.addTurn(turn);
+      this.current_user.addTurnAndGetCheckout(turn);
       this.saveTurnToGame(turn);
       event.target.value = '';
 
@@ -391,7 +417,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         turns: this.turns,
         winner_id: this.current_user.id
       };
-      console.log(game);
       fetch('http://localhost/api/game', {
         method: 'POST',
         headers: {
@@ -491,12 +516,14 @@ var User = /*#__PURE__*/function () {
     this.name = name;
     this.turns = [];
     this.start_score = start_score;
+    this.checkout = '';
   }
 
   _createClass(User, [{
-    key: "addTurn",
-    value: function addTurn(turn) {
+    key: "addTurnAndGetCheckout",
+    value: function addTurnAndGetCheckout(turn) {
       this.turns.push(turn);
+      this.getCheckout();
     }
   }, {
     key: "score_to_throw_from",
@@ -507,6 +534,18 @@ var User = /*#__PURE__*/function () {
     key: "last_turn",
     get: function get() {
       return this.turns.slice(-1)[0];
+    }
+  }, {
+    key: "getCheckout",
+    value: function getCheckout() {
+      var _this = this;
+
+      if (this.score_to_throw_from > 170) return;
+      fetch('http://localhost/api/checkout/' + this.score_to_throw_from).then(function (response) {
+        return response.json();
+      }).then(function (response) {
+        _this.checkout = response.join(" ");
+      });
     }
   }]);
 
@@ -552,6 +591,9 @@ vue__WEBPACK_IMPORTED_MODULE_2__.default.use(vuex__WEBPACK_IMPORTED_MODULE_3__.d
     },
     goToNextStep: function goToNextStep(state) {
       state.current_step++;
+    },
+    setStartScore: function setStartScore(state, start_score) {
+      state.start_score = start_score;
     },
     resetCurrentStep: function resetCurrentStep(state) {
       state.current_step = 0;
@@ -1145,7 +1187,47 @@ var render = function() {
               },
               expression: "data.user_two"
             }
-          })
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "flex flex-col w-full" }, [
+            _c(
+              "label",
+              {
+                staticClass: "mb-2 text-xl font-semibold",
+                attrs: { for: "set_start_score" }
+              },
+              [_vm._v("Start score")]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.start_score,
+                  expression: "start_score"
+                }
+              ],
+              staticClass:
+                "border-2 border-blue-200 py-4 px-5 rounded-lg text-xl",
+              attrs: {
+                type: "number",
+                min: "201",
+                max: "501",
+                name: "set_start_score",
+                id: "set_start_score"
+              },
+              domProps: { value: _vm.start_score },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.start_score = $event.target.value
+                }
+              }
+            })
+          ])
         ],
         1
       ),
@@ -1221,18 +1303,22 @@ var render = function() {
           "div",
           {
             key: _vm.current_user.id + 2,
-            staticClass: "text-left text-blue-500 font-bold text-6xl mb-6"
+            staticClass: "flex justify-between font-bold mb-6"
           },
           [
-            _vm._v(
-              "\n\t\t\t" +
-                _vm._s(
-                  _vm.current_user.last_turn != undefined
-                    ? _vm.current_user.last_turn.new_score_to_throw_from
-                    : _vm.current_user.start_score
-                ) +
-                "\n\t\t"
-            )
+            _c("div", { staticClass: "text-blue-500 text-6xl" }, [
+              _vm._v(
+                "\n\t\t\t\t" +
+                  _vm._s(_vm.current_user.score_to_throw_from) +
+                  "\n\t\t\t"
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "text-2xl flex items-end" }, [
+              _vm._v(
+                "\n\t\t\t\t" + _vm._s(_vm.current_user.checkout) + "\n\t\t\t"
+              )
+            ])
           ]
         )
       ]),
@@ -1324,7 +1410,7 @@ var render = function() {
             {
               key: user.name,
               staticClass:
-                "text-4xl h-48 rounded-lg border-2 border-blue-100 flex justify-center items-center my-4",
+                "text-4xl h-48 rounded-lg border-2 border-blue-200 flex justify-center items-center my-4",
               on: {
                 click: function($event) {
                   return _vm.handleWhoBegins(user)

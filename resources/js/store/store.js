@@ -24,6 +24,10 @@ export default new Vuex.Store({
 			state.current_step++;
 		},
 
+		setStartScore(state, start_score){
+			state.start_score = start_score;
+		},
+
 		resetCurrentStep(state){
 			state.current_step = 0;
 			state.users = []

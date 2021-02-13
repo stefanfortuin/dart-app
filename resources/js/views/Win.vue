@@ -42,8 +42,6 @@ export default {
 				winner_id: this.current_user.id,
 			}
 
-			console.log(game);
-
 			fetch('http://localhost/api/game', {
 				method: 'POST',
 				headers: {
