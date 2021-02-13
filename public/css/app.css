@@ -31142,6 +31142,21 @@ video {
           animation: bounce 1s infinite;
 }
 
+.component-fade-enter-active, .component-fade-leave-active {
+  transition: all .2s ease-in-out;
+}
+
+.component-fade-enter
+/* .component-fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.component-fade-leave-to{
+  opacity: 100;
+  transform: translateX(-100%);
+}
+
 @media (min-width: 640px) {
   .sm\:space-y-0 > :not([hidden]) ~ :not([hidden]) {
     --tw-space-y-reverse: 0;

@@ -32,6 +32,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -72,8 +77,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['value']
+  props: ['value', 'id', 'label']
 });
 
 /***/ }),
@@ -109,6 +117,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -117,16 +143,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       data: {
         user_one: "",
         user_two: ""
-      }
+      },
+      all_users: null
     };
+  },
+  created: function created() {// fetch('http://localhost/api/all_users')
+    // .then(response => response.json())
+    // .then(response => {
+    // 	this.all_users = response;
+    // })
   },
   components: {
     PlayerInput: _components_PlayerInput__WEBPACK_IMPORTED_MODULE_0__.default
+  },
+  computed: {
+    canProceed: function canProceed() {
+      return this.data.user_one != "" && this.data.user_two != "";
+    }
   },
   methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapMutations)(['setUsers', 'goToNextStep'])), {}, {
     handleNextStep: function handleNextStep() {
       var _this = this;
 
+      if (!this.canProceed) return;
       fetch('http://localhost/api/users', {
         method: 'POST',
         headers: {
@@ -182,23 +221,65 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapMutations)(['switchUserThatDoesTurn', 'goToNextStep', 'saveTurnToGame'])), {}, {
     handleTurn: function handleTurn(event) {
+      var _this = this;
+
       var score = parseInt(event.target.value);
+      if (score < event.target.min || score > event.target.max) return;
       var turn = new _classes_Turn__WEBPACK_IMPORTED_MODULE_0__.default(this.current_user.id, score, this.current_user.score_to_throw_from);
       this.current_user.addTurn(turn);
       this.saveTurnToGame(turn);
       event.target.value = '';
 
-      if (this.current_user.last_turn.new_score_to_throw_from == 0) {
+      if (this.current_user.last_turn.new_score_to_throw_from <= 0) {
         this.goToNextStep();
         return;
       }
 
-      this.switchUserThatDoesTurn();
+      setTimeout(function () {
+        _this.switchUserThatDoesTurn();
+      }, 1000);
     }
   }),
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapGetters)({
@@ -225,6 +306,13 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -266,6 +354,11 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
 //
 //
 //
@@ -939,14 +1032,25 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    {
+      staticClass:
+        "w-full h-screen flex flex-col justify-center items-center p-8"
+    },
     [
-      _vm.current_step == 0 ? _c("Players") : _vm._e(),
-      _vm._v(" "),
-      _vm.current_step == 1 ? _c("WhoBegins") : _vm._e(),
-      _vm._v(" "),
-      _vm.current_step == 2 ? _c("ScoreBoard") : _vm._e(),
-      _vm._v(" "),
-      _vm.current_step == 3 ? _c("Win") : _vm._e()
+      _c(
+        "transition",
+        { attrs: { name: "component-fade", mode: "out-in" } },
+        [
+          _vm.current_step == 0 ? _c("Players") : _vm._e(),
+          _vm._v(" "),
+          _vm.current_step == 1 ? _c("WhoBegins") : _vm._e(),
+          _vm._v(" "),
+          _vm.current_step == 2 ? _c("ScoreBoard") : _vm._e(),
+          _vm._v(" "),
+          _vm.current_step == 3 ? _c("Win") : _vm._e()
+        ],
+        1
+      )
     ],
     1
   )
@@ -973,9 +1077,16 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "flex flex-col h-28 mb-4" }, [
+    _c(
+      "label",
+      { staticClass: "mb-2 text-xl font-semibold", attrs: { for: _vm.id } },
+      [_vm._v(_vm._s(_vm.label))]
+    ),
+    _vm._v(" "),
     _c("input", {
-      attrs: { type: "text", placeholder: "Spelernaam" },
+      staticClass: "border-2 border-blue-200 py-4 px-5 rounded-lg text-xl",
+      attrs: { type: "text", id: _vm.id, placeholder: "Naam speler" },
       domProps: { value: _vm.value },
       on: {
         input: function($event) {
@@ -1009,33 +1120,63 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "h-full w-full flex flex-col justify-between" },
     [
-      _vm._v("\n\tSpeler 1\n\t"),
-      _c("PlayerInput", {
-        model: {
-          value: _vm.data.user_one,
-          callback: function($$v) {
-            _vm.$set(_vm.data, "user_one", $$v)
-          },
-          expression: "data.user_one"
-        }
-      }),
-      _vm._v("\n\tSpeler 2\n\t"),
-      _c("PlayerInput", {
-        model: {
-          value: _vm.data.user_two,
-          callback: function($$v) {
-            _vm.$set(_vm.data, "user_two", $$v)
-          },
-          expression: "data.user_two"
-        }
-      }),
+      _c(
+        "div",
+        [
+          _c("PlayerInput", {
+            attrs: { id: "player_one", label: "Speler 1" },
+            model: {
+              value: _vm.data.user_one,
+              callback: function($$v) {
+                _vm.$set(_vm.data, "user_one", $$v)
+              },
+              expression: "data.user_one"
+            }
+          }),
+          _vm._v(" "),
+          _c("PlayerInput", {
+            attrs: { id: "player_two", label: "Speler 2" },
+            model: {
+              value: _vm.data.user_two,
+              callback: function($$v) {
+                _vm.$set(_vm.data, "user_two", $$v)
+              },
+              expression: "data.user_two"
+            }
+          })
+        ],
+        1
+      ),
       _vm._v(" "),
-      _c("button", { on: { click: _vm.handleNextStep } }, [
-        _vm._v("\n\t\tVolgende\n\t")
-      ])
-    ],
-    1
+      _c(
+        "div",
+        { staticClass: "flex flex-col w-full font-bold text-2xl text-white" },
+        [
+          _c(
+            "a",
+            {
+              staticClass:
+                "h-20 rounded-lg my-2 flex justify-center items-center",
+              class: _vm.canProceed ? "bg-green-500" : "bg-blue-200",
+              on: { click: _vm.handleNextStep }
+            },
+            [_vm._v("\n\t\t\tVolgende\n\t\t")]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass:
+                "h-20 bg-blue-500 rounded-lg my-2 flex justify-center items-center",
+              attrs: { href: "/stats" }
+            },
+            [_vm._v("Statistieken")]
+          )
+        ]
+      )
+    ]
   )
 }
 var staticRenderFns = []
@@ -1062,36 +1203,88 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "w-full h-full flex flex-col" },
     [
-      _vm._v(
-        "\n\tscoreboard - " +
-          _vm._s(_vm.current_user.name) +
-          "\n\t" +
-          _vm._s(
-            _vm.current_user.last_turn != undefined
-              ? _vm.current_user.last_turn.new_score_to_throw_from
-              : _vm.current_user.start_score
-          ) +
-          "\n\t"
-      ),
-      _vm._l(_vm.current_user.turns, function(turn) {
-        return _c("div", { key: turn.id }, [
-          _vm._v(
-            "\n\t\t" +
-              _vm._s(turn.new_score_to_throw_from) +
-              " - " +
-              _vm._s(turn.thrown_score) +
-              "\n\t"
-          )
-        ])
-      }),
+      _c("transition", { attrs: { name: "component-fade", mode: "out-in" } }, [
+        _c(
+          "div",
+          {
+            key: _vm.current_user.id + 1,
+            staticClass: "text-right text-gray-700 font-semibold text-3xl mb-4"
+          },
+          [_vm._v(_vm._s(_vm.current_user.name))]
+        )
+      ]),
       _vm._v(" "),
-      _c("input", {
-        attrs: { type: "number", value: "" },
-        on: { change: _vm.handleTurn }
-      })
+      _c("transition", { attrs: { name: "component-fade", mode: "out-in" } }, [
+        _c(
+          "div",
+          {
+            key: _vm.current_user.id + 2,
+            staticClass: "text-left text-blue-500 font-bold text-6xl mb-6"
+          },
+          [
+            _vm._v(
+              "\n\t\t\t" +
+                _vm._s(
+                  _vm.current_user.last_turn != undefined
+                    ? _vm.current_user.last_turn.new_score_to_throw_from
+                    : _vm.current_user.start_score
+                ) +
+                "\n\t\t"
+            )
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("transition", { attrs: { name: "component-fade", mode: "out-in" } }, [
+        _c(
+          "div",
+          { key: _vm.current_user.id + 3, staticClass: "italic" },
+          _vm._l(_vm.current_user.turns, function(turn) {
+            return _c(
+              "div",
+              {
+                key: turn.thrown_score + turn.new_score_to_throw_from,
+                staticClass: "flex justify-between"
+              },
+              [
+                _c("div", { staticClass: "text-2xl" }, [
+                  _vm._v(
+                    "\n\t\t\t\t\t" +
+                      _vm._s(turn.new_score_to_throw_from) +
+                      "\n\t\t\t\t"
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "text-2xl text-red-500" }, [
+                  _vm._v(
+                    "\n\t\t\t\t\t-" + _vm._s(turn.thrown_score) + "\n\t\t\t\t"
+                  )
+                ])
+              ]
+            )
+          }),
+          0
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "mt-auto w-full" }, [
+        _c("input", {
+          staticClass:
+            "w-full border-2 border-blue-300 py-4 px-5 rounded-lg text-xl",
+          attrs: {
+            type: "number",
+            value: "",
+            min: "0",
+            max: "180",
+            placeholder: "Score"
+          },
+          on: { change: _vm.handleTurn }
+        })
+      ])
     ],
-    2
+    1
   )
 }
 var staticRenderFns = []
@@ -1118,25 +1311,32 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "flex flex-col w-full h-full font-semibold" },
     [
-      _c("h1", [_vm._v("Wie begint?")]),
+      _c("h1", { staticClass: "text-4xl self-start" }, [_vm._v("Wie begint?")]),
       _vm._v(" "),
-      _vm._l(_vm.users, function(user) {
-        return _c(
-          "div",
-          {
-            key: user.name,
-            on: {
-              click: function($event) {
-                return _vm.handleWhoBegins(user)
+      _c(
+        "div",
+        { staticClass: " my-auto" },
+        _vm._l(_vm.users, function(user) {
+          return _c(
+            "div",
+            {
+              key: user.name,
+              staticClass:
+                "text-4xl h-48 rounded-lg border-2 border-blue-100 flex justify-center items-center my-4",
+              on: {
+                click: function($event) {
+                  return _vm.handleWhoBegins(user)
+                }
               }
-            }
-          },
-          [_vm._v("\n\t\t  " + _vm._s(user.name) + "\n\t  ")]
-        )
-      })
-    ],
-    2
+            },
+            [_vm._v("\n\t\t\t" + _vm._s(user.name) + "\n\t\t")]
+          )
+        }),
+        0
+      )
+    ]
   )
 }
 var staticRenderFns = []
@@ -1161,13 +1361,28 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", [_vm._v(_vm._s(_vm.current_user.name) + " heeft gewonnen!")]),
-    _vm._v(" "),
-    _c("button", { on: { click: _vm.handleNewGame } }, [
-      _vm._v("\n\t\tNieuw Spel\n\t")
-    ])
-  ])
+  return _c(
+    "div",
+    { staticClass: "flex flex-col w-full h-full justify-between" },
+    [
+      _c("div", { staticClass: "text-5xl font-bold text-gray-800" }, [
+        _c("span", { staticClass: "text-blue-500" }, [
+          _vm._v(_vm._s(_vm.current_user.name))
+        ]),
+        _vm._v(" heeft gewonnen!\n\t")
+      ]),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass:
+            "text-white font-bold text-2xl h-20 bg-blue-500 rounded-lg my-2 flex justify-center items-center mt-auto",
+          on: { click: _vm.handleNewGame }
+        },
+        [_vm._v("\n\t\tNieuw Spel\n\t")]
+      )
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

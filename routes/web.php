@@ -14,5 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('base');
+    return view('app');
+});
+
+Route::get('/stats', function () {
+    return view('components/stats');
 });

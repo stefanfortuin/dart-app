@@ -1,10 +1,15 @@
 <template>
-	<div>
-		<div>{{current_user.name}} heeft gewonnen!</div>
+	<div class="flex flex-col w-full h-full justify-between">
+		<div class="text-5xl font-bold text-gray-800">
+			<span class="text-blue-500">{{current_user.name}}</span> heeft gewonnen!
+		</div>
 
-		<button @click="handleNewGame">
+		<a
+			@click="handleNewGame"
+			class="text-white font-bold text-2xl h-20 bg-blue-500 rounded-lg my-2 flex justify-center items-center mt-auto"
+		>
 			Nieuw Spel
-		</button>
+		</a>
 	</div>
 </template>
 

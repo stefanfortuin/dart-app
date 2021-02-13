@@ -13,11 +13,11 @@ class DartController extends Controller
 	public function users(Request $request)
 	{
 		$user_one = User::firstOrCreate([
-			'name' => $request->input('user_one'),
+			'name' => ucfirst($request->input('user_one')),
 		]);
 
 		$user_two = User::firstOrCreate([
-			'name' => $request->input('user_two'),
+			'name' => ucfirst($request->input('user_two')),
 		]);
 
 		return [

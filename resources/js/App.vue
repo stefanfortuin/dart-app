@@ -1,9 +1,14 @@
 <template>
-	<div>
-		<Players v-if="current_step == 0" />
-		<WhoBegins v-if="current_step == 1" />
-		<ScoreBoard v-if="current_step == 2" />
-		<Win v-if="current_step == 3" />
+	<div class="w-full h-screen flex flex-col justify-center items-center p-8">
+		<transition
+			name="component-fade"
+			mode="out-in"
+		>
+			<Players v-if="current_step == 0" />
+			<WhoBegins v-if="current_step == 1" />
+			<ScoreBoard v-if="current_step == 2" />
+			<Win v-if="current_step == 3" />
+		</transition>
 	</div>
 </template>
 
