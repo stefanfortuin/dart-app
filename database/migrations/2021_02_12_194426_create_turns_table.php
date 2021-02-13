@@ -16,12 +16,14 @@ class CreateTurnsTable extends Migration
         Schema::create('turns', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-			$table->unsignedBigInteger('match_id');
+			$table->unsignedBigInteger('game_id')->nullable();
 			$table->unsignedBigInteger('user_id');
-			$table->integer('score');
+			$table->integer('thrown_score')->nullable();
+			$table->integer('old_score_to_throw_from');
+			$table->integer('new_score_to_throw_from');
 
 			$table->foreign('user_id')->references('id')->on('users');
-			$table->foreign('match_id')->references('id')->on('matches');
+			$table->foreign('game_id')->references('id')->on('games');
         });
     }
 

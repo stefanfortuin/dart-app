@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\Turn;
+use App\Models\Match;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -28,6 +30,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
+		'created_at',
+		'updated_at',
         'password',
         'remember_token',
     ];
@@ -41,11 +45,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-	public function matches(){
-		return $this->belongsToMany(Match::class, 'match_player');
-	}
-
 	public function turns(){
 		return $this->hasMany(Turn::class);
+	}
+
+	public function games(){
+		return $this->belongsToMany(Game::class, 'game_user');
 	}
 }

@@ -10,13 +10,15 @@ class Turn extends Model
     use HasFactory;
 
 	protected $fillable = [
-        'match_id',
+        'game_id',
         'user_id',
 		'score',
+		'old_score_to_throw_from',
+		'new_score_to_throw_from'
     ];
 
-	public function match(){
-		return $this->belongsTo(Match::class);
+	public function game(){
+		return $this->belongsTo(Game::class);
 	}
 
 	public function user(){

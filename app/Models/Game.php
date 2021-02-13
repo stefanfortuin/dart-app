@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Match extends Model
+class Game extends Model
 {
     use HasFactory;
 
@@ -17,8 +17,8 @@ class Match extends Model
 		return $this->hasMany(Turn::class);
 	}
 
-	public function players(){
-		return $this->belongsToMany(User::class, 'match_player');
+	public function users(){
+		return $this->belongsToMany(User::class, 'game_user');
 	}
 
 	public function winner(){
