@@ -90,7 +90,7 @@ export default {
 
 			this.canMakeTurn = false;
 
-			if (this.current_user.last_turn.new_score_to_throw_from <= 0) {
+			if (this.current_user.score_to_throw_from <= 0) {
 				this.goToNextStep();
 				return;
 			}
