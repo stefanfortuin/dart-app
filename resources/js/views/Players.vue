@@ -11,7 +11,7 @@
 				label="Speler 2"
 				v-model="data.user_two"
 			/>
-			<div class="flex flex-col w-full">
+			<div class="flex flex-col w-full mb-3">
 				<label
 					for="set_start_score"
 					class="mb-2 text-xl font-semibold"

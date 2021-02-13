@@ -1,5 +1,5 @@
 <template>
-	<div class="flex flex-col h-28 mb-4">
+	<div class="flex flex-col mb-3">
 		<label :for="id" class="mb-2 text-xl font-semibold">{{label}}</label>
 		<input
 			type="text"

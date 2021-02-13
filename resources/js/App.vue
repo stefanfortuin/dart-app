@@ -1,5 +1,5 @@
 <template>
-	<div class="w-full h-screen flex flex-col justify-center items-center p-8">
+	<div class="w-full h-screen flex flex-col justify-center items-center p-5">
 		<transition
 			name="component-fade"
 			mode="out-in"

@@ -6,7 +6,7 @@
 		>
 			<div
 				:key="current_user.id + 1"
-				class="text-right text-gray-700 font-semibold text-3xl mb-4"
+				class="text-left text-gray-700 font-semibold text-3xl mb-3"
 			>{{current_user.name}}</div>
 		</transition>
 		<transition
@@ -31,7 +31,7 @@
 		>
 			<div
 				:key="current_user.id + 3"
-				class="italic"
+				class="italic mb-3 overflow-y-scroll"
 			>
 				<div
 					v-for="turn in current_user.turns"
@@ -65,6 +65,11 @@
 import { mapMutations, mapGetters } from 'vuex'
 import Turn from '../classes/Turn';
 export default {
+	data(){
+		return{
+			canMakeTurn: true,
+		}
+	},
 	methods: {
 		...mapMutations([
 			'switchUserThatDoesTurn',
@@ -75,12 +80,15 @@ export default {
 		handleTurn(event) {
 			const score = parseInt(event.target.value);
 
+			if(!this.canMakeTurn) return;
 			if (score < event.target.min || score > event.target.max) return;
 
 			const turn = new Turn(this.current_user.id, score, this.current_user.score_to_throw_from)
 			this.current_user.addTurnAndGetCheckout(turn)
 			this.saveTurnToGame(turn)
 			event.target.value = '';
+
+			this.canMakeTurn = false;
 
 			if (this.current_user.last_turn.new_score_to_throw_from <= 0) {
 				this.goToNextStep();
@@ -89,7 +97,11 @@ export default {
 
 			setTimeout(() => {
 				this.switchUserThatDoesTurn();
-			}, 1000);
+				setTimeout(() => {
+					this.canMakeTurn = true;
+				}, 200);
+				
+			}, 800);
 
 		},
 	},

@@ -287,16 +287,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      canMakeTurn: true
+    };
+  },
   methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapMutations)(['switchUserThatDoesTurn', 'goToNextStep', 'saveTurnToGame'])), {}, {
     handleTurn: function handleTurn(event) {
       var _this = this;
 
       var score = parseInt(event.target.value);
+      if (!this.canMakeTurn) return;
       if (score < event.target.min || score > event.target.max) return;
       var turn = new _classes_Turn__WEBPACK_IMPORTED_MODULE_0__.default(this.current_user.id, score, this.current_user.score_to_throw_from);
       this.current_user.addTurnAndGetCheckout(turn);
       this.saveTurnToGame(turn);
       event.target.value = '';
+      this.canMakeTurn = false;
 
       if (this.current_user.last_turn.new_score_to_throw_from <= 0) {
         this.goToNextStep();
@@ -305,7 +312,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       setTimeout(function () {
         _this.switchUserThatDoesTurn();
-      }, 1000);
+
+        setTimeout(function () {
+          _this.canMakeTurn = true;
+        }, 200);
+      }, 800);
     }
   }),
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapGetters)({
@@ -1076,7 +1087,7 @@ var render = function() {
     "div",
     {
       staticClass:
-        "w-full h-screen flex flex-col justify-center items-center p-8"
+        "w-full h-screen flex flex-col justify-center items-center p-5"
     },
     [
       _c(
@@ -1119,7 +1130,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "flex flex-col h-28 mb-4" }, [
+  return _c("div", { staticClass: "flex flex-col mb-3" }, [
     _c(
       "label",
       { staticClass: "mb-2 text-xl font-semibold", attrs: { for: _vm.id } },
@@ -1189,7 +1200,7 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("div", { staticClass: "flex flex-col w-full" }, [
+          _c("div", { staticClass: "flex flex-col w-full mb-3" }, [
             _c(
               "label",
               {
@@ -1292,7 +1303,7 @@ var render = function() {
           "div",
           {
             key: _vm.current_user.id + 1,
-            staticClass: "text-right text-gray-700 font-semibold text-3xl mb-4"
+            staticClass: "text-left text-gray-700 font-semibold text-3xl mb-3"
           },
           [_vm._v(_vm._s(_vm.current_user.name))]
         )
@@ -1326,7 +1337,10 @@ var render = function() {
       _c("transition", { attrs: { name: "component-fade", mode: "out-in" } }, [
         _c(
           "div",
-          { key: _vm.current_user.id + 3, staticClass: "italic" },
+          {
+            key: _vm.current_user.id + 3,
+            staticClass: "italic mb-3 overflow-y-scroll"
+          },
           _vm._l(_vm.current_user.turns, function(turn) {
             return _c(
               "div",
