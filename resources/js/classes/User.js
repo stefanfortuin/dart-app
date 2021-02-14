@@ -25,7 +25,7 @@ export default class User{
 	getCheckout(){
 		if(this.score_to_throw_from > 170) return;
 			
-		fetch('http://darts.stefanfortuin.nl/api/checkout/' + this.score_to_throw_from)
+		fetch('https://darts.stefanfortuin.nl/api/checkout/' + this.score_to_throw_from)
 		.then(response => response.json())
 		.then(response => {
 			this.checkout = response.join(" ");

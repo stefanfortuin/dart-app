@@ -42,7 +42,7 @@ export default {
 				winner_id: this.current_user.id,
 			}
 
-			fetch('http://darts.stefanfortuin.nl/api/game', {
+			fetch('https://darts.stefanfortuin.nl/api/game', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
