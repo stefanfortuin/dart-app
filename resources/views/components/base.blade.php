@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="/css/app.css">
 	<title>Darts</title>
 </head>
-<body class="font-sans">
+<body class="font-sans antialiased max-w-md mx-auto p-5 h-screen flex flex-col">
 	{{ $slot }}
 </body>
 </html>

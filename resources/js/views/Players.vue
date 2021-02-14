@@ -72,7 +72,7 @@ export default {
 	},
 	computed: {
 		canProceed() {
-			return this.data.user_one != "" && this.data.user_two != ""
+			return this.data.user_one != "" && this.data.user_two != "" && this.start_score != ""
 		}
 	},
 	methods: {

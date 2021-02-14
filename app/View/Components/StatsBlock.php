@@ -4,16 +4,21 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class Stats extends Component
+class StatsBlock extends Component
 {
+	public $title;
+
+	public $metric;
+	
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($title, $metric)
     {
-        //
+        $this->title = $title;
+		$this->metric = $metric;
     }
 
     /**
@@ -23,6 +28,6 @@ class Stats extends Component
      */
     public function render()
     {
-        return view('components.stats');
+        return view('components.stats-block');
     }
 }

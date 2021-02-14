@@ -175,7 +175,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: {
     canProceed: function canProceed() {
-      return this.data.user_one != "" && this.data.user_two != "";
+      return this.data.user_one != "" && this.data.user_two != "" && this.start_score != "";
     }
   },
   methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapMutations)(['setUsers', 'goToNextStep', 'setStartScore'])), {}, {
@@ -221,6 +221,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
 //
 //
 //
@@ -1085,10 +1086,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {
-      staticClass:
-        "w-full h-screen flex flex-col justify-center items-center p-5"
-    },
+    { staticClass: "h-full" },
     [
       _c(
         "transition",
@@ -1314,7 +1312,7 @@ var render = function() {
           "div",
           {
             key: _vm.current_user.id + 2,
-            staticClass: "flex justify-between font-bold mb-6"
+            staticClass: "flex justify-between font-bold mb-4"
           },
           [
             _c("div", { staticClass: "text-blue-500 text-6xl" }, [
@@ -1333,6 +1331,8 @@ var render = function() {
           ]
         )
       ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "border-solid border-2 border-gray-200" }),
       _vm._v(" "),
       _c("transition", { attrs: { name: "component-fade", mode: "out-in" } }, [
         _c(
@@ -1424,7 +1424,7 @@ var render = function() {
             {
               key: user.name,
               staticClass:
-                "text-4xl h-48 rounded-lg border-2 border-blue-200 flex justify-center items-center my-4",
+                "text-5xl font-bold h-48 rounded-lg border-2 border-blue-200 flex justify-center items-center my-4",
               on: {
                 click: function($event) {
                   return _vm.handleWhoBegins(user)

@@ -12,7 +12,7 @@ class Turn extends Model
 	protected $fillable = [
         'game_id',
         'user_id',
-		'score',
+		'thrown_score',
 		'old_score_to_throw_from',
 		'new_score_to_throw_from'
     ];

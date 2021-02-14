@@ -15,7 +15,7 @@
 		>
 			<div
 				:key="current_user.id + 2"
-				class="flex justify-between font-bold mb-6"
+				class="flex justify-between font-bold mb-4"
 			>
 				<div class="text-blue-500 text-6xl">
 					{{current_user.score_to_throw_from}}
@@ -25,6 +25,7 @@
 				</div>
 			</div>
 		</transition>
+		<div class="border-solid border-2 border-gray-200"></div>
 		<transition
 			name="component-fade"
 			mode="out-in"

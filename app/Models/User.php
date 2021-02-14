@@ -45,6 +45,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+	protected $with = ['games', 'turns'];
+
 	public function turns(){
 		return $this->hasMany(Turn::class);
 	}
