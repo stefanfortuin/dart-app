@@ -14,3 +14,7 @@
 	opacity: 100;
   	transform: translateX(-100%);
 }
+
+html, body{
+	height: 100%;
+}
