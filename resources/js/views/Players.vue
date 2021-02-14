@@ -14,7 +14,7 @@
 			<div class="flex flex-col w-full mb-3">
 				<label
 					for="set_start_score"
-					class="mb-2 text-xl font-semibold"
+					class="mb-2 text-xl font-semibold text-blue-400"
 				>Start score</label>
 				<input
 					type="number"
@@ -22,7 +22,7 @@
 					max=501
 					name="set_start_score"
 					id="set_start_score"
-					class="border-2 border-blue-200 py-4 px-5 rounded-lg text-xl"
+					class="border-2 border-blue-200 text-blue-500 font-bold text-3xl py-3 px-4 rounded-lg"
 					v-model="start_score"
 				>
 			</div>
@@ -72,6 +72,14 @@ export default {
 	},
 	computed: {
 		canProceed() {
+			return this.fieldsAreNotEmpty && this.usersAreNotTheSame;
+		},
+
+		usersAreNotTheSame(){
+			return this.data.user_one.toLowerCase() != this.data.user_two.toLowerCase()
+		},
+
+		fieldsAreNotEmpty(){
 			return this.data.user_one != "" && this.data.user_two != "" && this.start_score != ""
 		}
 	},

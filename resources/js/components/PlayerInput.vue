@@ -1,13 +1,12 @@
 <template>
 	<div class="flex flex-col mb-3">
-		<label :for="id" class="mb-2 text-xl font-semibold">{{label}}</label>
+		<label :for="id" class="mb-2 text-xl font-semibold text-blue-400">{{label}}</label>
 		<input
 			type="text"
 			:value="value"
 			:id="id"
-			placeholder="Naam speler"
 			@input="$emit('input', $event.target.value)"
-			class="border-2 border-blue-200 py-4 px-5 rounded-lg text-xl"
+			class="border-2 border-blue-200 py-3 px-4 rounded-lg text-3xl font-bold text-blue-500"
 		>
 	</div>
 </template>
