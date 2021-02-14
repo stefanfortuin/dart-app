@@ -1,7 +1,14 @@
 <template>
 	<div class="flex flex-col w-full h-full justify-between">
-		<div class="text-5xl font-bold text-gray-800">
+		<div class="text-5xl font-bold text-gray-800 mb-6">
 			<span class="text-blue-500">{{current_user.name}}</span> heeft gewonnen!
+		</div>
+
+		<div
+			class="grid grid-cols-2 gap-3"
+		>
+			<stats-block :title="'Gem/beurt'" :metric="parseFloat(averagePerTurn).toFixed(2)" />
+			<stats-block :title="'Hoogste'" :metric="highestTurn" />
 		</div>
 
 		<a
@@ -14,8 +21,12 @@
 </template>
 
 <script>
+import StatsBlock from '../components/StatsBlock';
 import { mapGetters, mapMutations } from 'vuex'
 export default {
+	components: {
+		StatsBlock,
+	},
 	created() {
 		this.uploadGame();
 	},
@@ -24,7 +35,15 @@ export default {
 			current_user: 'getUserThatDoesTurn',
 			users: 'getUsers',
 			turns: 'getTurns'
-		})
+		}),
+
+		averagePerTurn(){
+			return this.current_user.turns.reduce((t,a) => {return t+=a.thrown_score}, 0) / this.current_user.turns.length;
+		},
+
+		highestTurn(){
+			return this.current_user.turns.sort((a,b) => b.thrown_score - a.thrown_score)[0].thrown_score;
+		}
 	},
 	methods: {
 		...mapMutations([
