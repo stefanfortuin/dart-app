@@ -7,9 +7,8 @@ export default class User{
 		this.checkout = '';
 	}
 
-	addTurnAndGetCheckout(turn){
+	addTurn(turn){
 		this.turns.push(turn);
-		this.getCheckout();
 	}
 
 	get score_to_throw_from(){

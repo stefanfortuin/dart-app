@@ -5,27 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Turn extends Model
+class Shot extends Model
 {
     use HasFactory;
 
 	protected $fillable = [
-        'game_id',
         'user_id',
+		'turn_id',
+		'dart_id',
 		'thrown_score',
-		'old_score_to_throw_from',
-		'new_score_to_throw_from'
     ];
-
-	public function game(){
-		return $this->belongsTo(Game::class);
-	}
-
-	public function shots(){
-		return $this->hasMany(Shot::class);
-	}
 
 	public function user(){
 		return $this->belongsTo(User::class);
+	}
+
+	public function turn(){
+		return $this->belongsTo(Turn::class);
 	}
 }

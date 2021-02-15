@@ -42,21 +42,38 @@
 					<div class="text-2xl">
 						{{turn.new_score_to_throw_from}}
 					</div>
-					<div class="text-2xl text-red-500">
-						-{{turn.thrown_score}}
+					<div class="flex">
+						<div class="mr-3 text-gray-700 text-opacity-70 flex justify-end items-end">
+							{{turn.shotScores}}
+						</div>
+						<div class="text-2xl text-red-500">
+
+							-{{turn.thrown_score}}
+						</div>
 					</div>
 				</div>
 			</div>
 		</transition>
 		<div class="mt-auto w-full">
+			<transition
+				name="component-fade"
+				mode="out-in"
+			>
+				<label
+					for="dart-id"
+					:key="'dart-' + current_dart"
+					class="text-blue-500 font-bold text-xl"
+				>Pijl - {{current_dart}}</label>
+			</transition>
 			<input
 				type="number"
+				id="dart-id"
 				value=''
 				min=0
-				max=180
+				max=60
 				placeholder="Score"
-				@change="handleTurn"
-				class="w-full border-2 border-blue-300 py-4 px-5 rounded-lg text-xl"
+				@change="handleShot"
+				class="w-full border-2 border-blue-300 py-4 px-5 mt-3 rounded-lg text-xl"
 			>
 		</div>
 	</div>
@@ -65,10 +82,14 @@
 <script>
 import { mapMutations, mapGetters } from 'vuex'
 import Turn from '../classes/Turn';
+import Shot from '../classes/Shot';
+
 export default {
-	data(){
-		return{
-			canMakeTurn: true,
+	data() {
+		return {
+			canMakeShot: true,
+			current_dart: 1,
+			current_turn: undefined
 		}
 	},
 	methods: {
@@ -78,18 +99,33 @@ export default {
 			'saveTurnToGame'
 		]),
 
-		handleTurn(event) {
-			const score = parseInt(event.target.value);
+		handleShot(event) {
+			if (!this.canMakeShot) return;
 
-			if(!this.canMakeTurn) return;
-			if (score < event.target.min || score > event.target.max) return;
+			const target = event.target;
+			const thrown_score = parseInt(target.value);
+			if (this.scoreOutOfRange(target.min, target.max, thrown_score)) return;
 
-			const turn = new Turn(this.current_user.id, score, this.current_user.score_to_throw_from)
-			this.current_user.addTurnAndGetCheckout(turn)
-			this.saveTurnToGame(turn)
-			event.target.value = '';
+			if (this.current_turn == undefined) {
+				this.createNewTurn();
+			}
 
-			this.canMakeTurn = false;
+			const shot = new Shot()
+				.setUser(this.current_user.id)
+				.setDart(this.current_dart)
+				.setThrownScore(thrown_score);
+
+			this.current_turn.shots.push(shot);
+			this.current_turn.calculateThrownScore();
+			this.current_user.getCheckout();
+
+			if (this.hasDartsLeft()) {
+				this.goToNextShot();
+				this.resetInputField(target);
+				return;
+			}
+
+			this.canMakeShot = false;
 
 			if (this.current_user.score_to_throw_from <= 0) {
 				this.goToNextStep();
@@ -97,14 +133,46 @@ export default {
 			}
 
 			setTimeout(() => {
+				this.resetInputField(target);
+				this.resetForNextTurn();
 				this.switchUserThatDoesTurn();
 				setTimeout(() => {
-					this.canMakeTurn = true;
+					this.canMakeShot = true;
 				}, 200);
-				
+
 			}, 800);
 
 		},
+
+		createNewTurn() {
+			this.current_turn = new Turn()
+				.setUser(this.current_user.id)
+				.setOldScoreToThrowFrom(this.current_user.score_to_throw_from)
+
+			this.current_user.addTurn(this.current_turn);
+			this.saveTurnToGame(this.current_turn);
+		},
+
+		resetInputField(target) {
+			target.value = '';
+		},
+
+		hasDartsLeft() {
+			return this.current_dart != 3;
+		},
+
+		goToNextShot() {
+			this.current_dart++;
+		},
+
+		resetForNextTurn() {
+			this.current_dart = 1;
+			this.current_turn = undefined;
+		},
+
+		scoreOutOfRange(min, max, score) {
+			return score < min || score > max;
+		}
 	},
 	computed: {
 		...mapGetters({

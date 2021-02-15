@@ -51,6 +51,10 @@ class User extends Authenticatable
 		return $this->hasMany(Turn::class);
 	}
 
+	public function shots(){
+		return $this->hasMany(Shot::class);
+	}
+
 	public function games(){
 		return $this->belongsToMany(Game::class, 'game_user');
 	}
