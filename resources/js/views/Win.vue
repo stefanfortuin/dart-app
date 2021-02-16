@@ -5,7 +5,7 @@
 		</div>
 
 		<div
-			class="grid grid-cols-2 gap-3"
+			class="grid grid-cols-2 gap-2"
 		>
 			<stats-block :title="'Gem/beurt'" :metric="parseFloat(averagePerTurn).toFixed(2)" />
 			<stats-block :title="'Hoogste'" :metric="highestTurn" />

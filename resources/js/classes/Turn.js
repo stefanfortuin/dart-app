@@ -17,7 +17,12 @@ export default class Turn{
 		return this;
 	}
 
-	get shotScores(){
+	addShotAndCalculateNewScore(shot){
+		this.shots.push(shot);
+		this.calculateThrownScore();
+	}
+
+	get shotScoresInStringFormat(){
 		return this.shots.map(shot => shot.thrown_score).join(" ");
 	}
 
@@ -26,7 +31,4 @@ export default class Turn{
 		this.new_score_to_throw_from = this.old_score_to_throw_from - this.thrown_score;
 	}
 
-	// calculateNewScoreToThrowFrom(){
-	// 	return this.old_score_to_throw_from - this.thrown_score;
-	// }
 }

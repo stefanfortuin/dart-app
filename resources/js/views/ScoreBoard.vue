@@ -5,23 +5,23 @@
 			mode="out-in"
 		>
 			<div
-				:key="current_user.id + 1"
+				:key="user.id + 1"
 				class="text-left text-gray-700 font-semibold text-3xl mb-3"
-			>{{current_user.name}}</div>
+			>{{user.name}}</div>
 		</transition>
 		<transition
 			name="component-fade"
 			mode="out-in"
 		>
 			<div
-				:key="current_user.id + 2"
+				:key="user.id + 2"
 				class="flex justify-between font-bold mb-4"
 			>
 				<div class="text-blue-500 text-6xl">
-					{{current_user.score_to_throw_from}}
+					{{user.score_to_throw_from}}
 				</div>
 				<div class="text-2xl flex items-end">
-					{{current_user.checkout}}
+					{{user.checkout}}
 				</div>
 			</div>
 		</transition>
@@ -31,11 +31,11 @@
 			mode="out-in"
 		>
 			<div
-				:key="current_user.id + 3"
+				:key="user.id + 3"
 				class="italic mb-3 overflow-y-scroll"
 			>
 				<div
-					v-for="turn in current_user.turns"
+					v-for="turn in user.turns"
 					:key="turn.thrown_score + turn.new_score_to_throw_from"
 					class="flex justify-between"
 				>
@@ -44,7 +44,7 @@
 					</div>
 					<div class="flex">
 						<div class="mr-3 text-gray-700 text-opacity-70 flex justify-end items-end">
-							{{turn.shotScores}}
+							{{turn.shotScoresInStringFormat}}
 						</div>
 						<div class="text-2xl text-red-500">
 
@@ -61,9 +61,9 @@
 			>
 				<label
 					for="dart-id"
-					:key="'dart-' + current_dart"
+					:key="'dart-' + user.current_dart"
 					class="text-blue-500 font-bold text-xl"
-				>Pijl - {{current_dart}}</label>
+				>Pijl - {{user.current_dart}}</label>
 			</transition>
 			<input
 				type="number"
@@ -88,8 +88,7 @@ export default {
 	data() {
 		return {
 			canMakeShot: true,
-			current_dart: 1,
-			current_turn: undefined
+			turn: undefined
 		}
 	},
 	methods: {
@@ -106,28 +105,27 @@ export default {
 			const thrown_score = parseInt(target.value);
 			if (this.scoreOutOfRange(target.min, target.max, thrown_score)) return;
 
-			if (this.current_turn == undefined) {
+			if (this.turn == undefined) {
 				this.createNewTurn();
 			}
 
 			const shot = new Shot()
-				.setUser(this.current_user.id)
-				.setDart(this.current_dart)
+				.setUser(this.user.id)
+				.setDart(this.user.current_dart)
 				.setThrownScore(thrown_score);
 
-			this.current_turn.shots.push(shot);
-			this.current_turn.calculateThrownScore();
-			this.current_user.getCheckout();
+			this.turn.addShotAndCalculateNewScore(shot);
+			this.user.getCheckout();
 
-			if (this.hasDartsLeft()) {
-				this.goToNextShot();
+			if (this.user.hasDartsLeft() && !this.user.hasWon()) {
+				this.user.goToNextShot();
 				this.resetInputField(target);
 				return;
 			}
 
 			this.canMakeShot = false;
 
-			if (this.current_user.score_to_throw_from <= 0) {
+			if (this.user.hasWon()) {
 				this.goToNextStep();
 				return;
 			}
@@ -136,38 +134,27 @@ export default {
 				this.resetInputField(target);
 				this.resetForNextTurn();
 				this.switchUserThatDoesTurn();
-				setTimeout(() => {
-					this.canMakeShot = true;
-				}, 200);
-
+				this.canMakeShot = true;
 			}, 800);
 
 		},
 
 		createNewTurn() {
-			this.current_turn = new Turn()
-				.setUser(this.current_user.id)
-				.setOldScoreToThrowFrom(this.current_user.score_to_throw_from)
+			this.turn = new Turn()
+				.setUser(this.user.id)
+				.setOldScoreToThrowFrom(this.user.score_to_throw_from)
 
-			this.current_user.addTurn(this.current_turn);
-			this.saveTurnToGame(this.current_turn);
+			this.user.addTurn(this.turn);
+			this.saveTurnToGame(this.turn);
 		},
 
 		resetInputField(target) {
 			target.value = '';
 		},
 
-		hasDartsLeft() {
-			return this.current_dart != 3;
-		},
-
-		goToNextShot() {
-			this.current_dart++;
-		},
-
 		resetForNextTurn() {
-			this.current_dart = 1;
-			this.current_turn = undefined;
+			this.user.goToFirstShot();
+			this.turn = undefined;
 		},
 
 		scoreOutOfRange(min, max, score) {
@@ -176,7 +163,7 @@ export default {
 	},
 	computed: {
 		...mapGetters({
-			current_user: 'getUserThatDoesTurn',
+			user: 'getUserThatDoesTurn',
 		})
 	}
 }
