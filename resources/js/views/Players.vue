@@ -60,13 +60,6 @@ export default {
 			all_users: null
 		}
 	},
-	created() {
-		// fetch('http://localhost/api/all_users')
-		// .then(response => response.json())
-		// .then(response => {
-		// 	this.all_users = response;
-		// })
-	},
 	components: {
 		PlayerInput,
 	},

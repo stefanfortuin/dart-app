@@ -4,78 +4,14 @@
 			name="component-fade"
 			mode="out-in"
 		>
-			<div
-				:key="user.id + 1"
-				class="text-left text-gray-700 font-semibold text-3xl mb-3"
-			>{{user.name}}</div>
-		</transition>
-		<transition
-			name="component-fade"
-			mode="out-in"
-		>
-			<div
-				:key="user.id + 2"
-				class="flex justify-between font-bold mb-4"
-			>
-				<div class="text-blue-500 text-6xl">
-					{{user.score_to_throw_from}}
-				</div>
-				<div class="text-2xl flex items-end">
-					{{user.checkout}}
-				</div>
+			<div :key="user.id">
+				<user-name :user="user" />
+				<user-score-and-checkout :user="user" />
+				<div class="border-solid border-2 border-gray-200"></div>
+				<user-turns :user="user" />
 			</div>
 		</transition>
-		<div class="border-solid border-2 border-gray-200"></div>
-		<transition
-			name="component-fade"
-			mode="out-in"
-		>
-			<div
-				:key="user.id + 3"
-				class="italic mb-3 overflow-y-scroll"
-			>
-				<div
-					v-for="turn in user.turns"
-					:key="turn.thrown_score + turn.new_score_to_throw_from"
-					class="flex justify-between"
-				>
-					<div class="text-2xl">
-						{{turn.new_score_to_throw_from}}
-					</div>
-					<div class="flex">
-						<div class="mr-3 text-gray-700 text-opacity-70 flex justify-end items-end">
-							{{turn.shotScoresInStringFormat}}
-						</div>
-						<div class="text-2xl text-red-500">
-
-							-{{turn.thrown_score}}
-						</div>
-					</div>
-				</div>
-			</div>
-		</transition>
-		<div class="mt-auto w-full">
-			<transition
-				name="component-fade"
-				mode="out-in"
-			>
-				<label
-					for="dart-id"
-					:key="'dart-' + user.current_dart"
-					class="text-blue-500 font-bold text-xl"
-				>Pijl - {{user.current_dart}}</label>
-			</transition>
-			<input
-				type="number"
-				id="dart-id"
-				value=''
-				min=0
-				max=60
-				placeholder="Score"
-				@change="handleShot"
-				class="w-full border-2 border-blue-300 py-4 px-5 mt-3 rounded-lg text-xl"
-			>
-		</div>
+		<score-input :user="user" @change="handleShot"/>
 	</div>
 </template>
 
@@ -84,12 +20,23 @@ import { mapMutations, mapGetters } from 'vuex'
 import Turn from '../classes/Turn';
 import Shot from '../classes/Shot';
 
+import UserTurns from '../components/UserTurns';
+import UserScoreAndCheckout from '../components/UserScoreAndCheckout';
+import UserName from '../components/UserName';
+import ScoreInput from '../components/ScoreInput.vue';
+
 export default {
 	data() {
 		return {
 			canMakeShot: true,
 			turn: undefined
 		}
+	},
+	components: {
+		UserTurns,
+		UserScoreAndCheckout,
+		UserName,
+		ScoreInput,
 	},
 	methods: {
 		...mapMutations([
@@ -98,10 +45,9 @@ export default {
 			'saveTurnToGame'
 		]),
 
-		handleShot(event) {
+		handleShot(target) {
 			if (!this.canMakeShot) return;
-
-			const target = event.target;
+			
 			const thrown_score = parseInt(target.value);
 			if (this.scoreOutOfRange(target.min, target.max, thrown_score)) return;
 

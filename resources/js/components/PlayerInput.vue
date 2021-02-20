@@ -5,8 +5,9 @@
 			type="text"
 			:value="value"
 			:id="id"
+			placeholder="Phil Taylor"
 			@input="$emit('input', $event.target.value)"
-			class="border-2 border-blue-200 py-3 px-4 rounded-lg text-3xl font-bold text-blue-500"
+			class="border-2 border-blue-200 py-3 px-4 placeholder-blue-100 rounded-lg text-3xl font-bold text-blue-500"
 		>
 	</div>
 </template>
