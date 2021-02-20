@@ -1,11 +1,8 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
+import { createStore } from 'vuex';
 import Turn from '../classes/Turn';
 import User from '../classes/User';
 
-Vue.use(Vuex);
-
-export default new Vuex.Store({
+export default createStore({
 	state: {
 		users: [],
 		turns: [],

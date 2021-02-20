@@ -1,6 +1,6 @@
 <template>
 	<div class="flex flex-col w-full h-full justify-between">
-		<div class="text-5xl font-bold text-gray-800 mb-6">
+		<div class="text-5xl font-bold text-gray-700 mb-6">
 			<span class="text-blue-500">{{current_user.name}}</span> heeft gewonnen!
 		</div>
 

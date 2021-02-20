@@ -3,10 +3,10 @@
 		<label :for="id" class="mb-2 text-xl font-semibold text-blue-400">{{label}}</label>
 		<input
 			type="text"
-			:value="value"
+			:value="modelValue"
 			:id="id"
 			placeholder="Phil Taylor"
-			@input="$emit('input', $event.target.value)"
+			@input="$emit('update:modelValue', $event.target.value)"
 			class="border-2 border-blue-200 py-3 px-4 placeholder-blue-100 rounded-lg text-3xl font-bold text-blue-500"
 		>
 	</div>
@@ -15,7 +15,7 @@
 <script>
 export default {
 	props: [
-		'value',
+		'modelValue',
 		'id',
 		'label'
 	]

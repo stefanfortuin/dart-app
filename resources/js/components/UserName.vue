@@ -1,5 +1,5 @@
 <template>
-	<div class="text-left text-gray-700 font-semibold text-3xl mb-3">
+	<div class="font-light text-left text-3xl">
 		{{user.name}}
 	</div>
 </template>
