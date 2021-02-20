@@ -1,7 +1,7 @@
 <template>
 	<div class="flex flex-col w-full h-full justify-between">
 		<div class="text-5xl font-bold text-gray-700 mb-6">
-			<span class="text-blue-500">{{current_user.name}}</span> heeft gewonnen!
+			<span class="bg-clip-text text-transparent bg-gradient-to-br from-blue-600 to-blue-500">{{current_user.name}}</span> heeft gewonnen!
 		</div>
 
 		<div
@@ -13,7 +13,7 @@
 
 		<a
 			@click="handleNewGame"
-			class="text-white font-bold text-2xl h-20 bg-blue-500 rounded-lg my-2 flex justify-center items-center mt-auto"
+			class="text-white font-bold text-2xl h-20 bg-gradient-to-br from-blue-600 to-blue-500 rounded-lg my-2 flex justify-center items-center mt-auto"
 		>
 			Nieuw Spel
 		</a>

@@ -39,7 +39,7 @@
 
 			<a
 				href="/stats"
-				class="h-20 bg-blue-500 rounded-lg my-2 flex justify-center items-center"
+				class="h-20 bg-gradient-to-br from-blue-600 to-blue-500 rounded-lg my-2 flex justify-center items-center"
 			>Statistieken</a>
 		</div>
 	</div>
