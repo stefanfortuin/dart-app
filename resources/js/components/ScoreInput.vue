@@ -8,7 +8,7 @@
 			max=180
 			placeholder="Score"
 			@change="$emit('change', $event.target)"
-			class="w-full border-2 border-blue-300 py-4 px-5 mt-3 rounded-lg text-xl"
+			class="w-full bg-gray-200 text-gray-700 font-bold placeholder-opacity-40 placeholder-gray-400 py-3 px-5 mt-3 rounded-lg text-4xl"
 		>
 	</div>
 

@@ -8,7 +8,7 @@
 
 		/>
 		<score-input
-			:user="user"
+			:user="userThatDoesTurn"
 			@change="handleTurn"
 		/>
 	</div>

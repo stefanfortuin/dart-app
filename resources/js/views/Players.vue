@@ -31,8 +31,8 @@
 		<div class="flex flex-col w-full font-bold text-2xl text-white">
 			<a
 				@click="handleNextStep"
-				class="h-20 rounded-lg my-2 flex justify-center items-center"
-				:class="(canProceed) ? 'bg-green-500' : 'bg-blue-200'"
+				class="h-20 rounded-lg my-2 flex justify-center items-center bg-gradient-to-br"
+				:class="(canProceed) ? 'from-green-600 to-green-500' : 'bg-blue-200'"
 			>
 				Volgende
 			</a>
