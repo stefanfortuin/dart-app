@@ -6,5 +6,5 @@
 		<x-stats-block title="Gewonnen" :metric="$won"/>
 		<x-stats-block title="Verloren" :metric="$lost"/>
 	</div>
-	<a href="/stats" class="my-2 font-bold h-20 bg-blue-500 text-white flex justify-center items-center text-2xl rounded-lg mt-auto">Terug</a>
+	<a href="/stats" class="my-1 font-bold p-4 bg-gradient-to-br from-blue-600 to-blue-500 text-white flex justify-center items-center text-2xl rounded-lg mt-auto">Terug</a>
 </x-base>

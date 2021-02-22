@@ -31,7 +31,7 @@
 		<div class="flex flex-col w-full font-bold text-2xl text-white">
 			<a
 				@click="handleNextStep"
-				class="h-20 rounded-lg my-2 flex justify-center items-center bg-gradient-to-br"
+				class="p-4 rounded-lg my-1 flex justify-center items-center bg-gradient-to-br"
 				:class="(canProceed) ? 'from-green-600 to-green-500' : 'bg-blue-200'"
 			>
 				Volgende
@@ -39,7 +39,7 @@
 
 			<a
 				href="/stats"
-				class="h-20 bg-gradient-to-br from-blue-600 to-blue-500 rounded-lg my-2 flex justify-center items-center"
+				class="p-4 bg-gradient-to-br from-blue-600 to-blue-500 rounded-lg my-1 flex justify-center items-center"
 			>Statistieken</a>
 		</div>
 	</div>

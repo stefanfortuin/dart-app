@@ -7,5 +7,5 @@
 			</a>
 		@endforeach
 	</div>
-	<a href="/" class="mt-auto h-20 bg-blue-500 text-white font-bold text-2xl rounded-lg my-2 flex justify-center items-center">Terug</a>
+	<a href="/" class="mt-auto p-4 bg-gradient-to-br from-blue-600 to-blue-500 text-white font-bold text-2xl rounded-lg my-1 flex justify-center items-center">Terug</a>
 </x-base>

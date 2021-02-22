@@ -13,7 +13,7 @@
 
 		<a
 			@click="handleNewGame"
-			class="text-white font-bold text-2xl h-20 bg-gradient-to-br from-blue-600 to-blue-500 rounded-lg my-2 flex justify-center items-center mt-auto"
+			class="text-white font-bold text-2xl p-4 bg-gradient-to-br from-blue-600 to-blue-500 rounded-lg my-1 flex justify-center items-center mt-auto"
 		>
 			Nieuw Spel
 		</a>
