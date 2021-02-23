@@ -53,6 +53,10 @@ export default createStore({
 			return state.users;
 		},
 
+		getStartScore(state){
+			return state.start_score;
+		},
+
 		getTurns(state){
 			return state.turns;
 		},

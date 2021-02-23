@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="transition-all rounded-lg shadow-md p-4 mb-2"
+		class="transition-all rounded-lg shadow-md p-3 mb-2"
 		:class="(isOnTurn) ? 'bg-blue-500' : 'bg-gray-200'"
 	>
 		<div class="flex justify-between">

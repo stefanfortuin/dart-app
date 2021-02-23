@@ -7,6 +7,7 @@
 			:is-on-turn="user == userThatDoesTurn"
 
 		/>
+		<graph-turns/>
 		<score-input
 			:user="userThatDoesTurn"
 			@change="handleTurn"
@@ -17,6 +18,7 @@
 <script>
 import { mapMutations, mapGetters } from 'vuex'
 import Turn from '../classes/Turn';
+import GraphTurns from '../components/GraphTurns.vue';
 
 import ScoreInput from '../components/ScoreInput.vue';
 import UserCardScore from '../components/UserCardScore.vue';
@@ -30,6 +32,7 @@ export default {
 	components: {
 		ScoreInput,
 		UserCardScore,
+		GraphTurns
 	},
 	methods: {
 		...mapMutations([

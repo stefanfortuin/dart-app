@@ -10,5 +10,4 @@
 	<div class="mt-auto">
 		<x-button-action href="/">Terug</x-button-action>
 	</div>
-	
 </x-base>
