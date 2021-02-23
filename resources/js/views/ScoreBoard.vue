@@ -65,7 +65,6 @@ export default {
 
 			setTimeout(() => {
 				this.resetInputField(target);
-				this.resetForNextTurn();
 				this.switchUserThatDoesTurn();
 				this.canMakeTurn = true;
 			}, 800);
