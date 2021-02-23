@@ -25,7 +25,6 @@ export default {
 	data() {
 		return {
 			canMakeTurn: true,
-			turn: undefined
 		}
 	},
 	components: {
@@ -43,18 +42,18 @@ export default {
 			if (!this.canMakeTurn) return;
 
 			const thrown_score = parseInt(target.value);
-			if (this.scoreOutOfRange(target.min, target.max, thrown_score)) return;
+			if (this.scoreIsOutOfRange(target.min, target.max, thrown_score)) return;
 
-			this.turn = new Turn()
+			let turn = new Turn()
 				.setUser(this.userThatDoesTurn.id)
 				.setThrownScore(thrown_score)
 				.setOldScoreToThrowFrom(this.userThatDoesTurn.score_to_throw_from)
 				.calculateNewScoreToThrowFrom()
 
-			this.saveTurnToGame(this.turn);
+			this.saveTurnToGame(turn);
 
 			this.userThatDoesTurn
-				.addTurn(this.turn)
+				.addTurn(turn)
 				.getCheckout()
 
 			this.canMakeTurn = false;
@@ -77,11 +76,7 @@ export default {
 			target.value = '';
 		},
 
-		resetForNextTurn() {
-			this.turn = undefined;
-		},
-
-		scoreOutOfRange(min, max, score) {
+		scoreIsOutOfRange(min, max, score) {
 			return score < min || score > max;
 		}
 	},

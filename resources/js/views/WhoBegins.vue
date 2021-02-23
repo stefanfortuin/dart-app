@@ -6,7 +6,7 @@
 				v-for="user in users"
 				:key="user.name"
 				@click="handleWhoBegins(user)"
-				class="text-5xl bg-gradient-to-br from-blue-600 to-blue-500 font-bold h-48 rounded-lg bg-blue-500 text-white active:bg-green-500 active:text-white flex justify-center items-center my-4"
+				class="text-5xl bg-gradient-to-br from-blue-600 to-blue-500 font-bold h-48 rounded-lg shadow-md bg-blue-500 text-white active:bg-green-500 active:text-white flex justify-center items-center my-4"
 			>
 				{{user.name}}
 			</div>

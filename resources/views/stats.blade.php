@@ -7,5 +7,8 @@
 			</a>
 		@endforeach
 	</div>
-	<a href="/" class="mt-auto p-4 bg-gradient-to-br from-blue-600 to-blue-500 text-white font-bold text-2xl rounded-lg my-1 flex justify-center items-center">Terug</a>
+	<div class="mt-auto">
+		<x-button-action href="/">Terug</x-button-action>
+	</div>
+	
 </x-base>
