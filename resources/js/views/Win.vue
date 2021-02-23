@@ -1,7 +1,7 @@
 <template>
-	<div class="flex flex-col w-full h-full justify-between">
-		<div class="text-5xl font-bold text-gray-700 mb-6">
-			<span class="bg-clip-text text-transparent bg-gradient-to-br from-blue-600 to-blue-500">{{current_user.name}}</span> heeft gewonnen!
+	<div class="flex flex-col w-full h-full">
+		<div class="text-5xl font-bold text-gray-700 mb-7">
+			<span class="bg-clip-text text-transparent bg-blue-500 text-6xl">{{current_user.name}}</span> heeft gewonnen!
 		</div>
 
 		<div
@@ -11,21 +11,21 @@
 			<stats-block :title="'Hoogste'" :metric="highestTurn" />
 		</div>
 
-		<a
-			@click="handleNewGame"
-			class="text-white font-bold text-2xl p-4 bg-gradient-to-br from-blue-600 to-blue-500 rounded-lg my-1 flex justify-center items-center mt-auto"
-		>
-			Nieuw Spel
-		</a>
+		<div class="mt-auto">
+			<button-action @click="handleNewGame">Nieuw Spel</button-action>
+		</div>
+		
 	</div>
 </template>
 
 <script>
 import StatsBlock from '../components/StatsBlock';
 import { mapGetters, mapMutations } from 'vuex'
+import ButtonAction from '../components/ButtonAction.vue';
 export default {
 	components: {
 		StatsBlock,
+		ButtonAction
 	},
 	created() {
 		this.uploadGame();

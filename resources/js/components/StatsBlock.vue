@@ -1,5 +1,5 @@
 <template>
-	<div class="bg-gradient-to-br from-blue-600 to-blue-500 rounded-lg px-3 py-4">
+	<div class="bg-blue-500 shadow-md rounded-lg px-3 py-4">
 		<div class="text-xl font-light text-white">
 			{{title}}
 		</div>

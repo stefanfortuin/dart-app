@@ -1,7 +1,7 @@
 <template>
 	<div
-		class="transition-all rounded-lg shadow-md p-4 mb-2 bg-gradient-to-br"
-		:class="(isOnTurn) ? 'from-blue-600 to-blue-500' : 'from-gray-200 to-gray-100'"
+		class="transition-all rounded-lg shadow-md p-4 mb-2"
+		:class="(isOnTurn) ? 'bg-blue-500' : 'bg-gray-200'"
 	>
 		<div class="flex justify-between">
 			<user-name
