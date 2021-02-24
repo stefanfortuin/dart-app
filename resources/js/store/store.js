@@ -28,6 +28,7 @@ export default createStore({
 		resetCurrentStep(state){
 			state.current_step = 0;
 			state.users = []
+			state.turns = []
 			state.user_that_does_turn = undefined;
 			state.start_score = 501;
 		},
