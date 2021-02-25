@@ -2,6 +2,7 @@
   <div
     class="bg-gray-100 my-2 rounded-lg shadow flex-grow flex justify-center items-center max-h-60 relative"
   >
+	<div v-if="getTurns.length == 0" class="font-semibold text-xl">Begin met gooien!</div>
     <svg
       v-for="user in getUsers"
       :key="user.id"
