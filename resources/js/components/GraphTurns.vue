@@ -10,7 +10,7 @@
       ref="graph"
       width="95%"
       height="90%"
-      class="absolute border-l-2 border-b-2 border-gray-200"
+      class="absolute border-l-2 border-b-2 border-gray-200 rounded-bl-lg"
       :class="
         user == getUserThatDoesTurn ? 'stroke-blue z-10' : 'stroke-gray z-0'
       "
