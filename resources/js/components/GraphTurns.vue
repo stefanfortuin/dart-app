@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-gray-100 my-2 rounded-lg shadow flex-grow flex justify-center items-center max-h-60 relative"
+    class="bg-gray-200 bg-opacity-75 my-2 rounded-lg shadow flex-grow flex justify-center items-center max-h-60 relative"
   >
 	<div v-if="getTurns.length == 0" class="font-semibold text-xl">Begin met gooien!</div>
     <svg
@@ -10,7 +10,7 @@
       ref="graph"
       width="95%"
       height="90%"
-      class="absolute border-l-2 border-b-2 border-gray-200 rounded-bl-lg"
+      class="absolute border-l-2 border-b-2 border-gray-300 rounded-bl-lg"
       :class="
         user == getUserThatDoesTurn ? 'stroke-blue z-10' : 'stroke-gray z-0'
       "
