@@ -1,7 +1,7 @@
 <template>
-	<div class="flex flex-col w-full h-full justify-between">
-		<div class="text-5xl font-bold text-gray-800 mb-6">
-			<span class="text-blue-500">{{current_user.name}}</span> heeft gewonnen!
+	<div class="flex flex-col w-full h-full">
+		<div class="text-5xl font-bold text-gray-700 mb-7">
+			<span class="bg-clip-text text-transparent bg-blue-500 text-6xl">{{current_user.name}}</span> heeft gewonnen!
 		</div>
 
 		<div
@@ -11,21 +11,25 @@
 			<stats-block :title="'Hoogste'" :metric="highestTurn" />
 		</div>
 
-		<a
-			@click="handleNewGame"
-			class="text-white font-bold text-2xl h-20 bg-blue-500 rounded-lg my-2 flex justify-center items-center mt-auto"
-		>
-			Nieuw Spel
-		</a>
+		<graph-turns/>
+
+		<div class="mt-auto">
+			<button-action @click="handleNewGame">Nieuw Spel</button-action>
+		</div>
+		
 	</div>
 </template>
 
 <script>
 import StatsBlock from '../components/StatsBlock';
 import { mapGetters, mapMutations } from 'vuex'
+import ButtonAction from '../components/ButtonAction.vue';
+import GraphTurns from '../components/GraphTurns.vue';
 export default {
 	components: {
 		StatsBlock,
+		ButtonAction,
+		GraphTurns
 	},
 	created() {
 		this.uploadGame();
@@ -42,7 +46,7 @@ export default {
 		},
 
 		highestTurn(){
-			return this.current_user.turns.sort((a,b) => b.thrown_score - a.thrown_score)[0].thrown_score;
+			return Math.max.apply(Math, this.current_user.turns.map((turn) => {return turn.thrown_score}));
 		}
 	},
 	methods: {

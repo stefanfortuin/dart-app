@@ -5,27 +5,15 @@ export default class User {
 		this.turns = [];
 		this.start_score = start_score;
 		this.checkout = '';
-		this.current_dart = 1;
 	}
 
 	addTurn(turn) {
 		this.turns.push(turn);
+		return this;
 	}
 
 	hasWon(){
 		return this.score_to_throw_from <= 0
-	}
-
-	hasDartsLeft() {
-		return this.current_dart < 3;
-	}
-
-	goToNextShot() {
-		this.current_dart++;
-	}
-
-	goToFirstShot(){
-		this.current_dart = 1;
 	}
 
 	get score_to_throw_from() {
@@ -39,12 +27,14 @@ export default class User {
 	}
 
 	getCheckout() {
-		if (this.score_to_throw_from > 170) return;
+		if (this.score_to_throw_from > 170 || this.score_to_throw_from < 2) return;
 
 		fetch('https://darts.stefanfortuin.nl/api/checkout/' + this.score_to_throw_from)
 			.then(response => response.json())
 			.then(response => {
 				this.checkout = response.join(" ");
 			})
+		
+		return this;
 	}
 }

@@ -1,42 +1,38 @@
 <template>
 	<div class="w-full h-full flex flex-col">
-		<transition
-			name="component-fade"
-			mode="out-in"
-		>
-			<div :key="user.id">
-				<user-name :user="user" />
-				<user-score-and-checkout :user="user" />
-				<div class="border-solid border-2 border-gray-200"></div>
-				<user-turns :user="user" />
-			</div>
-		</transition>
-		<score-input :user="user" @change="handleShot"/>
+		<user-card-score
+			v-for="user in users"
+			:key="user.id"
+			:user="user"
+			:is-on-turn="user == userThatDoesTurn"
+
+		/>
+		<graph-turns/>
+		<score-input
+			:user="userThatDoesTurn"
+			@change="handleTurn"
+		/>
 	</div>
 </template>
 
 <script>
 import { mapMutations, mapGetters } from 'vuex'
 import Turn from '../classes/Turn';
-import Shot from '../classes/Shot';
+import GraphTurns from '../components/GraphTurns.vue';
 
-import UserTurns from '../components/UserTurns';
-import UserScoreAndCheckout from '../components/UserScoreAndCheckout';
-import UserName from '../components/UserName';
 import ScoreInput from '../components/ScoreInput.vue';
+import UserCardScore from '../components/UserCardScore.vue';
 
 export default {
 	data() {
 		return {
-			canMakeShot: true,
-			turn: undefined
+			canMakeTurn: true,
 		}
 	},
 	components: {
-		UserTurns,
-		UserScoreAndCheckout,
-		UserName,
 		ScoreInput,
+		UserCardScore,
+		GraphTurns
 	},
 	methods: {
 		...mapMutations([
@@ -45,71 +41,51 @@ export default {
 			'saveTurnToGame'
 		]),
 
-		handleShot(target) {
-			if (!this.canMakeShot) return;
-			
+		handleTurn(target) {
+			if (!this.canMakeTurn) return;
+
 			const thrown_score = parseInt(target.value);
-			if (this.scoreOutOfRange(target.min, target.max, thrown_score)) return;
+			if (this.scoreIsOutOfRange(target.min, target.max, thrown_score)) return;
 
-			if (this.turn == undefined) {
-				this.createNewTurn();
-			}
+			let turn = new Turn()
+				.setUser(this.userThatDoesTurn.id)
+				.setThrownScore(thrown_score)
+				.setOldScoreToThrowFrom(this.userThatDoesTurn.score_to_throw_from)
+				.calculateNewScoreToThrowFrom()
 
-			const shot = new Shot()
-				.setUser(this.user.id)
-				.setDart(this.user.current_dart)
-				.setThrownScore(thrown_score);
+			this.saveTurnToGame(turn);
 
-			this.turn.addShotAndCalculateNewScore(shot);
-			this.user.getCheckout();
+			this.userThatDoesTurn
+				.addTurn(turn)
+				.getCheckout()
 
-			if (this.user.hasDartsLeft() && !this.user.hasWon()) {
-				this.user.goToNextShot();
-				this.resetInputField(target);
-				return;
-			}
+			this.canMakeTurn = false;
 
-			this.canMakeShot = false;
-
-			if (this.user.hasWon()) {
-				this.goToNextStep();
+			if(this.userThatDoesTurn.hasWon()){
+				this.goToNextStep()
 				return;
 			}
 
 			setTimeout(() => {
 				this.resetInputField(target);
-				this.resetForNextTurn();
 				this.switchUserThatDoesTurn();
-				this.canMakeShot = true;
+				this.canMakeTurn = true;
 			}, 800);
 
-		},
-
-		createNewTurn() {
-			this.turn = new Turn()
-				.setUser(this.user.id)
-				.setOldScoreToThrowFrom(this.user.score_to_throw_from)
-
-			this.user.addTurn(this.turn);
-			this.saveTurnToGame(this.turn);
 		},
 
 		resetInputField(target) {
 			target.value = '';
 		},
 
-		resetForNextTurn() {
-			this.user.goToFirstShot();
-			this.turn = undefined;
-		},
-
-		scoreOutOfRange(min, max, score) {
+		scoreIsOutOfRange(min, max, score) {
 			return score < min || score > max;
 		}
 	},
 	computed: {
 		...mapGetters({
-			user: 'getUserThatDoesTurn',
+			userThatDoesTurn: 'getUserThatDoesTurn',
+			users: 'getUsers',
 		})
 	}
 }

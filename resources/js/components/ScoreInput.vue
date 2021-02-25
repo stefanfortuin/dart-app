@@ -1,19 +1,14 @@
 <template>
 	<div class="mt-auto w-full">
-		<label
-			for="dart-id"
-			:key="'dart-' + user.current_dart"
-			class="text-blue-500 font-bold text-xl"
-		>Pijl - {{user.current_dart}}</label>
 		<input
 			type="number"
 			id="dart-id"
 			:value="value"
 			min=0
-			max=60
+			max=180
 			placeholder="Score"
 			@change="$emit('change', $event.target)"
-			class="w-full border-2 border-blue-300 py-4 px-5 mt-3 rounded-lg text-xl"
+			class="w-full bg-gray-200 text-gray-700 font-bold placeholder-opacity-60 shadow-md placeholder-gray-400 py-2 px-4 mt-2 rounded-lg text-3xl"
 		>
 	</div>
 
@@ -21,6 +16,6 @@
 
 <script>
 export default {
-	props: ['user', 'value']
+	props: ['user', 'value'],
 }
 </script>

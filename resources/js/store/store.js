@@ -1,11 +1,8 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
+import { createStore } from 'vuex';
 import Turn from '../classes/Turn';
 import User from '../classes/User';
 
-Vue.use(Vuex);
-
-export default new Vuex.Store({
+export default createStore({
 	state: {
 		users: [],
 		turns: [],
@@ -31,6 +28,7 @@ export default new Vuex.Store({
 		resetCurrentStep(state){
 			state.current_step = 0;
 			state.users = []
+			state.turns = []
 			state.user_that_does_turn = undefined;
 			state.start_score = 501;
 		},
@@ -54,6 +52,10 @@ export default new Vuex.Store({
 
 		getUsers(state){
 			return state.users;
+		},
+
+		getStartScore(state){
+			return state.start_score;
 		},
 
 		getTurns(state){

@@ -12,23 +12,19 @@ export default class Turn{
 		return this;
 	}
 
+	setThrownScore(thrown_score){
+		this.thrown_score = thrown_score;
+		return this;
+	}
+
 	setOldScoreToThrowFrom(score){
 		this.old_score_to_throw_from = score;
 		return this;
 	}
 
-	addShotAndCalculateNewScore(shot){
-		this.shots.push(shot);
-		this.calculateThrownScore();
-	}
-
-	get shotScoresInStringFormat(){
-		return this.shots.map(shot => shot.thrown_score).join(" ");
-	}
-
-	calculateThrownScore(){
-		this.thrown_score = this.shots.reduce((t,a) => {return t+= a.thrown_score}, 0);
+	calculateNewScoreToThrowFrom(){
 		this.new_score_to_throw_from = this.old_score_to_throw_from - this.thrown_score;
+		return this;
 	}
 
 }

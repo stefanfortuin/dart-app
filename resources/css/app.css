@@ -2,17 +2,16 @@
 @tailwind utilities;
 
 .component-fade-enter-active, .component-fade-leave-active {
-  transition: all .2s ease-in-out;
+  transition: all .2s;
 }
-.component-fade-enter
-/* .component-fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
-  transform: translateX(100%);
+.component-fade-enter-from{
+	opacity: 0;
+	transform: translateX(100%);
 }
 
 .component-fade-leave-to{
 	opacity: 100;
-  	transform: translateX(-100%);
+	transform: translateX(-100%);
 }
 
 html, body{

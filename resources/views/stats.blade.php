@@ -1,11 +1,13 @@
 <x-base>
-	<h1 class="font-bold text-4xl text-blue-500 mb-3">Statistieken</h1>
+	<h1 class="font-bold text-4xl text-gray-700 mb-3">Statistieken</h1>
 	<div class="flex flex-col my-4">
 		@foreach ($users as $user)
-			<a href="{{'/stats/'.$user->id}}" class="text-2xl font-bold text-blue-500 my-2 px-3 py-4 border-2 border-blue-200 rounded-lg">
+			<a href="{{'/stats/'.$user->id}}" class="text-2xl font-bold text-white my-1 px-4 py-3 bg-gradient-to-br from-blue-600 to-blue-500 rounded-lg">
 				{{$user->name}}
 			</a>
 		@endforeach
 	</div>
-	<a href="/" class="mt-auto h-20 bg-blue-500 text-white font-bold text-2xl rounded-lg my-2 flex justify-center items-center">Terug</a>
+	<div class="mt-auto">
+		<x-button-action href="/">Terug</x-button-action>
+	</div>
 </x-base>
