@@ -26,6 +26,7 @@
         "vuex": "^4.0.0"
     },
     "dependencies": {
+        "d3-shape": "^2.0.0",
         "tailwindcss": "^2.0.3"
     }
 }

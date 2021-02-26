@@ -15,8 +15,8 @@
         user == getUserThatDoesTurn ? 'stroke-blue z-10' : 'stroke-gray z-0'
       "
     >
-      <polyline
-        :points="getPointsFromTurns(user.turns)"
+      <path
+        :d="getPointsFromTurns(user.turns)"
         style="transition: stroke 0.3s ease-in-out; fill: none; stroke-width: 3"
       />
     </svg>
@@ -25,6 +25,7 @@
 
 <script>
 import { mapGetters } from "vuex";
+import {line,curveCardinal} from 'd3-shape';
 
 export default {
   data() {
@@ -63,21 +64,15 @@ export default {
 
     getPointsFromTurns(turns) {
       this.updateScale();
-      let points = "";
+      let points = turns.map((turn, i) => [
+        (i == 0) ? 0 : (i + 1) * this.scale_x,
+        this.height - turn.new_score_to_throw_from * this.scale_y,
+      ]);
 
-      for (let i = 0; i < turns.length; i++) {
-        const turn = turns[i];
+      let lineGenerator = line().curve(curveCardinal);
+      let pathData = lineGenerator(points);
 
-        if (i == 0) {
-          points += `0,${this.height - this.getStartScore * this.scale_y} `;
-        }
-
-        let y_new = this.height - turn.new_score_to_throw_from * this.scale_y;
-        let x_new = (i + 1) * this.scale_x;
-        points += `${x_new},${y_new} `;
-      }
-
-      return points;
+      return pathData;
     },
   },
 };
