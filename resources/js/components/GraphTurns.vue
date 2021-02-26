@@ -1,8 +1,8 @@
 <template>
   <div
-    class="bg-gray-200 bg-opacity-75 my-2 rounded-lg shadow flex-grow flex justify-center items-center max-h-60 relative"
+    class="bg-blue-100 my-2 rounded-lg shadow flex-grow flex justify-center items-center max-h-60 relative"
   >
-	<div v-if="getTurns.length == 0" class="font-semibold text-xl">Begin met gooien!</div>
+	<div v-if="getTurns.length == 0" class="font-semibold text-xl text-white">Begin met gooien!</div>
     <svg
       v-for="user in getUsers"
       :key="user.id"
@@ -12,12 +12,12 @@
       height="90%"
       class="absolute"
       :class="
-        user == getUserThatDoesTurn ? 'stroke-blue z-10' : 'stroke-gray z-0'
+        user == getUserThatDoesTurn ? 'stroke-blue z-20' : 'stroke-lightblue z-10'
       "
     >
       <path
         :d="getPointsFromTurns(user.turns)"
-        style="transition: stroke 0.3s ease-in-out; fill: none; stroke-width: 3"
+        style="transition: stroke 0.3s ease-in-out; fill: none; stroke-width: 3;"
       />
     </svg>
   </div>
@@ -25,7 +25,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import {line,curveCardinal} from 'd3-shape';
+import {line,curveMonotoneX} from 'd3-shape';
 
 export default {
   data() {
@@ -72,7 +72,7 @@ export default {
       //push the startpoint at the beginning of the array
       points.unshift([0,this.height - this.getStartScore * this.scale_y])
 
-      let lineGenerator = line().curve(curveCardinal);
+      let lineGenerator = line().curve(curveMonotoneX);
       return lineGenerator(points);
     },
   },
