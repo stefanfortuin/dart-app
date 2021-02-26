@@ -65,14 +65,15 @@ export default {
     getPointsFromTurns(turns) {
       this.updateScale();
       let points = turns.map((turn, i) => [
-        (i == 0) ? 0 : (i + 1) * this.scale_x,
+        (i + 1) * this.scale_x,
         this.height - turn.new_score_to_throw_from * this.scale_y,
       ]);
 
-      let lineGenerator = line().curve(curveCardinal);
-      let pathData = lineGenerator(points);
+      //push the startpoint at the beginning of the array
+      points.unshift([0,this.height - this.getStartScore * this.scale_y])
 
-      return pathData;
+      let lineGenerator = line().curve(curveCardinal);
+      return lineGenerator(points);
     },
   },
 };
