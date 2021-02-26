@@ -1,5 +1,4 @@
 import { createStore } from 'vuex';
-import Turn from '../classes/Turn';
 import User from '../classes/User';
 
 export default createStore({
