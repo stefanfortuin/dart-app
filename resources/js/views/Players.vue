@@ -78,7 +78,7 @@ export default {
 
       this.setStartScore(this.start_score);
 
-      fetch("https://darts.stefanfortuin.nl/api/users", {
+      fetch(`/api/users`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

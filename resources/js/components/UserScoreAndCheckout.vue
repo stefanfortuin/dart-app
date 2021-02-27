@@ -1,9 +1,9 @@
 <template>
-	<div class="flex justify-between mb-2">
+	<div class="flex justify-between items-baseline mb-2">
 		<div class="text-6xl font-bold">
 			{{user.score_to_throw_from}}
 		</div>
-		<div class="text-xl font-normal flex items-end">
+		<div class="text-xl">
 			{{user.checkout}}
 		</div>
 	</div>

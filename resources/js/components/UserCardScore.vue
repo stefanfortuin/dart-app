@@ -1,23 +1,14 @@
 <template>
 	<div
-		class="transition-all rounded-lg p-3 mb-2"
-		:class="(isOnTurn) ? 'bg-blue-500 shadow-md' : 'bg-gray-100 shadow'"
+		class="transition-all first:rounded-t-lg last:rounded-b-lg last px-3 py-2"
+		:class="(isOnTurn) ? 'bg-blue-500 text-white shadow-md' : 'bg-blue-200 text-blue-600 opacity-50 shadow'
+		"
 	>
-		<div class="flex justify-between">
-			<user-name
-				:user="user"
-				:class="(isOnTurn) ? 'text-white' : 'text-gray-600'"
-			/>
-			<user-card-highlight v-if="isOnTurn" />
+		<div class="flex justify-between items-baseline mb-2">
+			<user-name :user="user" />
+			<user-last-turn :turn="user.last_turn" />
 		</div>
-		<user-score-and-checkout
-			:user="user"
-			:class="(isOnTurn) ? 'text-white' : 'text-gray-700'"
-		/>
-		<user-last-turn
-			:turn="user.last_turn"
-			:class="(isOnTurn) ? 'text-gray-200' : 'text-gray-500'"
-		/>
+		<user-score-and-checkout :user="user" />
 	</div>
 </template>
 

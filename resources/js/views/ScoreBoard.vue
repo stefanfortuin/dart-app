@@ -1,26 +1,29 @@
 <template>
 	<div class="w-full h-full flex flex-col">
-		<user-card-score
-			v-for="user in users"
-			:key="user.id"
-			:user="user"
-			:is-on-turn="user == userThatDoesTurn"
-
-		/>
-		<graph-turns/>
+		<game-info class="mx-2" />
+		<div>
+			<user-card-score
+				v-for="user in users"
+				:key="user.id"
+				:user="user"
+				:is-on-turn="user == userThatDoesTurn"
+			/>
+		</div>
+		<graph-turns class="mx-2" />
 		<score-input
 			:user="userThatDoesTurn"
-			@change="handleTurn"
+			@handleTurn="handleTurn"
 		/>
 	</div>
 </template>
 
 <script>
 import { mapMutations, mapGetters } from 'vuex'
-import Turn from '../classes/Turn';
+import DartTurn from '../classes/DartTurn';
 import GraphTurns from '../components/GraphTurns.vue';
 
 import ScoreInput from '../components/ScoreInput.vue';
+import GameInfo from '../components/GameInfo.vue';
 import UserCardScore from '../components/UserCardScore.vue';
 
 export default {
@@ -32,7 +35,8 @@ export default {
 	components: {
 		ScoreInput,
 		UserCardScore,
-		GraphTurns
+		GraphTurns,
+		GameInfo
 	},
 	methods: {
 		...mapMutations([
@@ -45,9 +49,8 @@ export default {
 			if (!this.canMakeTurn) return;
 
 			const thrown_score = parseInt(target.value);
-			if (this.scoreIsOutOfRange(target.min, target.max, thrown_score)) return;
 
-			let turn = new Turn()
+			let turn = new DartTurn()
 				.setUser(this.userThatDoesTurn.id)
 				.setThrownScore(thrown_score)
 				.setOldScoreToThrowFrom(this.userThatDoesTurn.score_to_throw_from)
@@ -61,7 +64,7 @@ export default {
 
 			this.canMakeTurn = false;
 
-			if(this.userThatDoesTurn.hasWon()){
+			if (this.userThatDoesTurn.hasWon()) {
 				this.goToNextStep()
 				return;
 			}

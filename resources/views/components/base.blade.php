@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="{{mix('/css/app.css')}}">
 	<title>Darts</title>
 </head>
-<body class="font-sans antialiased max-w-md mx-auto p-5 flex flex-col">
+<body class="font-sans antialiased max-w-md mx-auto p-4 flex flex-col">
 	{{ $slot }}
 </body>
 </html>
