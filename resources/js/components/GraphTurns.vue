@@ -1,8 +1,8 @@
 <template>
   <div
-    class="bg-blue-100 my-2 rounded-lg shadow flex-grow flex justify-center items-center max-h-60 relative"
+    class="bg-gray-100 my-2 rounded-lg shadow flex-grow flex justify-center items-center max-h-60 relative"
   >
-	<div v-if="getTurns.length == 0" class="font-semibold text-xl text-white">Begin met gooien!</div>
+	<div v-if="getTurns.length == 0" class="font-semibold text-xl text-gray-700">Begin met gooien!</div>
     <svg
       v-for="user in getUsers"
       :key="user.id"
