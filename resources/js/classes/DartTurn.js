@@ -1,4 +1,4 @@
-export default class Turn{
+export default class DartTurn{
 	constructor(){
 		this.user_id = undefined,
 		this.thrown_score = undefined;

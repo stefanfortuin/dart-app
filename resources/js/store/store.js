@@ -5,6 +5,10 @@ export default createStore({
 	state: {
 		users: [],
 		turns: [],
+		current_set: 1,
+		current_leg: 1,
+		total_sets: 1,
+		total_legs: 1,
 		user_that_does_turn: undefined,
 		current_step: 0,
 		start_score: 501,
@@ -18,6 +22,14 @@ export default createStore({
 
 		goToNextStep(state){
 			state.current_step++;
+		},
+
+		goToNextSet(state){
+			state.current_set++;
+		},
+
+		goToNextLeg(state){
+			state.current_leg++;
 		},
 
 		setStartScore(state, start_score){
@@ -55,6 +67,14 @@ export default createStore({
 
 		getStartScore(state){
 			return state.start_score;
+		},
+
+		getCurrentSet(){
+			return state.current_set;
+		},
+
+		getCurrentLeg(){
+			return state.current_leg;
 		},
 
 		getTurns(state){
