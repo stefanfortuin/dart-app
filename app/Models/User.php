@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Turn;
+use App\Models\DartTurn;
 use App\Models\Match;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -48,11 +48,7 @@ class User extends Authenticatable
 	protected $with = ['games', 'turns'];
 
 	public function turns(){
-		return $this->hasMany(Turn::class);
-	}
-
-	public function shots(){
-		return $this->hasMany(Shot::class);
+		return $this->hasMany(DartTurn::class);
 	}
 
 	public function games(){
