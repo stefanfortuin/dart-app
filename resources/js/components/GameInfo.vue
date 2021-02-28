@@ -1,5 +1,5 @@
 <template>
-	<div class="px-3 py-2 font-light rounded-t-lg text-lg bg-blue-100 text-blue-500 flex justify-between items-baseline">
+	<div class="px-3 py-1 font-light text-lg text-blue-500 flex justify-between items-baseline">
 		<div class="">
 			Game of <span class="font-medium">x01</span>
 		</div>

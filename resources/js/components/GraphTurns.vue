@@ -22,7 +22,7 @@
 					style="transition: stroke 0.3s ease-in-out; fill: none; stroke-width: 3;"
 				/>
 			</g>
-			<g v-if="user.turns.length > 0">
+			<g v-if="user.turns.length > 0 && user == getUserThatDoesTurn">
 				<circle
 					v-for="point in getPointsFromTurns(user.turns)"
 					:key="point[0]"
