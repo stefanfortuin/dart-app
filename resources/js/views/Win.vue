@@ -1,7 +1,7 @@
 <template>
 	<div class="flex flex-col w-full h-full">
 		<div class="text-5xl font-bold text-gray-700 mb-7">
-			<span class="bg-clip-text text-transparent bg-blue-500 text-6xl">{{current_user.name}}</span> heeft gewonnen!
+			<span class="bg-clip-text text-transparent bg-blue-500">{{current_user.name}}</span> heeft gewonnen!
 		</div>
 
 		<div

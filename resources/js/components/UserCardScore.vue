@@ -1,7 +1,7 @@
 <template>
 	<div
-		class="transition-all first:rounded-t-lg last:rounded-b-lg last px-3 py-2"
-		:class="(isOnTurn) ? 'bg-blue-500 text-white shadow-md' : 'bg-blue-200 text-blue-600 opacity-50 shadow'
+		class="transition-all first:rounded-t-lg last:rounded-b-lg px-3 py-2"
+		:class="(isOnTurn) ? 'bg-blue-500 text-white shadow-md' : 'bg-blue-100 text-blue-600 opacity-50 shadow'
 		"
 	>
 		<div class="flex justify-between items-baseline mb-2">

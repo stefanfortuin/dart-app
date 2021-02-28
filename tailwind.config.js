@@ -9,7 +9,7 @@ module.exports = {
         extend: {},
         stroke: theme => ({
           'blue': theme('colors.blue.500'),
-          'lightblue': theme('colors.blue.200'),
+          'lightblue': theme('colors.blue.300'),
         })
     },
     variants: {

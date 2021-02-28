@@ -1,5 +1,5 @@
 <template>
-	<div class="w-full h-full flex flex-col">
+	<div class="w-full h-full flex flex-col ">
 		<game-info class="mx-2" />
 		<div>
 			<user-card-score
@@ -9,7 +9,7 @@
 				:is-on-turn="user == userThatDoesTurn"
 			/>
 		</div>
-		<graph-turns class="mx-2" />
+		<graph-turns />
 		<score-input
 			:user="userThatDoesTurn"
 			@handleTurn="handleTurn"
