@@ -5,6 +5,8 @@ export default class User {
 		this.turns = [];
 		this.start_score = start_score;
 		this.checkout = '';
+		this.legs_won = 0
+		this.sets_won = 0
 	}
 
 	addTurn(turn) {

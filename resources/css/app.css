@@ -14,6 +14,13 @@
 	transform: translateX(-100%);
 }
 
+.normal-fade-enter-active, .normal-fade-leave-active {
+  transition: opacity .15s;
+}
+.normal-fade-enter-from, .normal-fade-leave-to{
+	opacity: 0;
+}
+
 html, body{
 	height: 100%;
 }
