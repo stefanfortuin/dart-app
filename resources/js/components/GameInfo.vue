@@ -6,7 +6,7 @@
 			</div>
 			<div
 				@click="showDropdown = !showDropdown"
-				class="px-3 py-1 flex justify-evenly items-center w-40 transition-all bg-blue-500 text-white"
+				class="px-3 py-1 shadow-md flex justify-evenly items-center w-40 transition-all bg-blue-500 text-white"
 				:class="(showDropdown) ? 'rounded-t-lg' : 'rounded-lg'"
 			>
 				<div class="pr-1">Sets and legs</div>
@@ -33,7 +33,7 @@
 					<div>Totaal <span class="font-semibold">{{total_sets}}</span> sets.</div>
 					<div>Totaal <span class="font-semibold">{{total_legs}}</span> legs.</div>
 				</div>
-				<div class="table p-2 w-40 bg-blue-500 text-white rounded-b-lg">
+				<div class="table p-2 w-40 shadow-md bg-blue-500 text-white rounded-b-lg">
 					<div class="table-row-group">
 						<div class="table-row">
 							<div class="table-cell"></div>
