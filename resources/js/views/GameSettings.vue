@@ -58,7 +58,7 @@
 			</div>
 		</div>
 
-		<div class="flex flex-col w-full">
+		<div class="flex flex-col w-full mt-auto">
 			<button-action
 				@click="handleNextStep()"
 				:disabled="!canProceed"
