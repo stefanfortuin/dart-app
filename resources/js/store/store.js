@@ -4,27 +4,36 @@ import User from '../classes/User';
 export default createStore({
 	state: {
 		users: [],
-		turns: [],
+		total_sets: 2,
+		total_legs: 1,
 		user_that_does_turn: undefined,
 		current_step: 0,
 		start_score: 501,
 	},
 	mutations: {
-		setUsers(state, users){
+		setUsers(state, users) {
 			users.forEach(user => {
 				state.users.push(new User(user.id, user.name, state.start_score))
 			});
 		},
 
-		goToNextStep(state){
+		goToNextStep(state) {
 			state.current_step++;
 		},
 
-		setStartScore(state, start_score){
+		setStartScore(state, start_score) {
 			state.start_score = start_score;
 		},
 
-		resetCurrentStep(state){
+		setTotalSets(state, sets){
+			state.total_sets = sets;
+		},
+
+		setTotalLegs(state, legs){
+			state.total_legs = legs;
+		},
+
+		resetCurrentStep(state) {
 			state.current_step = 0;
 			state.users = []
 			state.turns = []
@@ -32,36 +41,48 @@ export default createStore({
 			state.start_score = 501;
 		},
 
-		saveTurnToGame(state, turn){
-			state.turns.push(turn);
+		resetForNextSet(state) {
+			state.users.forEach(user => {
+				user.beginNewSet()
+			});
 		},
 
-		setUserThatDoesTurn(state, user){
+		resetForNextLeg(state){
+			state.users.forEach(user => {
+				user.beginNewLeg();
+			});
+		},
+
+		setUserThatDoesTurn(state, user) {
 			state.user_that_does_turn = user
 		},
 
-		switchUserThatDoesTurn(state){
+		switchUserThatDoesTurn(state) {
 			state.user_that_does_turn = state.users.find(u => u != state.user_that_does_turn)
 		}
 	},
 	getters: {
-		getCurrentStep(state){
+		getCurrentStep(state) {
 			return state.current_step;
 		},
 
-		getUsers(state){
+		getUsers(state) {
 			return state.users;
 		},
 
-		getStartScore(state){
+		getStartScore(state) {
 			return state.start_score;
 		},
 
-		getTurns(state){
-			return state.turns;
+		getCurrentSet() {
+			return state.current_set;
 		},
 
-		getUserThatDoesTurn(state){
+		getCurrentLeg() {
+			return state.current_leg;
+		},
+
+		getUserThatDoesTurn(state) {
 			return state.user_that_does_turn;
 		},
 	}

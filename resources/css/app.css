@@ -14,6 +14,15 @@
 	transform: translateX(-100%);
 }
 
+.normal-fade-enter-active, .normal-fade-leave-active {
+	@apply max-h-40;
+  transition: all .15s;
+}
+.normal-fade-enter-from, .normal-fade-leave-to{
+	opacity: 0;
+	@apply max-h-0;
+}
+
 html, body{
 	height: 100%;
 }

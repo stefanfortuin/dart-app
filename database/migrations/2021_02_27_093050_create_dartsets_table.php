@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTurnsTable extends Migration
+class CreateDartsetsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,14 @@ class CreateTurnsTable extends Migration
      */
     public function up()
     {
-        Schema::create('turns', function (Blueprint $table) {
+        Schema::create('dart_sets', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
 			$table->unsignedBigInteger('game_id')->nullable();
-			$table->unsignedBigInteger('user_id');
-			$table->integer('thrown_score')->nullable();
-			$table->integer('old_score_to_throw_from');
-			$table->integer('new_score_to_throw_from');
+			$table->unsignedBigInteger('user_id')->nullable();
 
-			$table->foreign('user_id')->references('id')->on('users');
 			$table->foreign('game_id')->references('id')->on('games');
+			$table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -34,6 +31,6 @@ class CreateTurnsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('turns');
+        Schema::dropIfExists('dartsets');
     }
 }

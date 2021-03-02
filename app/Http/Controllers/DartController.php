@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Game;
-use App\Models\Turn;
+use App\Models\DartTurn;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Resources\UserResource;
@@ -36,7 +36,7 @@ class DartController extends Controller
 		]);
 
 		collect($turns_from_request)->each(function ($turn) use ($game) {
-			$db_turn = Turn::create($turn);
+			$db_turn = DartTurn::create($turn);
 			$db_turn->game()->associate($game);
 			$db_turn->save();
 		});

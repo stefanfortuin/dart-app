@@ -8,8 +8,8 @@ module.exports = {
     theme: {
         extend: {},
         stroke: theme => ({
-          'blue': theme('colors.blue.600'),
-          'lightblue': theme('colors.blue.200'),
+          'blue': theme('colors.blue.500'),
+          'lightblue': theme('colors.blue.300'),
         })
     },
     variants: {
@@ -17,6 +17,7 @@ module.exports = {
             borderColor: ["active"],
             backgroundColor: ["active"],
             textColor: ["active"],
+			borderRadius: ['first','last']
         },
     },
     plugins: [],

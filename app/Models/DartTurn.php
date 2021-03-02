@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Turn extends Model
+class DartTurn extends Model
 {
     use HasFactory;
 
@@ -19,10 +19,6 @@ class Turn extends Model
 
 	public function game(){
 		return $this->belongsTo(Game::class);
-	}
-
-	public function shots(){
-		return $this->hasMany(Shot::class);
 	}
 
 	public function user(){

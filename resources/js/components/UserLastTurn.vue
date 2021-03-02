@@ -1,7 +1,7 @@
 <template>
 	<div class="text-xl font-thin">
 		<div v-if="turn">
-			Heeft zonet <span class="font-semibold">{{turn.thrown_score}}</span> gegooid.
+			Gooide zonet <span class="font-semibold">{{turn.thrown_score}}</span>
 		</div>
 		<div v-else>
 			Moet nog gooien.
