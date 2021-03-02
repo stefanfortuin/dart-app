@@ -1,11 +1,7 @@
 <template>
 	<div class="bg-blue-100 bg-opacity-75 rounded-lg my-2 flex-grow flex justify-center items-center max-h-60 relative">
-		<div
-			v-if="getTurns.length == 0"
-			class="font-semibold text-xl text-blue-600"
-		>Begin met gooien!</div>
 		<svg
-			v-for="user in getUsers"
+			v-for="user in users"
 			:key="user.id"
 			xmlns="http://www.w3.org/2000/svg"
 			ref="graph"
@@ -13,7 +9,7 @@
 			height="100%"
 			class="absolute px-3 py-2"
 			:class="
-        user == getUserThatDoesTurn ? 'stroke-blue z-20' : 'stroke-lightblue opacity-70 z-10'
+        user == userThatDoesTurn ? 'stroke-blue z-20' : 'stroke-lightblue opacity-70 z-10'
       "
 		>
 			<g>
@@ -22,7 +18,7 @@
 					style="transition: stroke 0.3s ease-in-out; fill: none; stroke-width: 3;"
 				/>
 			</g>
-			<g v-if="user.turns.length > 0 && user == getUserThatDoesTurn">
+			<g v-if="user.turns.length > 0 && user == userThatDoesTurn">
 				<circle
 					v-for="point in getPointsFromTurns(user.turns)"
 					:key="point[0]"
@@ -37,7 +33,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapState } from "vuex";
 import { line, curveMonotoneX } from 'd3-shape';
 
 export default {
@@ -57,22 +53,21 @@ export default {
 		});
 	},
 	computed: {
-		...mapGetters([
-			"getTurns",
-			"getUsers",
-			"getStartScore",
-			"getUserThatDoesTurn",
-		]),
+		...mapState({
+			users: state => state.users,
+			startScore: state => state.start_score,
+			userThatDoesTurn: state => state.user_that_does_turn
+		})
 	},
 	methods: {
 		updateScale() {
 			if (this.$refs.graph == undefined) return;
-			if (this.getUserThatDoesTurn.turns.length >= this.graph_points) this.graph_points += 1;
+			if (this.userThatDoesTurn.turns.length >= this.graph_points) this.graph_points += 1;
 
 			this.width = this.$refs.graph.clientWidth - 16;
 			this.height = this.$refs.graph.clientHeight - 24;
 			this.scale_x = this.width / this.graph_points;
-			this.scale_y = this.height / this.getStartScore;
+			this.scale_y = this.height / this.startScore;
 		},
 
 		getPointsFromTurns(turns) {
@@ -85,8 +80,8 @@ export default {
 
 			//push the startpoint at the beginning of the array
 			points.unshift([
-				0, 
-				this.height - this.getStartScore * this.scale_y,
+				0,
+				this.height - this.startScore * this.scale_y,
 			])
 			return points;
 		},

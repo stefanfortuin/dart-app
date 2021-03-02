@@ -38,7 +38,6 @@ export default {
 		...mapGetters({
 			current_user: 'getUserThatDoesTurn',
 			users: 'getUsers',
-			turns: 'getTurns'
 		}),
 
 		averagePerTurn(){
