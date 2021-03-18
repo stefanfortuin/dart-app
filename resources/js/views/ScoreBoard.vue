@@ -19,6 +19,7 @@
 
 <script>
 import { mapMutations, mapGetters, mapState } from 'vuex'
+
 import DartTurn from '../classes/DartTurn';
 import GraphTurns from '../components/GraphTurns.vue';
 
@@ -67,37 +68,34 @@ export default {
 			if (this.userThatDoesTurn.hasReachedZero()) {
 				this.userThatDoesTurn.addWonLeg();
 
-				if(this.hasWonSet()){
+				if (this.hasWonSet()) {
 					this.userThatDoesTurn.addWonSet()
 				}
 
-				if(this.hasWonGame()){
+				if (this.hasWonGame()) {
 					this.goToNextStep()
 					return;
 				}
 
-				if(this.hasWonSet()){
+				if (this.hasWonSet()) {
 					this.resetForNextSet();
 				}
-				else{
+				else {
 					this.resetForNextLeg();
 				}
 
 				this.switchUserThatStartsNextLeg();
 				this.resetScoreField(target);
 			}
-			else{
+			else {
 				setTimeout(() => {
 					this.switchUserThatDoesTurn();
 					this.resetScoreField(target);
 				}, 800);
 			}
-
-			
-
 		},
 
-		resetScoreField(target){
+		resetScoreField(target) {
 			this.resetInputField(target);
 			this.canMakeTurn = true;
 		},
@@ -110,12 +108,12 @@ export default {
 			return score < min || score > max;
 		},
 
-		hasWonSet(){
+		hasWonSet() {
 			let winning_leg = Math.round((this.total_legs % 2 == 0) ? this.total_legs / 2 + 1 : this.total_legs / 2)
 			return this.userThatDoesTurn.legs_won >= winning_leg
 		},
 
-		hasWonGame(){
+		hasWonGame() {
 			return this.userThatDoesTurn.sets_won == this.total_sets;
 		},
 	},

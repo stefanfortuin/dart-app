@@ -33,7 +33,6 @@ export default class User {
 	}
 
 	beginNewSet(){
-		console.log('begin new set')
 		this.resetCheckout();
 		this.legs_won = 0
 		this.current_set = new DartSet();

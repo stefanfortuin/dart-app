@@ -62,7 +62,7 @@
 			<button-action
 				@click="handleNextStep()"
 				:disabled="!canProceed"
-			>Volgende</button-action>
+			>Start spel</button-action>
 
 			<button-action href="/stats">Statistieken</button-action>
 		</div>
