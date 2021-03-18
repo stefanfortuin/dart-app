@@ -3,7 +3,7 @@
 		<div class="flex justify-between items-baseline">
 			<div class="">
 				<div>
-					Game of <span class="font-medium">x01</span>
+					Leg van <span class="font-semibold">{{leg_owner.name}}</span>
 				</div>
 				<div
 					v-if="showDropdown"
@@ -60,6 +60,7 @@ export default {
 			users: state => state.users,
 			total_sets: state => state.total_sets,
 			total_legs: state => state.total_legs,
+			leg_owner: state => state.current_leg_owner,
 		})
 	}
 }

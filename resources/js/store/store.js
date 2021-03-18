@@ -7,6 +7,7 @@ export default createStore({
 		total_sets: 2,
 		total_legs: 1,
 		user_that_does_turn: undefined,
+		current_leg_owner: undefined,
 		current_step: 0,
 		start_score: 501,
 	},
@@ -55,10 +56,17 @@ export default createStore({
 
 		setUserThatDoesTurn(state, user) {
 			state.user_that_does_turn = user
+			state.current_leg_owner = user
 		},
 
 		switchUserThatDoesTurn(state) {
 			state.user_that_does_turn = state.users.find(u => u != state.user_that_does_turn)
+		},
+
+		switchUserThatStartsNextLeg(state) {
+			let userThatShouldThrowNow = state.users.find(u => u != state.current_leg_owner);
+			state.user_that_does_turn = userThatShouldThrowNow;
+			state.current_leg_owner = userThatShouldThrowNow;
 		}
 	},
 	getters: {

@@ -41,6 +41,7 @@ export default {
 	methods: {
 		...mapMutations([
 			'switchUserThatDoesTurn',
+			'switchUserThatStartsNextLeg',
 			'goToNextStep',
 			'resetForNextLeg',
 			'resetForNextSet',
@@ -64,7 +65,6 @@ export default {
 			this.canMakeTurn = false;
 
 			if (this.userThatDoesTurn.hasReachedZero()) {
-				console.log('has won leg');
 				this.userThatDoesTurn.addWonLeg();
 
 				if(this.hasWonSet()){
@@ -82,19 +82,24 @@ export default {
 				else{
 					this.resetForNextLeg();
 				}
-		
+
+				this.switchUserThatStartsNextLeg();
+				this.resetScoreField(target);
+			}
+			else{
+				setTimeout(() => {
+					this.switchUserThatDoesTurn();
+					this.resetScoreField(target);
+				}, 800);
 			}
 
-			this.switchUser(target);
+			
 
 		},
 
-		switchUser(target){
-			setTimeout(() => {
-				this.resetInputField(target);
-				this.switchUserThatDoesTurn();
-				this.canMakeTurn = true;
-			}, 800);
+		resetScoreField(target){
+			this.resetInputField(target);
+			this.canMakeTurn = true;
 		},
 
 		resetInputField(target) {
