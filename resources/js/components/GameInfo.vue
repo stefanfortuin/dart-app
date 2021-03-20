@@ -3,7 +3,7 @@
 		<div class="flex justify-between items-baseline">
 			<div class="">
 				<div>
-					Leg van <span class="font-semibold">{{leg_owner.name}}</span>
+					
 				</div>
 				<div
 					v-if="showDropdown"

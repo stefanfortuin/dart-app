@@ -5,7 +5,7 @@
 		"
 	>
 		<div class="flex justify-between items-baseline mb-2">
-			<user-name :user="user" />
+			<user-name :user="user" :is-on-turn="isOnTurn"/>
 			<user-last-turn :turn="user.last_turn" />
 		</div>
 		<user-score-and-checkout :user="user" />
