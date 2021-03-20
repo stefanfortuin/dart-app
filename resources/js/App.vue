@@ -1,5 +1,6 @@
 <template>
-	<div class="h-full">
+	<div class="h-full relative">
+		<toast-wrapper/>
 		<transition
 			name="component-fade"
 			mode="out-in"
@@ -18,6 +19,7 @@ import WhoBegins from './views/WhoBegins';
 import ScoreBoard from './views/ScoreBoard';
 import Win from './views/Win';
 import { mapGetters } from 'vuex';
+import ToastWrapper from './components/Toast/ToastWrapper.vue';
 
 export default {
 	components: {
@@ -25,6 +27,7 @@ export default {
 		WhoBegins,
 		ScoreBoard,
 		Win,
+		ToastWrapper,
 	},
 	computed: {
 		...mapGetters({
