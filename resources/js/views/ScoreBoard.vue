@@ -1,7 +1,7 @@
 <template>
 	<div class="w-full h-full flex flex-col ">
 		<game-info />
-		<div class="transition-transform transform">
+		<div>
 			<user-card-score
 				v-for="user in users"
 				:key="user.id"
