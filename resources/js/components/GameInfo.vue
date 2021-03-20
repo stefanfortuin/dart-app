@@ -1,7 +1,7 @@
 <template>
 	<div class="px-2 py-2 font-light text-lg text-blue-500 ">
 		<div class="flex justify-between items-baseline">
-			<div class="">
+			<div>
 				<div>
 					
 				</div>

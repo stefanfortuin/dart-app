@@ -3,9 +3,11 @@
 		<div class="text-6xl font-bold">
 			{{animatedScore}}
 		</div>
-		<div class="text-xl self-end">
-			{{user.checkout}}
-		</div>
+		<transition name="checkout-text" mode="out-in">
+			<div v-show="user.checkout != ''" :key="user.checkout" class="text-xl self-end">
+				{{user.checkout}}
+			</div>
+		</transition>
 	</div>
 </template>
 
