@@ -1,7 +1,11 @@
 import { createStore } from 'vuex';
+import toastModule from './toast/store';
 import User from '../classes/User';
 
 export default createStore({
+	modules: {
+		toast: toastModule,
+	},
 	state: {
 		users: [],
 		total_sets: 2,
@@ -63,12 +67,24 @@ export default createStore({
 			state.user_that_does_turn = state.users.find(u => u != state.user_that_does_turn)
 		},
 
-		switchUserThatStartsNextLeg(state) {
+		
+	},
+
+	actions: {
+		switchUserThatStartsNextLeg({commit, dispatch, state}) {
 			let userThatShouldThrowNow = state.users.find(u => u != state.current_leg_owner);
-			state.user_that_does_turn = userThatShouldThrowNow;
-			state.current_leg_owner = userThatShouldThrowNow;
+
+			if(userThatShouldThrowNow != state.current_leg_owner){
+				dispatch('toast/add', {
+					title: `${userThatShouldThrowNow.name} heeft de leg van ${state.current_leg_owner.name} gebroken.`,
+					type: 'success'
+				})
+			}
+			
+			commit('setUserThatDoesTurn', userThatShouldThrowNow);
 		}
 	},
+
 	getters: {
 		getCurrentStep(state) {
 			return state.current_step;
