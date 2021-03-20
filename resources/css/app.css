@@ -14,6 +14,18 @@
 	transform: translateX(-100%);
 }
 
+.toast-move-enter-active, .toast-move-leave-active {
+  transition: all .2s;
+}
+.toast-move-enter-from{
+	opacity: 0;
+	transform: translateY(-100%);
+}
+
+.toast-move-leave-to{
+	opacity: 0;
+}
+
 .normal-fade-enter-active, .normal-fade-leave-active {
 	@apply max-h-40;
   transition: all .15s;
