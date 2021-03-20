@@ -16,7 +16,6 @@
 import UserLastTurn from './UserLastTurn';
 import UserScoreAndCheckout from './UserScoreAndCheckout';
 import UserName from './UserName';
-import UserCardHighlight from './UserCardHighlight.vue';
 
 export default {
 	props: ['user', 'isOnTurn'],
@@ -24,7 +23,6 @@ export default {
 		UserLastTurn,
 		UserScoreAndCheckout,
 		UserName,
-		UserCardHighlight,
 	},
 }
 </script>
