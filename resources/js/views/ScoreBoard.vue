@@ -14,31 +14,23 @@
 			:user="userThatDoesTurn"
 			@handleTurn="handleTurn"
 		/>
-		<teleport to="#notifications">
-			<transition name="component-fade">
-			<toast v-show="shouldShowHasWonLegPopup" :message="`${userThatDoesTurn.name} heeft de leg gewonnen`" type="success" />
-			</transition>
-		</teleport>
 	</div>
 </template>
 
 <script>
-import { mapMutations, mapGetters, mapState } from 'vuex'
+import { mapMutations, mapGetters, mapState, mapActions } from 'vuex'
 
 import DartTurn from '../classes/DartTurn';
 import GraphTurns from '../components/GraphTurns.vue';
 
-import Toast from '../components/Toast.vue';
-
 import ScoreInput from '../components/ScoreInput.vue';
 import GameInfo from '../components/GameInfo.vue';
-import UserCardScore from '../components/UserCardScore.vue';
+import UserCardScore from '../components/UserCard/UserCard.vue';
 
 export default {
 	data() {
 		return {
 			canMakeTurn: true,
-			shouldShowHasWonLegPopup: false,
 		}
 	},
 	components: {
@@ -46,16 +38,22 @@ export default {
 		UserCardScore,
 		GraphTurns,
 		GameInfo,
-		Toast,
 	},
 	methods: {
 		...mapMutations([
 			'switchUserThatDoesTurn',
-			'switchUserThatStartsNextLeg',
 			'goToNextStep',
 			'resetForNextLeg',
 			'resetForNextSet',
 		]),
+
+		...mapActions([
+			'switchUserThatStartsNextLeg',
+		]),
+
+		...mapActions({
+			notify: 'toast/add',
+		}),                 
 
 		handleTurn(target) {
 			if (!this.canMakeTurn) return;
@@ -76,8 +74,6 @@ export default {
 
 			if (this.userThatDoesTurn.hasReachedZero()) {
 				this.userThatDoesTurn.addWonLeg();
-
-				this.showHasWonLegPopup();
 
 				if (this.hasWonSet()) {
 					this.userThatDoesTurn.addWonSet()
@@ -127,13 +123,6 @@ export default {
 		hasWonGame() {
 			return this.userThatDoesTurn.sets_won == this.total_sets;
 		},
-		
-		showHasWonLegPopup(){
-			this.shouldShowHasWonLegPopup = true;
-			setTimeout(() => {
-				this.shouldShowHasWonLegPopup = false;
-			}, 2000);
-		}
 	},
 	computed: {
 		...mapState({
