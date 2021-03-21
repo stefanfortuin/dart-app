@@ -8,7 +8,7 @@ export default createStore({
 	},
 	state: {
 		users: [],
-		total_sets: 2,
+		total_sets: 1,
 		total_legs: 1,
 		user_that_does_turn: undefined,
 		current_leg_owner: undefined,
