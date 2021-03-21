@@ -4,7 +4,6 @@ export default class DartTurn{
 		this.thrown_score = undefined;
 		this.old_score_to_throw_from = undefined;
 		this.new_score_to_throw_from = undefined;
-		this.shots = [];
 	}
 
 	setUser(id){
