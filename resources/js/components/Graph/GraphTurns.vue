@@ -14,7 +14,8 @@
 		>
 			<g>
 				<path
-					:d="getLinePath(user.turns)"
+					:ref="`graph_line_${user.id}`"
+					:d="getLinePath(user)"
 					style="transition: stroke 0.3s ease-in-out; fill: none; stroke-width: 3;"
 				/>
 			</g>
@@ -62,7 +63,8 @@ export default {
 	methods: {
 		updateScale() {
 			if (this.$refs.graph == undefined) return;
-			if (this.userThatDoesTurn.turns.length >= this.graph_points) this.graph_points += 1;
+			if (this.userThatDoesTurn.turns.length >= this.graph_points) 
+				this.graph_points += 1;
 
 			this.width = this.$refs.graph.clientWidth - 16;
 			this.height = this.$refs.graph.clientHeight - 24;
@@ -86,8 +88,8 @@ export default {
 			return points;
 		},
 
-		getLinePath(turns) {
-			let points = this.getPointsFromTurns(turns);
+		getLinePath(user) {
+			let points = this.getPointsFromTurns(user.turns);
 			let lineGenerator = line().curve(curveMonotoneX);
 			return lineGenerator(points);
 		},

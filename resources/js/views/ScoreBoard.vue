@@ -21,7 +21,7 @@
 import { mapMutations, mapGetters, mapState, mapActions } from 'vuex'
 
 import DartTurn from '../classes/DartTurn';
-import GraphTurns from '../components/GraphTurns.vue';
+import GraphTurns from '../components/Graph/GraphTurns.vue';
 
 import ScoreInput from '../components/ScoreInput.vue';
 import GameInfo from '../components/Info/GameInfo.vue';

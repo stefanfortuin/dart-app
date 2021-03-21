@@ -24,7 +24,7 @@
 import StatsBlock from '../components/StatsBlock';
 import { mapGetters, mapMutations } from 'vuex'
 import ButtonAction from '../components/ButtonAction.vue';
-import GraphTurns from '../components/GraphTurns.vue';
+import GraphTurns from '../components/Graph/GraphTurns.vue';
 export default {
 	components: {
 		StatsBlock,
