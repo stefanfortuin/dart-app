@@ -15,7 +15,7 @@
 			</div>
 			<div
 				@click="showDropdown = !showDropdown"
-				class="px-3 py-1 flex flex-col justify-evenly items-center w-40 bg-blue-500 text-white rounded-lg"
+				class="px-2 py-1 flex flex-col justify-evenly items-center w-40 bg-blue-500 text-white rounded-lg"
 			>
 				<div class="flex justify-evenly items-center">
 					<div class="pr-2">Sets and legs</div>
@@ -44,7 +44,7 @@
 
 <script>
 import { mapState } from 'vuex';
-import SetsAndLegsTable from './SetsAndLegsTable.vue';
+import SetsAndLegsTable from '../Info/SetsAndLegsTable.vue';
 
 export default {
 	data() {

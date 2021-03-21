@@ -24,7 +24,7 @@ import DartTurn from '../classes/DartTurn';
 import GraphTurns from '../components/GraphTurns.vue';
 
 import ScoreInput from '../components/ScoreInput.vue';
-import GameInfo from '../components/GameInfo.vue';
+import GameInfo from '../components/Info/GameInfo.vue';
 import UserCardScore from '../components/UserCard/UserCard.vue';
 
 export default {
