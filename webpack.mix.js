@@ -12,10 +12,10 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
+	.vue({runtimeOnly: true})
 	.postCss('resources/css/app.css', 'public/css', [
 		require('@tailwindcss/jit'),
 	])
-	.vue()
 	.webpackConfig({
 		devServer: {
 			host: '0.0.0.0',
