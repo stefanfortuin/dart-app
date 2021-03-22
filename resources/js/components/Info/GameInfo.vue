@@ -1,5 +1,5 @@
 <template>
-	<div class="px-2 py-2 font-light text-lg text-blue-500 ">
+	<div class="px-2 pb-2 font-light text-lg text-blue-500 ">
 		<div class="flex justify-between items-baseline">
 			<div>
 				<div>
