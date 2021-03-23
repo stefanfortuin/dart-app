@@ -15,7 +15,7 @@
 					<div class="table-cell">
 						{{user.name}}
 						<div
-							v-show="user == currentLegOwner"
+							v-show="user.owns_current_leg"
 							class="inline-flex rounded-full h-2 w-2 bg-white"
 						></div>
 					</div>
@@ -33,7 +33,6 @@ export default {
 	computed: {
 		...mapState({
 			users: state => state.users,
-			currentLegOwner: state => state.current_leg_owner
 		})
 	}
 }

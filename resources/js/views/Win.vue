@@ -22,7 +22,7 @@
 
 <script>
 import StatsBlock from '../components/StatsBlock';
-import { mapGetters, mapMutations } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 import ButtonAction from '../components/ButtonAction.vue';
 import GraphTurns from '../components/Graph/GraphTurns.vue';
 export default {
@@ -35,9 +35,9 @@ export default {
 		this.uploadGame();
 	},
 	computed: {
-		...mapGetters({
-			current_user: 'getUserThatDoesTurn',
-			users: 'getUsers',
+		...mapState({
+			users: state => state.users,
+			current_user: state => state.users.find(user => user.is_on_turn)
 		}),
 
 		averagePerTurn(){

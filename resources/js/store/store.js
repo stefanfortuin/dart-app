@@ -10,8 +10,6 @@ export default createStore({
 		users: [],
 		total_sets: 1,
 		total_legs: 1,
-		user_that_does_turn: undefined,
-		current_leg_owner: undefined,
 		current_step: 0,
 		start_score: 501,
 	},
@@ -42,7 +40,6 @@ export default createStore({
 			state.current_step = 0;
 			state.users = []
 			state.turns = []
-			state.user_that_does_turn = undefined;
 			state.start_score = 501;
 		},
 
@@ -59,12 +56,22 @@ export default createStore({
 		},
 
 		setUserThatDoesTurn(state, user) {
-			state.user_that_does_turn = user
-			state.current_leg_owner = user
+			let current_user = state.users.find(user => user.owns_current_leg);
+			if (current_user){
+				current_user.is_on_turn = false
+				current_user.owns_current_leg = false
+			}
+
+			user.is_on_turn = true
+			user.owns_current_leg = true
 		},
 
 		switchUserThatDoesTurn(state) {
-			state.user_that_does_turn = state.users.find(u => u != state.user_that_does_turn)
+			let current_user = state.users.find(user => user.is_on_turn);
+			let user_to_switch_to = state.users.find(user => !user.is_on_turn)
+
+			current_user.is_on_turn = false
+			user_to_switch_to.is_on_turn = true;
 		},
 
 		
@@ -72,11 +79,11 @@ export default createStore({
 
 	actions: {
 		switchUserThatStartsNextLeg({commit, dispatch, state}) {
-			let userThatShouldThrowNow = state.users.find(u => u != state.current_leg_owner);
+			let userThatShouldThrowNow = state.users.find(user => !user.owns_current_leg );
 
-			if(userThatShouldThrowNow != state.current_leg_owner){
+			if(userThatShouldThrowNow.is_on_turn){
 				dispatch('toast/add', {
-					title: `${userThatShouldThrowNow.name} heeft de leg van ${state.current_leg_owner.name} gebroken.`,
+					title: `${userThatShouldThrowNow.name} heeft de leg gebroken.`,
 					type: 'success'
 				})
 			}
@@ -90,10 +97,6 @@ export default createStore({
 			return state.current_step;
 		},
 
-		getUsers(state) {
-			return state.users;
-		},
-
 		getStartScore(state) {
 			return state.start_score;
 		},
@@ -104,10 +107,6 @@ export default createStore({
 
 		getCurrentLeg() {
 			return state.current_leg;
-		},
-
-		getUserThatDoesTurn(state) {
-			return state.user_that_does_turn;
 		},
 	}
 })

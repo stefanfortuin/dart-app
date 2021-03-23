@@ -12,6 +12,8 @@ export default class User {
 		this.current_leg = undefined;
 		this.legs_won = 0
 		this.sets_won = 0
+		this.is_on_turn = false
+		this.owns_current_leg = false
 		this.beginNewSet();
 	}
 

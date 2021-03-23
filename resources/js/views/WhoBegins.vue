@@ -15,11 +15,11 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 export default {
 	computed: {
-		...mapGetters({
-			users: 'getUsers',
+		...mapState({
+			users: state => state.users,
 		})
 	},
 
@@ -32,7 +32,6 @@ export default {
 		handleWhoBegins(user) {
 			this.setUserThatDoesTurn(user);
 			this.goToNextStep();
-
 		}
 	}
 }

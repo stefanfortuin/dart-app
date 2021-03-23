@@ -9,7 +9,7 @@
 			height="100%"
 			class="absolute px-3 py-2"
 			:class="
-        user == userThatDoesTurn ? 'stroke-blue z-20' : 'stroke-lightblue opacity-70 z-10'
+        user.is_on_turn ? 'stroke-blue z-20' : 'stroke-lightblue opacity-70 z-10'
       "
 		>
 			<g>
@@ -19,7 +19,7 @@
 					style="transition: stroke 0.3s ease-in-out; fill: none; stroke-width: 3;"
 				/>
 			</g>
-			<g v-if="user.turns.length > 0 && user == userThatDoesTurn">
+			<g v-if="user.turns.length > 0 && user.is_on_turn">
 				<circle
 					v-for="point in getPointsFromTurns(user.turns)"
 					:key="point[0]"
@@ -57,13 +57,13 @@ export default {
 		...mapState({
 			users: state => state.users,
 			startScore: state => state.start_score,
-			userThatDoesTurn: state => state.user_that_does_turn
+			user_on_turn: state => state.users.find(u => u.is_on_turn)
 		})
 	},
 	methods: {
 		updateScale() {
 			if (this.$refs.graph == undefined) return;
-			if (this.userThatDoesTurn.turns.length >= this.graph_points) 
+			if (this.user_on_turn.turns.length >= this.graph_points) 
 				this.graph_points += 1;
 
 			this.width = this.$refs.graph.clientWidth - 16;

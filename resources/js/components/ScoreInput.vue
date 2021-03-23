@@ -19,7 +19,7 @@
 <script>
 import { mapActions } from 'vuex';
 export default {
-	props: ['user', 'value'],
+	props: ['value'],
 	methods: {
 		...mapActions({
 			notify: 'toast/add',

@@ -6,19 +6,15 @@
 				v-for="user in users"
 				:key="user.id"
 				:user="user"
-				:is-on-turn="user == userThatDoesTurn"
 			/>
 		</div>
 		<graph-turns />
-		<score-input
-			:user="userThatDoesTurn"
-			@handleTurn="handleTurn"
-		/>
+		<score-input @handleTurn="handleTurn" />
 	</div>
 </template>
 
 <script>
-import { mapMutations, mapGetters, mapState, mapActions } from 'vuex'
+import { mapMutations, mapState, mapActions } from 'vuex'
 
 import DartTurn from '../classes/DartTurn';
 import GraphTurns from '../components/Graph/GraphTurns.vue';
@@ -53,7 +49,7 @@ export default {
 
 		...mapActions({
 			notify: 'toast/add',
-		}),                 
+		}),
 
 		handleTurn(target) {
 			if (!this.canMakeTurn) return;
@@ -61,22 +57,22 @@ export default {
 			const thrown_score = parseInt(target.value);
 
 			let turn = new DartTurn()
-				.setUser(this.userThatDoesTurn.id)
+				.setUser(this.user_on_turn.id)
 				.setThrownScore(thrown_score)
-				.setOldScoreToThrowFrom(this.userThatDoesTurn.score_to_throw_from)
+				.setOldScoreToThrowFrom(this.user_on_turn.score_to_throw_from)
 				.calculateNewScoreToThrowFrom()
 
-			this.userThatDoesTurn
+			this.user_on_turn
 				.addTurn(turn)
 				.getCheckout()
 
 			this.canMakeTurn = false;
 
-			if (this.userThatDoesTurn.hasReachedZero()) {
-				this.userThatDoesTurn.addWonLeg();
+			if (this.user_on_turn.hasReachedZero()) {
+				this.user_on_turn.addWonLeg();
 
 				if (this.hasWonSet()) {
-					this.userThatDoesTurn.addWonSet()
+					this.user_on_turn.addWonSet()
 				}
 
 				if (this.hasWonGame()) {
@@ -117,22 +113,20 @@ export default {
 
 		hasWonSet() {
 			let winning_leg = Math.round((this.total_legs % 2 == 0) ? this.total_legs / 2 + 1 : this.total_legs / 2)
-			return this.userThatDoesTurn.legs_won >= winning_leg
+			return this.user_on_turn.legs_won >= winning_leg
 		},
 
 		hasWonGame() {
-			return this.userThatDoesTurn.sets_won == this.total_sets;
+			return this.user_on_turn.sets_won == this.total_sets;
 		},
 	},
 	computed: {
 		...mapState({
 			total_sets: state => state.total_sets,
 			total_legs: state => state.total_legs,
+			users: state => state.users,
+			user_on_turn: state => state.users.find(u => u.is_on_turn)
 		}),
-		...mapGetters({
-			userThatDoesTurn: 'getUserThatDoesTurn',
-			users: 'getUsers',
-		})
 	}
 }
 </script>
