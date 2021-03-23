@@ -6,9 +6,14 @@
 				v-for="user in users"
 				:key="user.name"
 				@click="handleWhoBegins(user)"
-				class="text-5xl bg-blue-500 font-bold h-48 rounded-lg shadow-md text-white flex justify-center items-center my-4"
+				class="p-4 bg-blue-500 font-bold h-48 rounded-lg shadow-md text-white flex flex-col justify-between my-4"
 			>
-				{{user.name}}
+				<div class="text-5xl">
+					{{user.name}}
+				</div>
+				<div class="font-thin">
+					Laatste spel was <span class="font-semibold">3 dagen</span> geleden
+				</div>
 			</div>
 		</div>
 	</div>
