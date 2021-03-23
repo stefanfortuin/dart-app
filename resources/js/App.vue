@@ -18,7 +18,7 @@ import GameSettings from './views/GameSettings';
 import WhoBegins from './views/WhoBegins';
 import ScoreBoard from './views/ScoreBoard';
 import Win from './views/Win';
-import { mapGetters } from 'vuex';
+import { mapState } from 'vuex';
 import ToastWrapper from './components/Toast/ToastWrapper.vue';
 
 export default {
@@ -30,8 +30,8 @@ export default {
 		ToastWrapper,
 	},
 	computed: {
-		...mapGetters({
-			current_step: 'getCurrentStep'
+		...mapState({
+			current_step: state => state.current_step
 		})
 	}
 }
