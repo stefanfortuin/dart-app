@@ -5,6 +5,7 @@
 			:key="user.id"
 			xmlns="http://www.w3.org/2000/svg"
 			ref="graph"
+			:viewBox="`-5 -5 ${width} ${height + 5}`"
 			width="100%"
 			height="100%"
 			class="absolute px-3 py-2"
