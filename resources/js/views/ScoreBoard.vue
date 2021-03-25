@@ -1,6 +1,6 @@
 <template>
 	<div class="w-full h-full flex flex-col ">
-		<game-info />
+
 		<div>
 			<user-card-score
 				v-for="user in users"
@@ -8,7 +8,7 @@
 				:user="user"
 			/>
 		</div>
-		<graph-turns />
+		<tabs></tabs>
 		<score-input @handleTurn="handleTurn" />
 	</div>
 </template>
@@ -17,10 +17,9 @@
 import { mapMutations, mapState, mapActions } from 'vuex'
 
 import DartTurn from '../classes/DartTurn';
-import GraphTurns from '../components/Graph/GraphTurns.vue';
 
+import Tabs from '../components/Tabs/Tabs.vue';
 import ScoreInput from '../components/ScoreInput.vue';
-import GameInfo from '../components/Info/GameInfo.vue';
 import UserCardScore from '../components/UserCard/UserCard.vue';
 
 export default {
@@ -32,8 +31,7 @@ export default {
 	components: {
 		ScoreInput,
 		UserCardScore,
-		GraphTurns,
-		GameInfo,
+		Tabs,
 	},
 	methods: {
 		...mapMutations([

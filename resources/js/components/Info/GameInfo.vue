@@ -1,5 +1,5 @@
 <template>
-	<div class="px-2 pb-2 font-light text-lg text-blue-500 ">
+	<div class="px-2 pb-2 font-light text-lg text-blue-500">
 		<div class="flex justify-between items-baseline">
 			<div>
 				<div>
@@ -47,6 +47,7 @@ import { mapState } from 'vuex';
 import SetsAndLegsTable from '../Info/SetsAndLegsTable.vue';
 
 export default {
+	name: 'game-info',
 	data() {
 		return {
 			showDropdown: false

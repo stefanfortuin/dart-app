@@ -1,36 +1,24 @@
 <template>
-	<div class="bg-blue-100 bg-opacity-75 rounded-lg my-2 flex-grow flex justify-center items-center max-h-60 relative">
+	<div class="bg-blue-100 bg-opacity-60 rounded-b-lg flex-grow flex justify-center items-center max-h-60 h-full relative">
 		<svg
 			v-for="user in users"
 			:key="user.id"
 			xmlns="http://www.w3.org/2000/svg"
 			ref="graph"
-			:viewBox="`-5 -5 ${width} ${height + 5}`"
+			:viewBox="`-6 -8 ${width + 12} ${height + 12}`"
 			width="100%"
 			height="100%"
-			class="absolute px-3 py-2"
+			class="absolute"
 			:class="
         user.is_on_turn ? 'stroke-blue z-20' : 'stroke-lightblue opacity-70 z-10'
       "
 		>
-			<g>
-				<path
-					:ref="`graph_line_${user.id}`"
-					:d="getLinePath(user)"
-					:pathLength="user.turns.length"
-					style="transition: stroke 0.3s ease-in-out; fill: none; stroke-width: 3;"
-				/>
-			</g>
-			<!-- <g v-if="user.turns.length > 0 && user.is_on_turn">
-				<circle
-					v-for="point in getPointsFromTurns(user.turns)"
-					:key="point[0]"
-					:cx="point[0]"
-					:cy="point[1]"
-					fill="white"
-					r="0.16rem"
-				></circle>
-			</g> -->
+			<path
+				:ref="`graph_line_${user.id}`"
+				:d="getLinePath(user)"
+				:pathLength="user.turns.length"
+				style="transition: stroke 0.3s ease-in-out; fill: none; stroke-width: 4; stroke-linecap:butt;"
+			/>
 		</svg>
 	</div>
 </template>
@@ -41,6 +29,7 @@ import { line, curveMonotoneX } from 'd3-shape';
 import { gsap } from 'gsap';
 
 export default {
+	name: 'graph-turns',
 	data() {
 		return {
 			width: null,
@@ -66,11 +55,11 @@ export default {
 	methods: {
 		updateScale() {
 			if (this.$refs.graph == undefined) return;
-			if (this.user_on_turn.turns.length >= this.graph_points) 
+			if (this.user_on_turn.turns.length >= this.graph_points + 1) 
 				this.graph_points += 1;
 
-			this.width = this.$refs.graph.clientWidth - 16;
-			this.height = this.$refs.graph.clientHeight - 24;
+			this.width = this.$refs.graph.clientWidth;
+			this.height = this.$refs.graph.clientHeight;
 			this.scale_x = this.width / this.graph_points;
 			this.scale_y = this.height / this.startScore;
 		},
