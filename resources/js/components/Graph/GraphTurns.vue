@@ -21,16 +21,16 @@
 					style="transition: stroke 0.3s ease-in-out; fill: none; stroke-width: 3;"
 				/>
 			</g>
-			<g v-if="user.turns.length > 0 && user.is_on_turn">
+			<!-- <g v-if="user.turns.length > 0 && user.is_on_turn">
 				<circle
 					v-for="point in getPointsFromTurns(user.turns)"
 					:key="point[0]"
 					:cx="point[0]"
 					:cy="point[1]"
 					fill="white"
-					r="0.18rem"
+					r="0.16rem"
 				></circle>
-			</g>
+			</g> -->
 		</svg>
 	</div>
 </template>
@@ -80,7 +80,7 @@ export default {
 			let points = turns.map((turn, i) => [
 				(i + 1) * this.scale_x,
 				this.height - turn.new_score_to_throw_from * this.scale_y,
-				turn.new_score_to_throw_from
+				turn.thrown_score
 			]);
 
 			//push the startpoint at the beginning of the array
