@@ -10,7 +10,7 @@
 			pattern="[0-9]*" 
 			inputmode="numeric"
 			@change="handleNumberInput($event.target)"
-			class="w-full bg-gray-200 text-gray-700 font-bold placeholder-opacity-60 shadow-md placeholder-gray-400 py-2 px-4 mt-2 rounded-lg text-2xl"
+			class="w-full bg-gray-200 text-gray-700 font-bold placeholder-opacity-60 shadow-md placeholder-gray-400 py-2 px-4 rounded-lg text-2xl"
 		>
 	</div>
 
