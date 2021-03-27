@@ -76,6 +76,10 @@ export default {
 	methods: {
 		updateScale() {
 			if (this.$refs.graph == undefined) return;
+
+			if(this.user_on_turn.turns.length == 0)
+				this.graph_points = 5;
+
 			if (this.user_on_turn.turns.length >= this.graph_points + 1)
 				this.graph_points += 1;
 
