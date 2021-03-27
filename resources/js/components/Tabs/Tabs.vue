@@ -28,7 +28,7 @@ export default {
 	data() {
 		return {
 			selected_index: 0,
-			tabs: ['Grafiek', 'Sets en Legs']
+			tabs: ['Grafiek', 'Game info']
 		}
 	},
 	components: {
