@@ -11,7 +11,9 @@
 			<stats-block :title="'Hoogste'" :metric="highestTurn" />
 		</div>
 
-		<graph-turns/>
+		<div class="my-4 h-full">
+			<graph-turns/>
+		</div>
 
 		<div class="mt-auto">
 			<button-action @click="handleNewGame">Nieuw Spel</button-action>
