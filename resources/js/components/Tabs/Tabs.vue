@@ -11,7 +11,7 @@
 				{{tab}}
 			</div>
 		</div>
-		<div class="flex-grow">
+		<div class="flex-grow max-h-64">
 			<keep-alive>
 				<graph-turns v-if="selected_index == 0" />
 				<game-info v-else-if="selected_index == 1"/>
