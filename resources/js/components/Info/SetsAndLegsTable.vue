@@ -1,27 +1,25 @@
 <template>
-	<div class="flex justify-between items-end">
-		<div class="table px-2 pb-2 pt-1 w-40 text-white">
-			<div class="table-row-group">
-				<div class="table-row">
-					<div class="table-cell"></div>
-					<div class="table-cell text-right">Sets</div>
-					<div class="table-cell text-right">Legs</div>
+	<div class="w-full text-white">
+		<div class="flex flex-col text-xl">
+			<div class="flex px-3 py-2">
+				<div class="w-7/12"></div>
+				<div class="w-3/12">Sets</div>
+				<div class="w-2/12">Legs</div>
+			</div>
+			<div
+				v-for="user in users"
+				:key="user.id"
+				class="flex bg-white text-blue-500 font-semibold rounded-lg px-3 py-3 mb-2"
+			>
+				<div class="w-7/12">
+					{{user.name}}
+					<div
+						v-show="user.owns_current_leg"
+						class="inline-flex rounded-full h-2 w-2 bg-blue-500"
+					></div>
 				</div>
-				<div
-					v-for="user in users"
-					:key="user.id"
-					class="table-row"
-				>
-					<div class="table-cell">
-						{{user.name}}
-						<div
-							v-show="user.owns_current_leg"
-							class="inline-flex rounded-full h-2 w-2 bg-white"
-						></div>
-					</div>
-					<div class="table-cell text-right">{{user.sets_won}}</div>
-					<div class="table-cell text-right">{{user.legs_won}}</div>
-				</div>
+				<div class="w-3/12">{{user.sets_won}}</div>
+				<div class="w-2/12">{{user.legs_won}}</div>
 			</div>
 		</div>
 	</div>

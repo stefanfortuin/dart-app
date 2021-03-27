@@ -1,9 +1,5 @@
 <template>
-	<div class="px-2 pb-2 rounded-b-lg h-full text-lg text-white bg-blue-500">
-		<div class="text-lg">
-			<div>Totaal <span class="font-semibold">{{total_sets}}</span> sets.</div>
-			<div>Totaal <span class="font-semibold">{{total_legs}}</span> legs.</div>
-		</div>
+	<div class="h-full text-lg text-white bg-blue-500">
 		<sets-and-legs-table />
 	</div>
 	
