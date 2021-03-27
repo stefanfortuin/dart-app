@@ -1,5 +1,5 @@
 <template>
-	<div class="bg-blue-100 bg-opacity-60 rounded-b-lg flex justify-center items-center h-full relative">
+	<div class="bg-blue-500 rounded-b-lg flex justify-center items-center h-full relative">
 		<svg
 			v-for="user in users"
 			:key="user.id"
@@ -10,14 +10,15 @@
 			height="100%"
 			class="absolute"
 			:class="
-        user.is_on_turn ? 'stroke-blue z-20' : 'stroke-lightblue opacity-70 z-10'
+        user.is_on_turn ? 'stroke-white z-20' : 'stroke-lightblue opacity-70 z-10'
       "
 		>
 			<path
 				:ref="`graph_line_${user.id}`"
 				:d="getLinePath(user)"
 				:pathLength="user.turns.length"
-				style="transition: stroke 0.3s ease-in-out; fill: none; stroke-width: 4; stroke-linecap:round;"
+				:stroke-linecap="user.turns.length >= 1 ? 'round' : ''"
+				style="transition: stroke 0.3s ease-in-out; fill: none; stroke-width: 4;"
 			/>
 		</svg>
 	</div>
