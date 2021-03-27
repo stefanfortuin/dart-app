@@ -1,22 +1,22 @@
 <template>
-	<div class="w-full flex-grow mt-4">
+	<div class="w-full flex-grow flex flex-col my-4">
 		<div class="w-full flex">
 			<div
 				v-for="(tab,index) in tabs"
 				:key="index"
 				@click="selectTab(index)"
-				class="w-1/2 flex justify-center items-center p-1 text-lg font-semibold text-white rounded-t-lg"
-				:class="index == selected_index ? 'bg-blue-500' : 'bg-blue-200'"
+				class="w-1/2 py-1 text-center text-lg text-white font-semibold first:rounded-tl-lg last:rounded-tr-lg"
+				:class="index == selected_index ? 'bg-blue-500 ' : 'bg-blue-200'"
 			>
 				{{tab}}
 			</div>
 		</div>
-		<keep-alive>
-			<graph-turns v-show="selected_index == 0" />
-		</keep-alive>
-		<keep-alive>
-			<game-info v-show="selected_index == 1"/>
-		</keep-alive>
+		<div class="flex-grow">
+			<keep-alive>
+				<graph-turns v-if="selected_index == 0" />
+				<game-info v-else-if="selected_index == 1"/>
+			</keep-alive>
+		</div>
 	</div>
 </template>
 
