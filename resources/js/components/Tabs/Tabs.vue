@@ -11,7 +11,7 @@
 				{{tab}}
 			</div>
 		</div>
-		<div class="flex-grow max-h-64">
+		<div class="flex-grow max-h-64 p-1 bg-blue-500 rounded-b-lg">
 			<keep-alive>
 				<graph-turns v-if="selected_index == 0" />
 				<game-info v-else-if="selected_index == 1"/>
@@ -28,7 +28,7 @@ export default {
 	data() {
 		return {
 			selected_index: 0,
-			tabs: ['Grafiek', 'Game info']
+			tabs: ['Scores', 'Game info']
 		}
 	},
 	components: {

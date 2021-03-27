@@ -6,10 +6,14 @@ module.exports = {
     ],
     darkMode: false, // or 'media' or 'class'
     theme: {
-        extend: {},
+        extend: {
+			borderWidth: {
+				'3': '3px',
+			}
+		},
         stroke: theme => ({
-			'graphaxis': theme('colors.gray.100'),
-          	'white': theme('colors.gray.100'),
+			'graphaxis': theme('colors.blue.100'),
+          	'white': theme('colors.white'),
          	'lightblue': theme('colors.blue.400'),
         })
     },

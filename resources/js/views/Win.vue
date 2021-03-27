@@ -11,7 +11,7 @@
 			<stats-block :title="'Hoogste'" :metric="highestTurn" />
 		</div>
 
-		<div class="my-4 h-full">
+		<div class="my-4 h-full p-1 bg-blue-500 rounded-lg">
 			<graph-turns/>
 		</div>
 
