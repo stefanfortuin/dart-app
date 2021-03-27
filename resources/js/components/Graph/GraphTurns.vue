@@ -20,6 +20,17 @@
 				:stroke-linecap="user.turns.length >= 1 ? 'round' : ''"
 				style="transition: stroke 0.3s ease-in-out; fill: none; stroke-width: 4;"
 			/>
+			<!-- <line
+				v-for="(point,i) in graph_points + 1"
+				:key="point"
+				:x1="i * scale_x"
+				:y1="0"
+				:x2="i * scale_x"
+				:y2="height"
+				stroke-width="2"
+				class="stroke-graphaxis opacity-10"
+			>
+			</line> -->
 		</svg>
 	</div>
 </template>

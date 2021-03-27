@@ -8,8 +8,9 @@ module.exports = {
     theme: {
         extend: {},
         stroke: theme => ({
-          'white': theme('colors.gray.100'),
-          'lightblue': theme('colors.blue.400'),
+			'graphaxis': theme('colors.gray.100'),
+          	'white': theme('colors.gray.100'),
+         	'lightblue': theme('colors.blue.400'),
         })
     },
     variants: {
