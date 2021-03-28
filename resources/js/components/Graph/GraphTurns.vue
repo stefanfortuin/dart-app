@@ -114,22 +114,32 @@ export default {
 
 			let points = this.getPointsFromTurns(user.turns);
 
-			//animatie the svg path only for the user that is on turn and when it has added a new point
-			if (element && user.is_on_turn && element.style.strokeDasharray < user.turns.length) {
-				element.style.strokeDasharray = user.turns.length;
-				element.style.strokeDashoffset = 1;
-
-				anime({
-					targets: `#graph_line_${user.id}`,
-					strokeDashoffset: 0,
-					duration: 250,
-					easing: 'easeOutQuad'
-				})
-			}
+			this.animatePath(element, user);
 
 			let lineGenerator = line().curve(curveMonotoneX);
 			return lineGenerator(points);
 		},
+
+		animatePath(path_element, user){
+			if (!path_element) return;
+			if (!user.is_on_turn) return;
+
+			if (path_element.style.strokeDasharray > user.turns.length)
+				path_element.style.strokeDasharray = 0;
+
+			//animatie the svg path only when it has added a new point
+			if (path_element.style.strokeDasharray < user.turns.length) {
+				path_element.style.strokeDasharray = user.turns.length
+				path_element.style.strokeDashoffset = 1;
+
+				anime({
+					targets: path_element,
+					strokeDashoffset: 0,
+					duration: 250,
+					easing: 'easeOutQuad',
+				})
+			}
+		}
 	},
 };
 </script>
