@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+require('laravel-mix-bundle-analyzer');
 
 /*
  |--------------------------------------------------------------------------
@@ -28,3 +29,5 @@ mix.js('resources/js/app.js', 'public/js')
 			port: 8080,
 		},
 	})
+
+mix.bundleAnalyzer({analyzerHost: "0.0.0.0"});

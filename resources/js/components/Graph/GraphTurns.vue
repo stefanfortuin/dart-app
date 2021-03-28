@@ -15,6 +15,7 @@
 		>
 			<path
 				:ref="`graph_line_${user.id}`"
+				:id="`graph_line_${user.id}`"
 				:d="getLinePath(user)"
 				fill="none"
 				stroke-width="4"
@@ -47,7 +48,7 @@
 <script>
 import { mapState } from "vuex";
 import { line, curveMonotoneX } from 'd3-shape';
-import { gsap } from 'gsap';
+import anime from 'animejs';
 
 export default {
 	name: 'graph-turns',
@@ -58,6 +59,9 @@ export default {
 			scale_y: null,
 			scale_x: null,
 			graph_points: 5, //default
+			paths: [
+
+			]
 		};
 	},
 	mounted() {
@@ -112,8 +116,15 @@ export default {
 
 			//animatie the svg path only for the user that is on turn and when it has added a new point
 			if (element && user.is_on_turn && element.style.strokeDasharray < user.turns.length) {
-				gsap.set(element, { strokeDasharray: user.turns.length });
-				gsap.fromTo(element, 0.25, { strokeDashoffset: 1 }, { strokeDashoffset: 0 });
+				element.style.strokeDasharray = user.turns.length;
+				element.style.strokeDashoffset = 1;
+
+				anime({
+					targets: `#graph_line_${user.id}`,
+					strokeDashoffset: 0,
+					duration: 250,
+					easing: 'easeOutQuad'
+				})
 			}
 
 			let lineGenerator = line().curve(curveMonotoneX);

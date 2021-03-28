@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import {gsap} from 'gsap';
+import anime from 'animejs';
 export default {
 	props: ['user'],
 	data(){
@@ -30,7 +30,12 @@ export default {
 	},
 	watch: {
 		'user.score_to_throw_from': function(newValue){
-			gsap.to(this.$data, {duration: 0.7, tweenedScore: newValue})
+			anime({
+				targets: this.$data,
+				tweenedScore: newValue,
+				duration: 700,
+				easing: 'easeInOutQuint'
+			})
 		} 
 	}
 }

@@ -14,15 +14,15 @@
 		<div class="flex-grow max-h-64 p-1 px-2 bg-blue-500 rounded-b-lg">
 			<keep-alive>
 				<graph-turns v-if="selected_index == 0" />
-				<game-info v-else-if="selected_index == 1"/>
+				<sets-and-legs-table v-else-if="selected_index == 1" />
 			</keep-alive>
 		</div>
 	</div>
 </template>
 
 <script>
-import GameInfo from '../Info/GameInfo.vue';
 import GraphTurns from '../Graph/GraphTurns.vue';
+import SetsAndLegsTable from '../Info/SetsAndLegsTable.vue';
 
 export default {
 	data() {
@@ -33,7 +33,7 @@ export default {
 	},
 	components: {
 		GraphTurns,
-		GameInfo,
+		SetsAndLegsTable,
 	},
 	mounted() {
 		this.selectTab(0)
