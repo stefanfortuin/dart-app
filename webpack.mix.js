@@ -29,5 +29,6 @@ mix.js('resources/js/app.js', 'public/js')
 			port: 8080,
 		},
 	})
-
-mix.bundleAnalyzer({analyzerHost: "0.0.0.0"});
+if(!mix.inProduction()){
+	mix.bundleAnalyzer({analyzerHost: "0.0.0.0"});
+}
