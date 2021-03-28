@@ -2,7 +2,7 @@
 	<div class="h-full relative">
 		<toast-wrapper/>
 		<transition
-			name="component-fade"
+			name="view-fade"
 			mode="out-in"
 		>
 			<GameSettings key="0" v-if="current_step == 0" />

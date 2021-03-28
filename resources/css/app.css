@@ -1,17 +1,24 @@
 @tailwind base;
 @tailwind utilities;
 
-.component-fade-enter-active, .component-fade-leave-active {
+.view-fade-enter-active, .view-fade-leave-active {
   transition: all .2s;
 }
-.component-fade-enter-from{
+.view-fade-enter-from{
 	opacity: 0;
 	transform: translateX(100%);
 }
 
-.component-fade-leave-to{
+.view-fade-leave-to{
 	opacity: 100;
 	transform: translateX(-100%);
+}
+
+.tab-fade-enter-active, .tab-fade-leave-active {
+  transition: all .2s ease-in-out;
+}
+.tab-fade-enter-from, .tab-fade-leave-to{
+	opacity: 0;
 }
 
 .toast-move-enter-active, .toast-move-leave-active {

@@ -12,10 +12,12 @@
 			</div>
 		</div>
 		<div class="flex-grow max-h-64 p-1 px-2 bg-blue-500 rounded-b-lg">
+			<transition name="tab-fade" mode="out-in">
 			<keep-alive>
 				<graph-turns v-if="selected_index == 0" />
 				<sets-and-legs-table v-else-if="selected_index == 1" />
 			</keep-alive>
+			</transition>
 		</div>
 	</div>
 </template>
