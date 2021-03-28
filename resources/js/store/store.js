@@ -25,7 +25,7 @@ export default createStore({
 		},
 
 		setStartScore(state, start_score) {
-			state.start_score = start_score;
+			state.start_score = parseInt(start_score);
 		},
 
 		setTotalSets(state, sets){
