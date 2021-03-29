@@ -13,6 +13,14 @@ class Game extends Model
         'winner_id',
     ];
 
+	public function sets(){
+		return $this->hasMany(DartSet::class);
+	}
+
+	public function legs(){
+		return $this->hasMany(DartLeg::class);
+	}
+
 	public function turns(){
 		return $this->hasMany(DartTurn::class);
 	}

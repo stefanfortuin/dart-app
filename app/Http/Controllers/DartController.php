@@ -26,24 +26,6 @@ class DartController extends Controller
 		];
 	}
 
-	public function game(Request $request)
-	{
-		$users_from_request = $request->users;
-		$turns_from_request = $request->turns;
-
-		$game = Game::create([
-			'winner_id' => $request->input('winner_id')
-		]);
-
-		collect($turns_from_request)->each(function ($turn) use ($game) {
-			$db_turn = DartTurn::create($turn);
-			$db_turn->game()->associate($game);
-			$db_turn->save();
-		});
-
-		$game->users()->sync($users_from_request);
-	}
-
 	public function checkout(String $score)
 	{
 		$checkout = [
