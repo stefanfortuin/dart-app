@@ -39,6 +39,7 @@ export default {
 	computed: {
 		...mapState({
 			users: state => state.users,
+			sets: state => state.sets,
 			current_user: state => state.users.find(user => user.is_on_turn)
 		}),
 
@@ -61,8 +62,8 @@ export default {
 
 		uploadGame() {
 			let game = {
-				users: this.users.map(user => user.id),
-				turns: this.turns,
+				users: this.users,
+				sets: this.sets,
 				winner_id: this.current_user.id,
 			}
 

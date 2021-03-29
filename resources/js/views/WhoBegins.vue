@@ -30,11 +30,13 @@ export default {
 	methods: {
 		...mapMutations([
 			'setUserThatDoesTurn',
+			'startGame',
 			'goToNextStep',
 		]),
 
 		handleWhoBegins(user) {
 			this.setUserThatDoesTurn(user);
+			this.startGame()
 			this.goToNextStep();
 		}
 	}

@@ -37,12 +37,13 @@ export default {
 		...mapMutations([
 			'switchUserThatDoesTurn',
 			'goToNextStep',
-			'resetForNextLeg',
-			'resetForNextSet',
 		]),
 
 		...mapActions([
 			'switchUserThatStartsNextLeg',
+			'addTurnToGame',
+			'resetForNextLeg',
+			'resetForNextSet',
 		]),
 
 		...mapActions({
@@ -63,6 +64,8 @@ export default {
 			this.user_on_turn
 				.addTurn(turn)
 				.getCheckout()
+			
+			this.addTurnToGame(turn);
 
 			this.canMakeTurn = false;
 

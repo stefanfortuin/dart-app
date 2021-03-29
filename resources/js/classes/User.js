@@ -1,15 +1,10 @@
-import DartLeg from "./DartLeg";
-import DartSet from "./DartSet";
-
 export default class User {
 	constructor(id, name, start_score) {
 		this.id = id
 		this.name = name
-		this.sets = [];
+		this.turns = [];
 		this.start_score = start_score;
 		this.checkout = '';
-		this.current_set = undefined;
-		this.current_leg = undefined;
 		this.legs_won = 0
 		this.sets_won = 0
 		this.is_on_turn = false
@@ -18,7 +13,7 @@ export default class User {
 	}
 
 	addTurn(turn) {
-		this.current_leg.addTurn(turn);
+		this.turns.push(turn);
 		return this;
 	}
 
@@ -36,20 +31,19 @@ export default class User {
 
 	beginNewSet(){
 		this.resetCheckout();
-		this.legs_won = 0
-		this.current_set = new DartSet();
-		this.sets.push(this.current_set);
-		this.beginNewLeg();
+		this.legs_won = 0;
 	}
 
 	beginNewLeg(){
 		this.resetCheckout();
-		this.current_leg = new DartLeg();
-		this.current_set.addLeg(this.current_leg);
 	}
 
 	resetCheckout(){
 		this.checkout = '';
+	}
+
+	clearTurns(){
+		this.turns = [];
 	}
 
 	get score_to_throw_from() {
@@ -59,11 +53,7 @@ export default class User {
 	}
 
 	get last_turn() {
-		return this.current_leg.turns.slice(-1)[0];
-	}
-
-	get turns(){
-		return this.current_leg.turns
+		return this.turns.slice(-1)[0];
 	}
 
 	getCheckout() {
