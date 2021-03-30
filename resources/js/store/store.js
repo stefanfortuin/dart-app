@@ -59,6 +59,10 @@ export default createStore({
 			state.current_leg.setWinnerId(user.id);
 		},
 
+		setSetWinner(state, user){
+			state.current_set.setWinnerId(user.id);
+		},
+
 		makeNewLeg(state){
 			let new_leg = new DartLeg();
 			state.current_set.addLeg(new_leg);
@@ -74,6 +78,7 @@ export default createStore({
 		resetCurrentStep(state) {
 			state.current_step = 0;
 			state.users = []
+			state.sets = []
 			state.start_score = 501;
 		},
 
@@ -123,8 +128,8 @@ export default createStore({
 				user.clearTurns();
 			})
 
-			let userThatShouldThrowNow = state.users.find(user => !user.owns_current_leg );
-			commit('setLegWinner',userThatShouldThrowNow);
+			let userThatIsOnTurn = state.users.find(user => user.is_on_turn );
+			commit('setLegWinner',userThatIsOnTurn);
 			commit('makeNewLeg');
 		},
 
@@ -135,6 +140,9 @@ export default createStore({
 				user.legs_won = 0;
 			});
 
+			let userThatIsOnTurn = state.users.find(user => user.is_on_turn );
+			commit('setLegWinner',userThatIsOnTurn);
+			commit('setSetWinner', userThatIsOnTurn);
 			commit('makeNewSet');
 			commit('makeNewLeg');
 		},

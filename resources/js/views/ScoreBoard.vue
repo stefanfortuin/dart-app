@@ -36,6 +36,8 @@ export default {
 	methods: {
 		...mapMutations([
 			'switchUserThatDoesTurn',
+			'setSetWinner',
+			'setLegWinner',
 			'goToNextStep',
 		]),
 
@@ -70,6 +72,7 @@ export default {
 			this.canMakeTurn = false;
 
 			if (this.user_on_turn.hasReachedZero()) {
+				this.setLegWinner(this.user_on_turn);
 				this.user_on_turn.addWonLeg();
 
 				if (this.hasWonSet()) {
@@ -77,6 +80,7 @@ export default {
 				}
 
 				if (this.hasWonGame()) {
+					this.setSetWinner(this.user_on_turn);
 					this.goToNextStep()
 					return;
 				}
