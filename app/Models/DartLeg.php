@@ -17,4 +17,10 @@ class DartLeg extends Model
 	public function turns(){
 		return $this->hasMany(DartTurn::class);
 	}
+
+	public function setTurnsAttribute($turns){
+		foreach ($turns as $turn) {
+			$this->turns()->create($turn);
+		}
+	}
 }

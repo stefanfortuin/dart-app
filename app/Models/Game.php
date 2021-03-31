@@ -10,6 +10,7 @@ class Game extends Model
     use HasFactory;
 
 	protected $fillable = [
+		'sets',
         'winner_id',
     ];
 
@@ -31,5 +32,11 @@ class Game extends Model
 
 	public function winner(){
 		return $this->hasOne(User::class, 'winner_id');
+	}
+
+	public function setSetsAttribute($sets){
+		foreach ($sets as $set) {
+			$this->sets()->create($set);
+		}
 	}
 }

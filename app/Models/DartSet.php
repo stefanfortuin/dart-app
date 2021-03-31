@@ -17,4 +17,10 @@ class DartSet extends Model
 	public function legs(){
 		return $this->hasMany(DartLeg::class);
 	}
+
+	public function setLegsAttribute($legs){
+		foreach ($legs as $leg) {
+			$this->legs()->create($leg);
+		}
+	}
 }

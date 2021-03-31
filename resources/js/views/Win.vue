@@ -63,7 +63,7 @@ export default {
 		uploadGame() {
 			let game = {
 				users: this.users,
-				sets: this.sets,
+				game: this.sets,
 				winner_id: this.current_user.id,
 			}
 
