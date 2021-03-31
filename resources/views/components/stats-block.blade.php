@@ -1,8 +1,8 @@
-<div class="bg-blue-500 rounded-lg px-3 py-4">
-	<div class="text-xl font-light text-white">
+<div class="flex items-baseline justify-between pb-1">
+	<div class="w-4/6 text-lg font-light text-gray-600">
 		{{$title}}
 	</div>
-	<div class="text-4xl font-bold text-white">
+	<div class="w-2/6 text-xl font-semibold text-gray-700">
 		{{$metric}}
 	</div>
 </div>
