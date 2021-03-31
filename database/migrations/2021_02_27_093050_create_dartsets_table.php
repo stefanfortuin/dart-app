@@ -17,10 +17,10 @@ class CreateDartsetsTable extends Migration
             $table->id();
             $table->timestamps();
 			$table->unsignedBigInteger('game_id')->nullable();
-			$table->unsignedBigInteger('user_id')->nullable();
+			$table->unsignedBigInteger('winner_id')->nullable();
 
 			$table->foreign('game_id')->references('id')->on('games');
-			$table->foreign('user_id')->references('id')->on('users');
+			$table->foreign('winner_id')->references('id')->on('users');
         });
     }
 
@@ -31,6 +31,6 @@ class CreateDartsetsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dartsets');
+        Schema::dropIfExists('dart_sets');
     }
 }

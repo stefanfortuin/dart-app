@@ -14,6 +14,8 @@ class Game extends Model
         'winner_id',
     ];
 
+	protected $with = ['sets'];
+
 	public function sets(){
 		return $this->hasMany(DartSet::class);
 	}
@@ -36,7 +38,9 @@ class Game extends Model
 
 	public function setSetsAttribute($sets){
 		foreach ($sets as $set) {
-			$this->sets()->create($set);
+			$new_set = $this->sets()->create(['winner_id' => $set['winner_id']]);
+			$new_set->legs = $set['legs'];
+			$new_set->save();
 		}
 	}
 }

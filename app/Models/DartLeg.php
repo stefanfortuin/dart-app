@@ -12,15 +12,21 @@ class DartLeg extends Model
 
 	protected $fillable = [
 		'turns',
+		'set_id',
+		'winner_id',
 	];
 
+	protected $with = ['turns'];
+
 	public function turns(){
-		return $this->hasMany(DartTurn::class);
+		return $this->hasMany(DartTurn::class, 'leg_id');
+	}
+
+	public function winner(){
+		return $this->hasOne(User::class, 'winner_id');
 	}
 
 	public function setTurnsAttribute($turns){
-		foreach ($turns as $turn) {
-			$this->turns()->create($turn);
-		}
+		$this->turns()->createMany($turns);
 	}
 }

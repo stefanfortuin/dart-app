@@ -63,8 +63,10 @@ export default {
 		uploadGame() {
 			let game = {
 				users: this.users,
-				game: this.sets,
-				winner_id: this.current_user.id,
+				game: {
+					sets: this.sets,
+					winner_id: this.current_user.id,
+				}
 			}
 
 			fetch(`/api/game`, {

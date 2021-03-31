@@ -12,15 +12,29 @@ class DartSet extends Model
 
 	protected $fillable = [
 		'legs',
+		'game_id',
+		'winner_id',
 	];
 
+	protected $with = ['legs'];
+
+	public function game(){
+		return $this->belongsTo(Game::class);
+	}
+
 	public function legs(){
-		return $this->hasMany(DartLeg::class);
+		return $this->hasMany(DartLeg::class, 'set_id');
+	}
+
+	public function winner(){
+		return $this->hasOne(User::class, 'winner_id');
 	}
 
 	public function setLegsAttribute($legs){
 		foreach ($legs as $leg) {
-			$this->legs()->create($leg);
+			$new_leg = $this->legs()->create(['winner_id' => $leg['winner_id']]);
+			$new_leg->turns = $leg['turns'];
+			$new_leg->save();
 		}
 	}
 }

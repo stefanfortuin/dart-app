@@ -10,18 +10,18 @@ class DartTurn extends Model
     use HasFactory;
 
 	protected $fillable = [
-        'game_id',
+        'leg_id',
         'user_id',
 		'thrown_score',
 		'old_score_to_throw_from',
 		'new_score_to_throw_from'
     ];
 
-	public function game(){
-		return $this->belongsTo(Game::class);
+	public function leg(){
+		return $this->belongsTo(DartLeg::class, 'leg_id');
 	}
 
 	public function user(){
-		return $this->belongsTo(User::class);
+		return $this->belongsTo(User::class, 'user_id');
 	}
 }

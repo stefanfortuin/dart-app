@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDartsturnsTable extends Migration
+class CreateDartturnsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,13 +17,13 @@ class CreateDartsturnsTable extends Migration
             $table->id();
             $table->timestamps();
 			$table->unsignedBigInteger('leg_id')->nullable();
-			$table->unsignedBigInteger('user_id');
+			$table->unsignedBigInteger('user_id')->nullable();
 			$table->integer('thrown_score')->nullable();
 			$table->integer('old_score_to_throw_from');
 			$table->integer('new_score_to_throw_from');
 
-			$table->foreign('user_id')->references('id')->on('users');
 			$table->foreign('leg_id')->references('id')->on('dart_legs');
+			$table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -34,6 +34,6 @@ class CreateDartsturnsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dartturns');
+        Schema::dropIfExists('dart_turns');
     }
 }
