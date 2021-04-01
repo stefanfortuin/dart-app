@@ -12,7 +12,7 @@
 				{{user.name}}
 			</div>
 			<div class="font-thin">
-				Laatste spel was <span class="font-semibold">3 dagen</span> geleden
+				Laatste spel <span class="font-semibold">{{user.latest_game}}</span>
 			</div>
 		</div>
 	</div>

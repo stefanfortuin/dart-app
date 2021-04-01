@@ -21,7 +21,13 @@ export default createStore({
 	mutations: {
 		setUsers(state, users) {
 			users.forEach(user => {
-				state.users.push(new User(user.id, user.name, state.start_score))
+				let new_user = new User()
+									.setId(user.id)
+									.setName(user.name)
+									.setLatestGame(user.latest_game)
+									.setStartScore(state.start_score)
+									
+				state.users.push(new_user)
 			});
 		},
 

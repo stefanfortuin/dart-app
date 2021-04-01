@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use App\Models\DartTurn;
+use Carbon\Carbon;
 use App\Models\Match;
+use App\Models\DartTurn;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -53,6 +54,10 @@ class User extends Authenticatable
 
 	public function games(){
 		return $this->belongsToMany(Game::class, 'game_user');
+	}
+
+	public function getLatestGameDateAttribute(){
+		return Carbon::parse($this->games()->latest('created_at')->first()->created_at)->locale('nl_NL')->diffForHumans();
 	}
 
 	// Games
