@@ -14,17 +14,23 @@ class SaveGameController extends Controller
 		$users_only_ids = $users->map(function ($user) {
 			return $user['id'];
 		});
+		
+		try {
+			$game = Game::create([
+				'winner_id' => $request_game['winner_id']
+			]);
 
-		$game = Game::create([
-			'winner_id' => $request_game['winner_id']
-		]);
+			$game->sets = $request_game['sets'];
+			$game->save();
 
-		$game->sets = $request_game['sets'];
-		$game->save();
+			$game->users()->sync($users_only_ids);
 
-		$game->users()->sync($users_only_ids);
-
-		$game->refresh();
-		return $game->sets;
+			$game->refresh();
+		}
+		catch(\Exception $e){
+			return response()->json(['success' => false, 'message' => 'Kon het spel niet opslaan']);
+		}
+		
+		return response()->json(['success' => true, 'message' => 'Spel opgeslagen!']);
 	}
 }

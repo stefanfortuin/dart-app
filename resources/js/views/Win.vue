@@ -24,7 +24,7 @@
 
 <script>
 import StatsBlock from '../components/StatsBlock';
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapMutations, mapActions } from 'vuex'
 import ButtonAction from '../components/ButtonAction.vue';
 import GraphTurns from '../components/Graph/GraphTurns.vue';
 export default {
@@ -56,6 +56,10 @@ export default {
 			'resetCurrentStep',
 		]),
 
+		...mapActions({
+			notify: 'toast/add',
+		}),
+
 		handleNewGame() {
 			this.resetCurrentStep()
 		},
@@ -76,6 +80,11 @@ export default {
 				},
 				body: JSON.stringify(game),
 			})
+			.then((response) => response.json())
+			.then((response) => {
+				if(response.success == false)
+					this.notify({title: response.message, type: 'error'})
+			});
 		}
 	}
 }
