@@ -54,4 +54,31 @@ class User extends Authenticatable
 	public function games(){
 		return $this->belongsToMany(Game::class, 'game_user');
 	}
+
+	// Games
+	public function getTotalGamesAttribute(){
+		return $this->games->count();
+	}
+
+	public function getTotalGamesWonAttribute(){
+		return $this->games->where('winner_id', $this->id)->count();
+	}
+
+	// Sets
+	public function getTotalSetsAttribute(){
+		return $this->games->reduce(function ($carry, $game) {
+			return $carry + $game->sets->count();
+		});
+	}
+
+	public function getTotalSetsWonAttribute(){
+		return $this->games->reduce(function ($carry, $game) {
+			return $carry + $game->sets->where('winner_id', $this->id)->count();
+		});
+	}
+
+	// Turns
+	public function getAveragePerTurnAttribute(){
+		return round($this->turns->average('thrown_score'), 2);
+	}
 }

@@ -25,19 +25,15 @@ Route::get('/stats', function () {
 
 Route::get('/stats/{id}', function (String $id) {
 	$user = User::find($id);
-	$total_games = $user->games->count();
-	$total_sets = $user->games->reduce(function ($carry, $game) {
-		return $carry + $game->sets->count();
-	});
+	$total_games = $user->total_games;
+	$total_sets = $user->total_sets;
 
-	$total_sets_won = $user->games->reduce(function ($carry, $game) use ($id){
-		return $carry + $game->sets->where('winner_id', $id)->count();
-	});
+	$total_sets_won = $user->total_sets_won;
 
 	$total_sets_lost = $total_sets - $total_sets_won;
 
-	$average_per_turn = round($user->turns->average('thrown_score'), 2);
-	$won = $user->games->where('winner_id', $id)->count();
+	$average_per_turn = $user->average_per_turn;
+	$won = $user->total_games_won;
 	$lost = $total_games - $won;
 
     return view('stats-user', [
