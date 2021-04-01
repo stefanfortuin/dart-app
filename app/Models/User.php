@@ -57,7 +57,12 @@ class User extends Authenticatable
 	}
 
 	public function getLatestGameDateAttribute(){
-		return Carbon::parse($this->games()->latest('created_at')->first()->created_at)->locale('nl_NL')->diffForHumans();
+		$latest_game = $this->games()->latest('created_at')->first();
+		if ($latest_game){
+			return Carbon::parse($latest_game->created_at)->locale('nl_NL')->diffForHumans();
+		}
+		return false;
+		
 	}
 
 	// Games

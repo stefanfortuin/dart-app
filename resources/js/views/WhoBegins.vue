@@ -11,8 +11,11 @@
 			<div class="text-5xl">
 				{{user.name}}
 			</div>
-			<div class="font-thin">
+			<div v-if="user.latest_game != false" class="font-thin">
 				Laatste spel <span class="font-semibold">{{user.latest_game}}</span>
+			</div>
+			<div v-else class="font-thin">
+				Nog geen spellen gespeeld
 			</div>
 		</div>
 	</div>
