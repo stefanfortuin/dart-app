@@ -2,6 +2,7 @@ export default class User {
 	constructor(id, name, start_score) {
 		this.id = id
 		this.name = name
+		this.latest_game;
 		this.turns = [];
 		this.start_score = start_score;
 		this.checkout = '';
@@ -9,7 +10,26 @@ export default class User {
 		this.sets_won = 0
 		this.is_on_turn = false
 		this.owns_current_leg = false
-		this.beginNewSet();
+	}
+
+	setName(name){
+		this.name = name;
+		return this;
+	}
+
+	setId(id){
+		this.id = id;
+		return this;
+	}
+
+	setStartScore(start_score){
+		this.start_score = start_score;
+		return this;
+	}
+
+	setLatestGame(latest_game){
+		this.latest_game = latest_game;
+		return this;
 	}
 
 	addTurn(turn) {

@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use App\Models\DartTurn;
+use Carbon\Carbon;
 use App\Models\Match;
+use App\Models\DartTurn;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -53,5 +54,41 @@ class User extends Authenticatable
 
 	public function games(){
 		return $this->belongsToMany(Game::class, 'game_user');
+	}
+
+	public function getLatestGameDateAttribute(){
+		$latest_game = $this->games()->latest('created_at')->first();
+		if ($latest_game){
+			return Carbon::parse($latest_game->created_at)->locale('nl_NL')->diffForHumans();
+		}
+		return false;
+		
+	}
+
+	// Games
+	public function getTotalGamesAttribute(){
+		return $this->games->count();
+	}
+
+	public function getTotalGamesWonAttribute(){
+		return $this->games->where('winner_id', $this->id)->count();
+	}
+
+	// Sets
+	public function getTotalSetsAttribute(){
+		return $this->games->reduce(function ($carry, $game) {
+			return $carry + $game->sets->count();
+		});
+	}
+
+	public function getTotalSetsWonAttribute(){
+		return $this->games->reduce(function ($carry, $game) {
+			return $carry + $game->sets->where('winner_id', $this->id)->count();
+		});
+	}
+
+	// Turns
+	public function getAveragePerTurnAttribute(){
+		return round($this->turns->average('thrown_score'), 2);
 	}
 }
