@@ -7,8 +7,7 @@
 			min=0
 			max=180
 			placeholder="Hoeveel gooide je?"
-			pattern="[0-9]*" 
-			inputmode="numeric"
+			pattern="[0-9]*"
 			@change="handleNumberInput($event.target)"
 			class="w-full bg-white border-2 text-blue-500 font-semibold border-blue-200 py-3 px-4 placeholder-opacity-50 placeholder-gray-800 rounded-lg text-xl"
 		>
