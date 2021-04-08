@@ -22,9 +22,7 @@ export default createStore({
 		setUsers(state, users) {
 			users.forEach(user => {
 				let new_user = new User()
-									.setId(user.id)
-									.setName(user.name)
-									.setLatestGame(user.latest_game)
+									.setDataFromDatabase(user)
 									.setStartScore(state.start_score)
 									
 				state.users.push(new_user)

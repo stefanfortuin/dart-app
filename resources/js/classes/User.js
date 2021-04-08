@@ -1,10 +1,7 @@
 export default class User {
-	constructor(id, name, start_score) {
-		this.id = id
-		this.name = name
-		this.latest_game;
+	constructor() {
 		this.turns = [];
-		this.start_score = start_score;
+		this.start_score = undefined;
 		this.checkout = '';
 		this.legs_won = 0
 		this.sets_won = 0
@@ -12,23 +9,15 @@ export default class User {
 		this.owns_current_leg = false
 	}
 
-	setName(name){
-		this.name = name;
-		return this;
-	}
-
-	setId(id){
-		this.id = id;
+	setDataFromDatabase(user){
+		for (const key in user) {
+			this[key] = user[key]
+		}
 		return this;
 	}
 
 	setStartScore(start_score){
 		this.start_score = start_score;
-		return this;
-	}
-
-	setLatestGame(latest_game){
-		this.latest_game = latest_game;
 		return this;
 	}
 
