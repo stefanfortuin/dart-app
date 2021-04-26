@@ -9,7 +9,7 @@
 			/>
 		</div>
 		<tabs></tabs>
-		<score-input @handleTurn="handleTurn" />
+		<score-input @handleTurn="handleTurn" :min="0" :max="180" />
 	</div>
 </template>
 
@@ -52,10 +52,10 @@ export default {
 			notify: 'toast/add',
 		}),
 
-		handleTurn(target) {
+		handleTurn(score) {
 			if (!this.canMakeTurn) return;
 
-			const thrown_score = parseInt(target.value);
+			const thrown_score = parseInt(score);
 
 			let turn = new DartTurn()
 				.setUser(this.user_on_turn.id)
@@ -93,23 +93,17 @@ export default {
 				}
 
 				this.switchUserThatStartsNextLeg();
-				this.resetScoreField(target);
 			}
 			else {
 				setTimeout(() => {
 					this.switchUserThatDoesTurn();
-					this.resetScoreField(target);
+					this.resetScoreField();
 				}, 800);
 			}
 		},
 
-		resetScoreField(target) {
-			this.resetInputField(target);
+		resetScoreField() {
 			this.canMakeTurn = true;
-		},
-
-		resetInputField(target) {
-			target.value = '';
 		},
 
 		scoreIsOutOfRange(min, max, score) {
