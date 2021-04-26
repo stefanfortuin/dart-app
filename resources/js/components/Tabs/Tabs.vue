@@ -11,7 +11,7 @@
 				{{tab}}
 			</div>
 		</div>
-		<div class="flex-grow max-h-64 p-1 px-2 bg-blue-500 rounded-b-lg">
+		<div class="flex-grow p-1 px-2 bg-blue-500 rounded-b-lg">
 			<transition name="tab-fade" mode="out-in">
 			<keep-alive>
 				<graph-turns v-if="selected_index == 0" />

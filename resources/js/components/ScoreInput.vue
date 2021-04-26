@@ -1,46 +1,80 @@
 <template>
-	<div class="mt-auto w-full">
-		<input
-			type="number"
-			id="dart-id"
-			:value="value"
-			min=0
-			max=180
-			placeholder="Hoeveel gooide je?"
-			pattern="[0-9]*" 
-			inputmode="numeric"
-			@change="handleNumberInput($event.target)"
-			class="w-full bg-white border-2 text-blue-500 font-semibold border-blue-200 py-3 px-4 placeholder-opacity-50 placeholder-gray-800 rounded-lg text-xl"
-		>
-	</div>
-
+  <div
+    class="flex mt-auto w-full bg-blue-200 bg-opacity-60 h-24 rounded-lg text-xl"
+  >
+    <div class="grid grid-rows-2 grid-cols-5 w-10/12 p-1 gap-1">
+      <div
+        v-for="i in 10"
+        :key="'num-' + i - 1"
+        @click="addNumberToScore(i - 1)"
+        class="flex justify-center items-center text-white bg-blue-500 hover:bg-blue-300 active:bg-blue-400 font-bold rounded"
+      >
+        {{ i - 1 }}
+      </div>
+    </div>
+    <div class="grid grid-cols-1 w-2/12 p-1 gap-1">
+      <div
+        @click="backspace()"
+        class="rounded flex justify-center items-center h-full bg-red-400"
+      >
+        x
+      </div>
+      <div
+        @click="applyScore()"
+        class="rounded flex justify-center items-center h-full bg-green-400"
+      >
+        >
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions } from "vuex";
 export default {
-	props: ['value'],
-	methods: {
-		...mapActions({
-			notify: 'toast/add',
-		}),
+  props: ["min", "max"],
+  data() {
+    return {
+      score: [],
+    };
+  },
+  computed: {
+    formattedScore() {
+      return this.score.join("");
+    },
+  },
+  methods: {
+    ...mapActions({
+      notify: "toast/add",
+    }),
 
-		handleNumberInput(target){
-			let input_value = parseInt(target.value);
-			if(this.scoreIsOutOfRange(target.min, target.max, input_value)){
-				this.notify({
-					title: 'Score moet tussen 0 en 180',
-					type: 'error',
-				})
-				return
-			}
+    backspace() {
+      this.score.splice(this.score.length - 1, 1);
+      console.log(this.score);
+    },
+    addNumberToScore(number) {
+      this.score.push(number);
+      console.log(this.score);
+    },
 
-			this.$emit('handleTurn', target)
-		},
+    applyScore() {
+      const score = this.score.join("");
+      if (this.scoreIsOutOfRange(this.min, this.max, score)) {
+        this.notify({
+          title: "Score moet tussen 0 en 180",
+          type: "error",
+        });
+        return;
+      }
 
-		scoreIsOutOfRange(min, max, score) {
-			return score < min || score > max;
-		}
-	}
-}
+      console.log(score);
+      this.$emit("handleTurn", score);
+      this.score = [];
+    },
+
+    scoreIsOutOfRange(min, max, score) {
+      return score < min || score > max;
+    },
+  },
+};
 </script>
