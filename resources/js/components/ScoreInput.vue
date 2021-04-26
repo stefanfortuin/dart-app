@@ -1,7 +1,15 @@
 <template>
   <div
-    class="flex mt-auto w-full bg-blue-200 bg-opacity-60 h-24 rounded-lg text-xl"
+    class="relative flex mt-auto w-full bg-blue-200 bg-opacity-60 h-24 rounded-lg text-xl"
   >
+	<transition name="checkout-text">
+	<div v-if="score.length > 0" class="absolute w-full flex justify-center items-center" style="top: -2.7rem;">
+		<div class="px-2 py-1 bg-blue-700 text-white font-bold text-3xl rounded-t h-full">
+			{{formattedScore}}
+		</div>
+		
+	</div>
+	</transition>
     <div class="grid grid-rows-2 grid-cols-5 w-10/12 p-1 gap-1">
       <div
         v-for="i in 10"
