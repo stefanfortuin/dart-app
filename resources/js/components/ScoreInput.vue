@@ -9,7 +9,7 @@
         style="top: -3rem"
       >
         <div
-          class="px-2 py-1 bg-blue-100 text-blue-900 font-bold text-3xl rounded-t h-full"
+          class="px-2 py-1 bg-blue-100 text-blue-900 font-semibold text-3xl rounded-t h-full"
         >
           {{ formattedScore }}
         </div>
@@ -20,7 +20,7 @@
         v-for="i in 10"
         :key="'num-' + i - 1"
         @click="addNumberToScore(i - 1)"
-        class="flex justify-center items-center text-blue-800 bg-blue-100 hover:bg-blue-300 active:bg-blue-400 font-semibold text-2xl rounded"
+        class="flex justify-center items-center text-blue-800 bg-blue-100 active:bg-blue-400 font-semibold text-2xl rounded"
       >
         {{ i - 1 }}
       </div>
@@ -67,11 +67,9 @@ export default {
 
     backspace() {
       this.score.splice(this.score.length - 1, 1);
-      console.log(this.score);
     },
     addNumberToScore(number) {
       this.score.push(number);
-      console.log(this.score);
     },
 
     applyScore() {
