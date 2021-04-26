@@ -1,6 +1,11 @@
 @tailwind base;
 @tailwind utilities;
 
+.icon{
+	width: 24px;
+	height: 24px;
+}
+
 .view-fade-enter-active, .view-fade-leave-active {
   transition: all .2s;
 }
