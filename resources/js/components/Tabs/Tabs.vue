@@ -1,23 +1,26 @@
 <template>
-	<div class="w-full flex-grow flex flex-col my-4">
-		<div class="w-full flex">
-			<div
-				v-for="(tab,index) in tabs"
-				:key="index"
-				@click="selectTab(index)"
-				class="w-1/2 py-1 text-center text-lg text-white font-semibold first:rounded-tl-lg last:rounded-tr-lg"
-				:class="index == selected_index ? 'bg-blue-500 ' : 'bg-blue-200'"
-			>
-				{{tab}}
-			</div>
-		</div>
-		<div class="flex-grow p-1 px-2 bg-blue-500 rounded-b-lg">
+	<div class="w-full flex-1 flex my-4">
+		
+		<div class="flex-grow p-1 px-2 w-10/12 max-h-60 bg-blue-500 rounded-b-lg rounded-tl-lg">
 			<transition name="tab-fade" mode="out-in">
 			<keep-alive>
 				<graph-turns v-if="selected_index == 0" />
 				<sets-and-legs-table v-else-if="selected_index == 1" />
 			</keep-alive>
 			</transition>
+		</div>
+		<div class="flex flex-col">
+			<div
+				v-for="(tab,index) in tabs"
+				:key="index"
+				@click="selectTab(index)"
+				class="p-3 sm:p-4 first:rounded-tr-lg last:rounded-br-lg"
+				:class="index == selected_index ? 'bg-blue-500 text-blue-100' : 'bg-blue-200 text-blue-400'"
+			>
+				<svg class="icon">
+					<use :xlink:href="'assets/sprite.svg#'+ tab"></use>
+				</svg>
+			</div>
 		</div>
 	</div>
 </template>
@@ -30,7 +33,7 @@ export default {
 	data() {
 		return {
 			selected_index: 0,
-			tabs: ['Scores', 'Game info']
+			tabs: ['graph', 'info']
 		}
 	},
 	components: {
