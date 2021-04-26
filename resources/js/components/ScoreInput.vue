@@ -28,7 +28,7 @@
     <div class="flex flex-col gap-1 text-gray-700">
       <div
         @click="backspace()"
-        class="rounded p-3 flex justify-center items-center h-full bg-red-400 active:bg-red-500 text-red-900"
+        class="rounded p-4 py-3 flex justify-center items-center h-full bg-red-400 active:bg-red-500 text-red-900"
       >
         <svg class="icon">
           <use xlink:href="assets/sprite.svg#backspace"></use>
@@ -36,7 +36,7 @@
       </div>
       <div
         @click="applyScore()"
-        class="rounded p-3 flex justify-center items-center h-full bg-green-400 active:bg-green-500 text-green-900"
+        class="rounded p-4 py-3 flex justify-center items-center h-full bg-green-400 active:bg-green-500 text-green-900"
       >
         <svg class="icon">
           <use xlink:href="assets/sprite.svg#check"></use>
