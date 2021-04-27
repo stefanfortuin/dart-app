@@ -26,8 +26,8 @@
 					v-model="start_score"
 				/>
 			</div>
-			<div class="flex justify-between w-full mb-2">
-				<div class="flex flex-col w-1/2">
+			<div class="grid grid-cols-2 gap-2 w-full mb-2">
+				<div class="flex flex-col">
 					<label
 						for="set_total_sets"
 						class="mb-1 text-xl font-semibold text-blue-400"
@@ -41,7 +41,7 @@
 						v-model="total_sets"
 					/>
 				</div>
-				<div class="flex flex-col w-1/2">
+				<div class="flex flex-col">
 					<label
 						for="set_total_legs"
 						class="mb-1 text-xl font-semibold text-blue-400"
