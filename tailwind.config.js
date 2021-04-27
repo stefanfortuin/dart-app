@@ -9,6 +9,10 @@ module.exports = {
         extend: {
 			borderWidth: {
 				'3': '3px',
+			},
+			minHeight: {
+				'32': '8rem',
+				'40': '10rem',
 			}
 		},
         stroke: theme => ({
