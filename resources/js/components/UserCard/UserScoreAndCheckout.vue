@@ -1,5 +1,5 @@
 <template>
-	<div class="flex justify-between">
+	<div class="flex justify-between mb-1">
 		<div class="text-6xl font-bold">
 			{{animatedScore}}
 		</div>
