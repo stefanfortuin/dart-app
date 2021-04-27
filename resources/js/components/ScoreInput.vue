@@ -2,13 +2,13 @@
 	<div class="w-full mt-auto flex h-full items-end text-xl">
 
 		<div class="relative grid grid-rows-4 grid-cols-3 w-full h-full min-h-40 max-h-52 gap-1">
-			<transition name="checkout-text">
+			<transition name="custom-score">
 				<div
 					v-if="score.length > 0"
-					class="absolute w-full flex justify-center items-center"
-					style="top: -3rem"
+					class="absolute w-full flex justify-start items-center z-10 px-2"
+					style="top: -3.4rem;"
 				>
-					<div class="px-2 py-1 bg-blue-100 text-blue-900 font-semibold text-3xl rounded-t h-full">
+					<div class="px-2 py-0.5 bg-blue-100 text-blue-800 font-semibold text-3xl rounded h-full">
 						{{ formattedScore }}
 					</div>
 				</div>
@@ -17,7 +17,7 @@
 				v-for="i in 9"
 				:key="'num-' + i"
 				@click="addNumberToScore(i)"
-				class="flex justify-center items-center max-h-12 text-blue-800 bg-blue-100 active:bg-blue-400 font-semibold text-2xl rounded"
+				class="flex justify-center items-center max-h-12 text-blue-800 bg-blue-100 active:bg-blue-400 font-semibold text-2xl rounded z-20"
 			>
 				{{ i }}
 			</div>

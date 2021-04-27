@@ -44,6 +44,13 @@
 	opacity: 0;
 }
 
+.custom-score-enter-active, .custom-score-leave-active {
+  transition: all .2s;
+}
+.custom-score-enter-from, .custom-score-leave-to{
+	transform: translateY(100%);
+}
+
 html, body{
 	height: 100%;
 }

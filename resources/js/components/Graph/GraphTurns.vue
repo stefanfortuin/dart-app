@@ -5,9 +5,10 @@
 			:key="user.id"
 			xmlns="http://www.w3.org/2000/svg"
 			ref="graph"
-			:viewBox="`-6 -8 ${width + 12} ${height + 12}`"
+			:viewBox="`-2 -4 ${width + 4} ${height + 4}`"
 			width="100%"
 			height="100%"
+			preserveAspectRatio="none"
 			class="absolute"
 			:class="
         user.is_on_turn ? 'stroke-white z-20' : 'stroke-lightblue z-10'
@@ -26,9 +27,10 @@
 		</svg>
 		<svg 
 			xmlns="http://www.w3.org/2000/svg"
-			:viewBox="`-6 -8 ${width + 12} ${height + 12}`"
+			:viewBox="`-2 -4 ${width + 4} ${height + 4}`"
 			width="100%"
 			height="100%"
+			preserveAspectRatio="none"
 			class="absolute z-0">
 			<line
 				v-for="(point,i) in graph_points + 1"
