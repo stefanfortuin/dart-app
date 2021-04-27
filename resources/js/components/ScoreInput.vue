@@ -1,6 +1,6 @@
 <template>
   <div
-    class="relative w-full min-h-40 text-xl"
+    class="relative w-full mt-auto flex h-full items-end text-xl"
   >
     <transition name="checkout-text">
       <div

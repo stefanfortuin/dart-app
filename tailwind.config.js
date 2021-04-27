@@ -13,6 +13,9 @@ module.exports = {
 			minHeight: {
 				'32': '8rem',
 				'40': '10rem',
+			},
+			flex: {
+				'100': '1 1 100%',
 			}
 		},
         stroke: theme => ({
