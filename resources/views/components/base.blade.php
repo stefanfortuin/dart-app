@@ -9,7 +9,7 @@
 	<title>Darts</title>
 </head>
 
-<body class="font-sans antialiased max-w-md mx-auto p-4 flex flex-col">
+<body class="font-sans antialiased max-w-md mx-auto p-3 flex flex-col">
 	{{ $slot }}
 </body>
 

@@ -1,6 +1,6 @@
 <template>
 	<div class="text-white flex flex-col text-lg h-full">
-		<div class="flex px-3 mb-1">
+		<div class="flex px-3">
 			<div class="w-7/12"></div>
 			<div class="w-3/12">Sets</div>
 			<div class="w-2/12">Legs</div>
@@ -8,7 +8,7 @@
 		<div
 			v-for="user in users"
 			:key="user.id"
-			class="flex bg-white text-blue-500 font-semibold rounded-lg px-3 py-2 mb-2"
+			class="flex bg-white text-blue-500 font-semibold rounded-lg px-3 py-2 mb-1"
 		>
 			<div class="w-7/12">
 				{{user.name}}

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="relative flex mt-auto w-full min-h-24 max-h-32 text-xl"
+    class="relative flex mt-auto w-full text-xl"
   >
     <transition name="checkout-text">
       <div
@@ -15,35 +15,39 @@
         </div>
       </div>
     </transition>
-    <div class="grid grid-rows-2 grid-cols-5 w-10/12 flex-grow pr-1 gap-1">
+    <div class="grid grid-rows-4 grid-cols-3 w-full gap-1">
       <div
-        v-for="i in 10"
-        :key="'num-' + i - 1"
-        @click="addNumberToScore(i - 1)"
-        class="flex justify-center items-center text-blue-800 bg-blue-100 active:bg-blue-400 font-semibold text-2xl rounded"
+        v-for="i in 9"
+        :key="'num-' + i"
+        @click="addNumberToScore(i)"
+        class="flex justify-center items-center h-10 text-blue-800 bg-blue-100 active:bg-blue-400 font-semibold text-2xl rounded"
       >
-        {{ i - 1 }}
+        {{ i }}
       </div>
-    </div>
-    <div class="flex flex-col gap-1 text-gray-700">
-      <div
+	  <div
         @click="backspace()"
-        class="rounded p-4 py-3 flex justify-center items-center h-full bg-red-400 active:bg-red-500 text-red-900"
+        class="rounded flex justify-center items-center bg-red-400 active:bg-red-500 text-red-900"
       >
         <svg class="icon">
           <use xlink:href="assets/sprite.svg#backspace"></use>
         </svg>
       </div>
+	  <div
+        @click="addNumberToScore(0)"
+        class="flex justify-center items-center text-blue-800 bg-blue-100 active:bg-blue-400 font-semibold text-2xl rounded"
+      >
+        0
+      </div>
       <div
         @click="applyScore()"
-        class="rounded p-4 py-3 flex justify-center items-center h-full bg-green-400 active:bg-green-500 text-green-900"
+        class="rounded flex justify-center items-center bg-green-400 active:bg-green-500 text-green-900"
       >
         <svg class="icon">
           <use xlink:href="assets/sprite.svg#check"></use>
         </svg>
       </div>
     </div>
-  </div>
+    </div>
 </template>
 
 <script>

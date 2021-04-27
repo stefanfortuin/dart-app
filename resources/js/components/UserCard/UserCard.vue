@@ -4,7 +4,7 @@
 		:class="user.is_on_turn ? 'bg-blue-500 text-white shadow-md' : 'bg-blue-100 text-blue-600 opacity-50 shadow'
 		"
 	>
-		<div class="flex justify-between items-baseline mb-2">
+		<div class="flex justify-between items-baseline mb-1">
 			<user-name :user="user"/>
 			<user-last-turn :turn="user.last_turn" />
 		</div>
