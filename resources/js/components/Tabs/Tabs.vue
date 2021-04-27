@@ -1,7 +1,7 @@
 <template>
-	<div class="w-full flex-grow h-full max-h-52 flex my-2">
+	<div class="w-full flex-grow h-full max-h-full flex my-2">
 		
-		<div class="p-1 px-2 w-10/12 flex-1 h-full min-h-32 max-h-52 bg-blue-500 rounded-b-lg rounded-tl-lg">
+		<div class="p-1 px-2 w-10/12 flex-1 h-full min-h-32 max-h-full bg-blue-500 rounded-b-lg rounded-tl-lg">
 			<transition name="tab-fade" mode="out-in">
 			<keep-alive>
 				<graph-turns v-if="selected_index == 0" />
