@@ -23,7 +23,7 @@
 			</div>
 			<div
 				@click="backspace()"
-				class="rounded flex justify-center items-center max-h-12 bg-red-400 active:bg-red-500 text-red-900"
+				class="rounded flex justify-center items-center max-h-12 bg-blue-100 active:bg-blue-400 text-blue-900"
 			>
 				<svg class="icon">
 					<use xlink:href="assets/sprite.svg#backspace"></use>
@@ -37,10 +37,10 @@
 			</div>
 			<div
 				@click="applyScore()"
-				class="rounded flex justify-center items-center max-h-12 bg-green-400 active:bg-green-500 text-green-900"
+				class="rounded flex justify-center items-center max-h-12 bg-blue-500 active:bg-blue-600 text-white"
 			>
 				<svg class="icon">
-					<use xlink:href="assets/sprite.svg#check"></use>
+					<use xlink:href="assets/sprite.svg#arrow-right"></use>
 				</svg>
 			</div>
 		</div>
@@ -86,7 +86,6 @@ export default {
 				return;
 			}
 
-			console.log(score);
 			this.$emit("handleTurn", score);
 			this.score = [];
 		},

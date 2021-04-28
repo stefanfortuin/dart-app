@@ -93,6 +93,7 @@ export default {
 				}
 
 				this.switchUserThatStartsNextLeg();
+				this.resetScoreField();
 			}
 			else {
 				setTimeout(() => {
