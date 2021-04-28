@@ -8,7 +8,7 @@
 					class="absolute w-full flex justify-start items-center z-10 px-2"
 					style="top: -3.4rem;"
 				>
-					<div class="px-2 py-0.5 bg-blue-100 text-blue-800 font-semibold text-3xl rounded h-full">
+					<div class="px-2 py-1 bg-blue-100 text-blue-800 font-semibold text-2xl rounded h-full">
 						{{ formattedScore }}
 					</div>
 				</div>
@@ -70,6 +70,7 @@ export default {
 			this.score.splice(this.score.length - 1, 1);
 		},
 		addNumberToScore(number) {
+			if(this.score.length == 3) return;
 			this.score.push(number);
 		},
 

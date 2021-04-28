@@ -3,7 +3,7 @@
     <div class="text-4xl font-bold inline-flex">
       {{ animatedScore }}
     </div>
-    <div class="flex flex-col justify-evenly text-right opacity-75 font-thin text-sm leading-3">
+    <div class="flex flex-col justify-evenly text-right opacity-80 font-thin text-sm leading-3">
       <user-last-turn :turn="user.last_turn" />
       <transition name="checkout-text" mode="out-in">
         <div v-if="user.checkout != ''" :key="user.checkout">

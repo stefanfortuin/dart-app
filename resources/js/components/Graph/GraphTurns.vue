@@ -19,7 +19,7 @@
 				:id="`graph_line_${user.id}`"
 				:d="getLinePath(user)"
 				fill="none"
-				stroke-width="4"
+				stroke-width="3"
 				:pathLength="user.turns.length"
 				:stroke-linecap="user.turns.length >= 1 ? 'round' : ''"
 				style="transition: stroke 0.3s ease-in-out;"
@@ -39,7 +39,7 @@
 				:y1="0"
 				:x2="i * scale_x"
 				:y2="height"
-				stroke-width="3"
+				stroke-width="2.5px"
 				class="stroke-graphaxis opacity-10"
 			>
 			</line>
