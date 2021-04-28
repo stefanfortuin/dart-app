@@ -1,9 +1,9 @@
 <template>
   <div class="flex justify-between mb-1">
-    <div class="text-4xl font-bold inline-flex">
+    <div class="text-4xl xsm:text-5xl xs:text-6xl font-bold inline-flex">
       {{ animatedScore }}
     </div>
-    <div class="flex flex-col justify-evenly text-right opacity-80 text-sm leading-3">
+    <div class="flex flex-col justify-evenly xs:justify-end text-right opacity-80 text-sm leading-3 xs:leading-normal">
       <user-last-turn :turn="user.last_turn" />
       <transition name="checkout-text" mode="out-in">
         <div v-if="user.checkout != ''" :key="user.checkout">

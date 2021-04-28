@@ -16,7 +16,11 @@ module.exports = {
 			},
 			flex: {
 				'100': '1 1 100%',
-			}
+			},
+            screens: {
+                'xsm': '375px',
+                'xs': '425px'
+            }
 		},
         stroke: theme => ({
 			'graphaxis': theme('colors.blue.100'),
