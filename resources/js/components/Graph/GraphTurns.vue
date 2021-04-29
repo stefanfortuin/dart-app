@@ -86,10 +86,10 @@
 						<text
 							:x="graphTurnData.point[0]"
 							:y="graphTurnData.point[1]"
-							:dx="-30"
+							:dx="-35"
 							:dy="(graphTurnData.point[1] < (height / 2) ? 15 : -15)"
 							stroke-width="1"
-							class="font-thin text-sm tracking-widest"
+							class="font-thin text-sm xsm:text-base tracking-widest"
 						>
 							{{graphTurnData.turn.new_score_to_throw_from}}
 						</text>
