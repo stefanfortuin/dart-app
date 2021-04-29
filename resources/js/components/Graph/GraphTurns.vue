@@ -1,5 +1,4 @@
 <template>
-
 	<div
 		ref="graph"
 		class="flex justify-center items-center h-full overflow-scroll relative"
@@ -45,6 +44,25 @@
 				class="stroke-graphaxis opacity-10"
 			></line>
 		</svg>
+		<svg 
+			xmlns="http://www.w3.org/2000/svg"
+			:width="`${graph_points * scale_x}px`"
+			:viewBox="`-2 -4 ${graph_points * scale_x} ${height + 4}`"
+			height="100%"
+			preserveAspectRatio="none"
+			class="absolute z-50 top-0 left-0">
+			<rect 
+				v-for="(point, i) in graph_points"
+				:key="point"
+				:x="i * scale_x"
+				:y="0"
+				:width="`${1 * scale_x}px`"
+				class="fill-current"
+				:class="currentGraphIndex == i ? 'text-blue-300 opacity-20' : 'opacity-0'"
+				@click="getTurnsAtIndex(i)"
+				height="100%" 
+			/>
+		</svg>
 		<transition
 			name="tab-fade"
 			mode="out-in"
@@ -63,14 +81,6 @@
 				</div>
 			</div>
 		</transition>
-		<div
-			v-for="(point, i) in graph_points"
-			:key="'bar_' + point"
-			class="h-full z-50 absolute opacity-20 transition-colors"
-			:class="currentGraphIndex == i ? 'bg-blue-300' : ''"
-			:style="{left: `${i * scale_x}px`, width: `${(1 * scale_x) + 2}px`}"
-			@click="getTurnsAtIndex(i)"
-		></div>
 	</div>
 </template>
 
