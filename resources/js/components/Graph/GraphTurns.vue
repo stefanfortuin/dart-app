@@ -135,8 +135,21 @@ export default {
 				this.graph_points += 1;
 		},
 
+		scrollToLeft(){
+			if (this.$refs.graph == undefined) return;
+			let scroll_element = this.$refs.graph;
+			let value_to_scroll_to = scroll_element.scrollLeft + (1 * this.scale_x);
+			anime({
+				targets: scroll_element,
+				scrollLeft: value_to_scroll_to,
+				duration: 500,
+				easing: 'easeInOutQuad'
+			})
+		},
+
 		getPointsFromTurns(turns) {
 			this.incrementGraphPoints();
+			this.scrollToLeft();
 			let points = turns.map((turn, i) => [
 				(i + 1) * this.scale_x,
 				this.height - turn.new_score_to_throw_from * this.scale_y,
