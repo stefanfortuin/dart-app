@@ -1,6 +1,6 @@
 <template>
   <div class="text-white flex flex-col text-lg h-full overflow-scroll relative">
-    <div class="w-full z-0 flex gap-x-1 px-3 text-sm">
+    <div class="w-full z-0 flex gap-x-1 px-3 text-sm xsm:text-base">
       <div class="w-4/12"></div>
       <div
         v-for="user in users"
@@ -19,13 +19,13 @@
       <div
         v-for="stat in stats"
         :key="`stats_${stat.name}`"
-        class="flex bg-white text-blue-500 font-semibold rounded-lg px-2 py-1 mb-1"
+        class="flex bg-white text-blue-500 font-semibold rounded-lg px-2 py-1 mb-1 text-base xsm:text-lg"
       >
-        <div class="w-4/12 flex items-center text-lg">
+        <div class="w-4/12 flex items-center">
           {{ stat.name }}
         </div>
-        <div class="w-4/12 justify-center flex items-center text-lg">{{ users[0].stats[stat.key] }}</div>
-        <div class="w-4/12 justify-center flex items-center text-lg">{{ users[1].stats[stat.key] }}</div>
+        <div class="w-4/12 justify-center flex items-center">{{ users[0].stats[stat.key] }}</div>
+        <div class="w-4/12 justify-center flex items-center">{{ users[1].stats[stat.key] }}</div>
       </div>
   </div>
 </template>

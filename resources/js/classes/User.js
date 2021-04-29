@@ -8,6 +8,7 @@ export default class User {
 		this.is_on_turn = false
 		this.owns_current_leg = false
 		this.stats = {};
+		this.updateStats();
 	}
 
 	setDataFromDatabase(user){

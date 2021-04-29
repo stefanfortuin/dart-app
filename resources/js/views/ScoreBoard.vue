@@ -81,6 +81,7 @@ export default {
 
 				if (this.hasWonGame()) {
 					this.setSetWinner(this.user_on_turn);
+					this.user_on_turn.updateStats();
 					this.goToNextStep()
 					return;
 				}
