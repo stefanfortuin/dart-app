@@ -1,6 +1,6 @@
 <template>
   <div class="text-white flex flex-col text-lg h-full overflow-scroll relative">
-    <div class="w-full h-full z-0 flex gap-x-1 px-3 text-sm">
+    <div class="w-full z-0 flex gap-x-1 px-3 text-sm">
       <div class="w-4/12"></div>
       <div
         v-for="user in users"
