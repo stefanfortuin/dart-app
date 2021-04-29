@@ -44,43 +44,59 @@
 				class="stroke-graphaxis opacity-10"
 			></line>
 		</svg>
-		<svg 
+		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			:width="`${graph_points * scale_x}px`"
 			:viewBox="`-2 -4 ${graph_points * scale_x} ${height + 4}`"
 			height="100%"
 			preserveAspectRatio="none"
-			class="absolute z-50 top-0 left-0">
-			<rect 
+			class="absolute z-50 top-0 left-0"
+		>
+			<rect
 				v-for="(point, i) in graph_points"
 				:key="point"
 				:x="i * scale_x"
 				:y="0"
 				:width="`${1 * scale_x}px`"
 				class="fill-current"
-				:class="currentGraphIndex == i ? 'text-blue-300 opacity-20' : 'opacity-0'"
-				@click="getTurnsAtIndex(i)"
-				height="100%" 
+				:class="currentGraphIndex == i ? 'text-blue-100 opacity-40' : 'opacity-0'"
+				@click="setCurrentGraphIndex(i)"
+				height="100%"
 			/>
-		</svg>
-		<transition
-			name="tab-fade"
-			mode="out-in"
-		>
-			<div
-				v-if="graphTurnData.length > 0"
-				:key="`graph_index_${currentGraphIndex}`"
-				class="p-2 right-0 top-0 absolute grid gap-y-1"
+			<transition
+				name="tab-fade"
+				mode="out-in"
 			>
-				<div
-					v-for="turn in graphTurnData"
-					:key="`graph_turn_${turn.user_id}`"
-					class="rounded leading-4 px-1 text-right bg-blue-100 text-blue-900 font-semibold"
+				<g
+					v-if="graphTurnData != null"
+					:key="`graph_index_${currentGraphIndex}`"
+					class="stroke-white"
 				>
-					{{ turn.thrown_score }}
-				</div>
-			</div>
-		</transition>
+					<g
+						:key="`graph_turn_${graphTurnData.turn.user_id}`"
+					>
+						<circle
+							:cx="graphTurnData.point[0]"
+							:cy="graphTurnData.point[1]"
+							class="fill-current text-white stroke-darkblue"
+							stroke-width="1"
+							r="0.16rem"
+						>
+						</circle>
+						<text
+							:x="graphTurnData.point[0]"
+							:y="graphTurnData.point[1]"
+							:dx="-30"
+							:dy="(graphTurnData.point[1] < (height / 2) ? 15 : -15)"
+							stroke-width="1"
+							class="font-thin text-sm tracking-widest"
+						>
+							{{graphTurnData.turn.new_score_to_throw_from}}
+						</text>
+					</g>
+				</g>
+			</transition>
+		</svg>
 	</div>
 </template>
 
@@ -110,7 +126,7 @@ export default {
 			this.updateScale();
 		});
 	},
-	activated(){
+	activated() {
 		if (this.$refs.graph == undefined) return;
 
 		let scroll_element = this.$refs.graph;
@@ -122,6 +138,18 @@ export default {
 			startScore: (state) => state.start_score,
 			user_on_turn: (state) => state.users.find((u) => u.is_on_turn),
 		}),
+
+		graphTurnData() {
+			if(this.currentGraphIndex == undefined) return null;
+			let graph_data = {
+				turn: this.user_on_turn.turns[this.currentGraphIndex],
+				point: this.getPointsFromTurns(this.user_on_turn.turns)[this.currentGraphIndex + 1],
+			}
+
+			console.log(graph_data)
+
+			return graph_data
+		},
 	},
 	methods: {
 		updateScale() {
@@ -140,15 +168,14 @@ export default {
 				this.graph_points = 5
 			}
 
-			if (this.user_on_turn.turns.length >= this.graph_points + 1){
+			if (this.user_on_turn.turns.length >= this.graph_points + 1) {
 				this.graph_points += 1;
 				this.last_scroll_position = (this.graph_points - 5) * this.scale_x;
-				console.log(this.last_scroll_position);
 				this.scrollToLeft();
 			}
 		},
 
-		scrollToLeft(){
+		scrollToLeft() {
 			if (this.$refs.graph == undefined) return;
 			let scroll_element = this.$refs.graph;
 			let value_to_scroll_to = this.last_scroll_position + (1 * this.scale_x);
@@ -161,13 +188,21 @@ export default {
 			})
 		},
 
+		setCurrentGraphIndex(index){
+			if (this.currentGraphIndex == index) {
+				this.currentGraphIndex = undefined;
+				return;
+			}
+
+			this.currentGraphIndex = index;
+		},
+
 		getPointsFromTurns(turns) {
 			this.incrementGraphPoints();
-			
+
 			let points = turns.map((turn, i) => [
 				(i + 1) * this.scale_x,
 				this.height - turn.new_score_to_throw_from * this.scale_y,
-				turn.thrown_score,
 			]);
 
 			//push the startpoint at the beginning of the array
@@ -184,20 +219,6 @@ export default {
 
 			let lineGenerator = line().curve(curveMonotoneX);
 			return lineGenerator(points);
-		},
-
-		getTurnsAtIndex(index) {
-			if (this.graphTurnData.length > 0 && this.currentGraphIndex == index) {
-				this.graphTurnData = [];
-				this.currentGraphIndex = undefined;
-				return;
-			}
-
-			this.currentGraphIndex = index;
-
-			this.graphTurnData = this.users.map((user) => {
-				return user.turns[index];
-			});
 		},
 
 		animatePath(path_element, user) {

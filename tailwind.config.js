@@ -26,6 +26,7 @@ module.exports = {
 			'graphaxis': theme('colors.blue.100'),
           	'white': theme('colors.white'),
          	'lightblue': theme('colors.blue.400'),
+			'darkblue': theme('colors.blue.900')
         })
     },
     variants: {
