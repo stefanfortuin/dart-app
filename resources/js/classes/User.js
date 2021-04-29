@@ -54,6 +54,7 @@ export default class User {
 
 	clearTurns(){
 		this.turns = [];
+		this.updateStats();
 	}
 
 	get score_to_throw_from() {
@@ -67,11 +68,13 @@ export default class User {
 	}
 
 	getAveragePerTurn(){
+		if(this.turns.length == 0) return 0;
 		let average = this.turns.reduce((t,a) => {return t+=a.thrown_score}, 0) / this.turns.length;
 		return parseFloat(average).toFixed(2);
 	}
 
 	getHighestTurn(){
+		if(this.turns.length == 0) return 0;
 		return Math.max.apply(Math, this.turns.map((turn) => {return turn.thrown_score}));
 	}
 
