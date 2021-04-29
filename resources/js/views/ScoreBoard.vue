@@ -101,6 +101,8 @@ export default {
 					this.resetScoreField();
 				}, 800);
 			}
+
+			this.user_on_turn.updateStats();
 		},
 
 		resetScoreField() {

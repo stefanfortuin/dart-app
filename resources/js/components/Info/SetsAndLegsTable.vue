@@ -1,35 +1,64 @@
 <template>
-	<div class="text-white flex flex-col text-lg h-full">
-		<div class="flex px-3 text-sm mb-1">
-			<div class="w-8/12"></div>
-			<div class="w-2/12 text-center">Sets</div>
-			<div class="w-2/12 text-center">Legs</div>
-		</div>
-		<div
-			v-for="user in users"
-			:key="user.id"
-			class="flex bg-white text-blue-500 font-semibold rounded-lg px-3 py-2 mb-1"
-		>
-			<div class="w-8/12 flex items-center">
-				<div class="overflow-hidden whitespace-nowrap overflow-ellipsis" style="max-width:80%;">{{user.name}}</div>
-				<div
-					v-show="user.owns_current_leg"
-					class="ml-1 inline-flex rounded-full self-center h-2 w-2 bg-blue-500"
-				></div>
-			</div>
-			<div class="w-2/12 text-center">{{user.sets_won}}</div>
-			<div class="w-2/12 text-center">{{user.legs_won}}</div>
-		</div>
-	</div>
+  <div class="text-white flex flex-col text-lg h-full overflow-scroll relative">
+    <div class="w-full h-full z-0 flex gap-x-1 px-3 text-sm">
+      <div class="w-4/12"></div>
+      <div
+        v-for="user in users"
+        :key="user.id"
+        class="w-4/12 flex justify-center bg-blue-100 bg-opacity-40 rounded-t"
+      >
+        <div class="overflow-hidden whitespace-nowrap overflow-ellipsis">
+          {{ user.name }}
+        </div>
+        <div
+          v-show="user.owns_current_leg"
+          class="ml-1 inline-flex rounded-full self-center h-2 w-2 bg-white"
+        ></div>
+      </div>
+    </div>
+      <div
+        v-for="stat in stats"
+        :key="`stats_${stat.name}`"
+        class="flex bg-white text-blue-500 font-semibold rounded-lg px-2 py-1 mb-1"
+      >
+        <div class="w-4/12 flex items-center text-base">
+          {{ stat.name }}
+        </div>
+        <div class="w-4/12 text-center">{{ users[0].stats[stat.key] }}</div>
+        <div class="w-4/12 text-center">{{ users[1].stats[stat.key] }}</div>
+      </div>
+  </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState } from "vuex";
 export default {
-	computed: {
-		...mapState({
-			users: state => state.users,
-		})
-	}
-}
+  data() {
+    return {
+      stats: [
+        {
+          name: "Sets",
+          key: "sets_won",
+        },
+        {
+          name: "Legs",
+          key: "legs_won",
+        },
+        {
+          name: "Gem.",
+          key: "average_per_turn",
+        },
+        {
+          name: "Hoogst",
+          key: "highest",
+        },
+      ],
+    };
+  },
+  computed: {
+    ...mapState({
+      users: (state) => state.users,
+    }),
+  },
+};
 </script>

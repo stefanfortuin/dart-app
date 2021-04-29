@@ -7,6 +7,7 @@ export default class User {
 		this.sets_won = 0
 		this.is_on_turn = false
 		this.owns_current_leg = false
+		this.stats = {};
 	}
 
 	setDataFromDatabase(user){
@@ -63,6 +64,24 @@ export default class User {
 
 	get last_turn() {
 		return this.turns.slice(-1)[0];
+	}
+
+	getAveragePerTurn(){
+		let average = this.turns.reduce((t,a) => {return t+=a.thrown_score}, 0) / this.turns.length;
+		return parseFloat(average).toFixed(2);
+	}
+
+	getHighestTurn(){
+		return Math.max.apply(Math, this.turns.map((turn) => {return turn.thrown_score}));
+	}
+
+	updateStats(){
+		this.stats = {
+			sets_won: this.sets_won,
+			legs_won: this.legs_won,
+			average_per_turn: this.getAveragePerTurn(),
+			highest: this.getHighestTurn()
+		}
 	}
 
 	getCheckout() {
