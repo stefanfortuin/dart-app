@@ -1,31 +1,39 @@
 <template>
   <div class="text-white flex flex-col text-lg h-full overflow-scroll relative">
-    <div class="w-full z-0 flex gap-x-1 px-3 text-sm xsm:text-base">
+    <div
+      class="w-full z-0 flex gap-x-1 px-3 text-sm xsm:text-base"
+    >
       <div class="w-4/12"></div>
       <div
         v-for="user in users"
         :key="user.id"
-        class="w-4/12 flex justify-center bg-blue-100 bg-opacity-40 rounded-t"
+        class="w-4/12 flex justify-center bg-blue-100 bg-opacity-50 rounded-t-lg"
       >
         <div class="overflow-hidden whitespace-nowrap overflow-ellipsis">
           {{ user.name }}
         </div>
-        <div
-          v-show="user.owns_current_leg"
-          class="ml-1 inline-flex rounded-full self-center h-2 w-2 bg-white"
-        ></div>
+        <div class="h-2 w-2">
+          <div
+            v-show="user.owns_current_leg"
+            class="ml-1 inline-flex rounded-full self-start h-full w-full bg-white"
+          ></div>
+        </div>
       </div>
     </div>
       <div
         v-for="stat in stats"
         :key="`stats_${stat.name}`"
-        class="flex bg-white text-blue-500 font-semibold rounded-lg px-2 py-1 mb-1 text-base xsm:text-lg"
+        class="flex bg-white text-blue-500 font-semibold rounded-lg shadow px-2 py-1 mb-1 text-base xsm:text-lg"
       >
         <div class="w-4/12 flex items-center">
           {{ stat.name }}
         </div>
-        <div class="w-4/12 justify-center flex items-center">{{ users[0].stats[stat.key] }}</div>
-        <div class="w-4/12 justify-center flex items-center">{{ users[1].stats[stat.key] }}</div>
+        <div class="w-4/12 justify-center flex items-center">
+          {{ users[0].stats[stat.key] }}
+        </div>
+        <div class="w-4/12 justify-center flex items-center">
+          {{ users[1].stats[stat.key] }}
+        </div>
       </div>
   </div>
 </template>
