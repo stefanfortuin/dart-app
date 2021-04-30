@@ -146,8 +146,6 @@ export default {
         ],
       };
 
-      console.log(graph_data);
-
       return graph_data;
     },
   },
@@ -189,7 +187,7 @@ export default {
     },
 
     setCurrentGraphIndex(index) {
-      if (this.currentGraphIndex == index) {
+      if (this.currentGraphIndex == index || index >= this.user_on_turn.turns.length) {
         this.currentGraphIndex = undefined;
         return;
       }
