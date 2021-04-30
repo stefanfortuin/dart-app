@@ -15,7 +15,7 @@
         </div>
         <div
           v-if="user.owns_current_leg"
-          class="rounded-full ml-1 h-1 w-1"
+          class="rounded-full ml-1 h-1.5 w-1.5"
           :class="user.is_on_turn ? 'bg-white' : 'bg-blue-500'"
         ></div>
       </div>
