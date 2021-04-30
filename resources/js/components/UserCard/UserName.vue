@@ -14,11 +14,11 @@
         :class="user.is_on_turn ? 'bg-white' : 'bg-blue-500'"
       ></div>
     </div>
-    <div :class="user.is_on_turn ? 'text-white' : 'text-blue-500'">
+    <!-- <div :class="user.is_on_turn ? 'text-white' : 'text-blue-500'">
       <svg class="icon">
         <use xlink:href="assets/sprite.svg#dots-vertical"></use>
       </svg>
-    </div>
+    </div> -->
   </div>
 </template>
 
