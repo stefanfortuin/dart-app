@@ -3,6 +3,7 @@
     ref="graph"
     class="flex justify-center items-center h-full overflow-scroll relative"
   >
+	<!-- the animated user paths -->
     <svg
       v-for="user in users"
       :key="user.id"
@@ -25,6 +26,8 @@
         style="transition: stroke 0.3s ease-in-out"
       />
     </svg>
+
+	<!-- y-axis lines -->
     <svg
       xmlns="http://www.w3.org/2000/svg"
       :width="`${graph_points * scale_x}px`"
@@ -44,6 +47,8 @@
         class="stroke-graphaxis opacity-10"
       ></line>
     </svg>
+
+	<!-- clickable bars with circle showing point -->
     <svg
       xmlns="http://www.w3.org/2000/svg"
       :width="`${graph_points * scale_x}px`"
@@ -57,13 +62,15 @@
         :key="point"
         :x="i * scale_x"
         :y="0"
+		rx="0.25rem"
         :width="`${1 * scale_x}px`"
+		:height="`${height}px`"
         class="fill-current"
         :class="
           currentGraphIndex == i ? 'text-blue-100 opacity-40' : 'opacity-0'
         "
         @click="setCurrentGraphIndex(i)"
-        height="100%"
+		
       />
       <transition name="tab-fade" mode="out-in">
         <g
@@ -81,6 +88,8 @@
         </g>
       </transition>
     </svg>
+
+	<!-- showing the score from the selected index turn -->
     <transition name="tab-fade" mode="out-in">
       <div
         v-if="graphTurnData != null"
@@ -114,7 +123,6 @@ export default {
       graph_points: 4, //default
       paths: [],
       currentGraphIndex: undefined,
-      graphTurnData: [],
       last_scroll_position: 0,
     };
   },
