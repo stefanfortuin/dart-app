@@ -5,7 +5,7 @@
 			<transition name="custom-score">
 				<div
 					v-if="score.length > 0"
-					class="absolute w-full flex justify-start items-center z-10 px-2"
+					class="absolute w-full flex justify-start items-center z-50 px-2"
 					style="top: -3.4rem;"
 				>
 					<div class="px-2 py-1 bg-blue-100 text-blue-800 font-semibold text-2xl rounded h-full">

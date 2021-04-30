@@ -55,7 +55,7 @@
       :viewBox="`-2 -4 ${graph_points * scale_x + 3} ${height + 4}`"
       height="100%"
       preserveAspectRatio="none"
-      class="absolute z-50 top-0 left-0"
+      class="absolute z-30 top-0 left-0"
     >
       <rect
         v-for="(point, i) in graph_points"
@@ -94,7 +94,7 @@
       <div
         v-if="graphTurnData != null"
 		:key="`graph_point_${graphTurnData.point[0]}`"
-        class="absolute z-50 text-center"
+        class="absolute z-40 text-center"
         :style="{
           left: `${graphTurnData.point[0] - scale_x}px`,
           top: `${(graphTurnData.point[1] < ((this.height / 3) * 2)) ? graphTurnData.point[1] : graphTurnData.point[1] - 25}px`,
