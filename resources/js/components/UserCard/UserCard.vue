@@ -7,7 +7,7 @@
         : 'bg-blue-100 text-blue-600 opacity-50 shadow'
     "
   >
-	<user-name :user="user" />
+	  <user-name :user="user" />
     <user-score-and-checkout :user="user" />
   </div>
 </template>
