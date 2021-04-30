@@ -101,7 +101,7 @@
 		  width: `${scale_x}px`
         }"
       >
-        <span class="bg-blue-100 px-2 rounded text-sm font-semibold">{{ graphTurnData.turn.new_score_to_throw_from }}</span>
+        <span class="bg-blue-100 text-blue-900 px-2 rounded text-sm font-semibold">{{ graphTurnData.turn.new_score_to_throw_from }}</span>
       </div>
     </transition>
   </div>

@@ -7,17 +7,17 @@
       <div
         v-for="user in users"
         :key="user.id"
-        class="w-4/12 flex justify-center bg-blue-100 bg-opacity-50 rounded-t-lg"
+        class="w-4/12 flex justify-start px-1 items-baseline bg-blue-100 bg-opacity-50 rounded-t"
       >
-        <div class="overflow-hidden whitespace-nowrap overflow-ellipsis">
+        <div class="overflow-hidden whitespace-nowrap overflow-ellipsis"
+        style="width:85%;">
           {{ user.name }}
         </div>
-        <div class="h-2 w-2">
-          <div
-            v-show="user.owns_current_leg"
-            class="ml-1 inline-flex rounded-full self-start h-full w-full bg-white"
-          ></div>
-        </div>
+        <div
+          v-if="user.owns_current_leg"
+          class="rounded-full ml-1 h-1 w-1"
+          :class="user.is_on_turn ? 'bg-white' : 'bg-blue-500'"
+        ></div>
       </div>
     </div>
       <div
