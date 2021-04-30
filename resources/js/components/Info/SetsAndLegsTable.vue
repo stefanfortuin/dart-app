@@ -22,7 +22,7 @@
       <div
         v-for="stat in stats"
         :key="`stats_${stat.name}`"
-        class="last:rounded-b-lg flex bg-white text-blue-500 font-semibold shadow px-2 py-1 text-base xsm:text-lg"
+        class="last:rounded-b-lg border-b-2 border-gray-200 border-opacity-50 flex bg-white text-blue-500 font-semibold px-2 py-1 text-base xsm:text-lg"
       >
         <div class="w-4/12 flex items-center">
           {{ stat.name }}
