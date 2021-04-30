@@ -1,15 +1,14 @@
 <template>
-  <div class="flex justify-between mb-1">
+  <div class="flex justify-between items-baseline mb-1">
     <div class="text-4xl xsm:text-5xl xs:text-6xl font-bold inline-flex">
       {{ animatedScore }}
     </div>
-    <div class="flex flex-col justify-evenly xs:justify-end text-right opacity-80 text-sm leading-3 xs:leading-normal">
-      <user-last-turn :turn="user.last_turn" />
+    <div class="flex text-right opacity-80 text-sm leading-3 xs:leading-normal">
       <transition name="checkout-text" mode="out-in">
-        <div v-if="user.checkout != ''" :key="user.checkout">
+        <span v-if="user.checkout != ''" :key="user.checkout">
           {{ user.checkout }}
-        </div>
-        <div v-else>Kan nog niet uit</div>
+        </span>
+        <span v-else>Kan nog niet uit</span>
       </transition>
     </div>
   </div>
@@ -17,12 +16,8 @@
 
 <script>
 import anime from "animejs";
-import UserLastTurn from "./UserLastTurn";
 export default {
   props: ["user"],
-  components: {
-    UserLastTurn,
-  },
   data() {
     return {
       tweenedScore: null,
