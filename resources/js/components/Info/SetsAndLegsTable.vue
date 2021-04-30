@@ -7,7 +7,7 @@
       <div
         v-for="user in users"
         :key="user.id"
-        class="w-4/12 flex justify-between px-1 items-baseline"
+        class="w-4/12 flex px-1 items-baseline"
       >
         <div class="overflow-hidden whitespace-nowrap overflow-ellipsis"
         style="max-width:85%;">
