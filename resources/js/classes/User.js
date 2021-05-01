@@ -9,7 +9,12 @@ export default class User {
 		this.sets_won = 0
 		this.is_on_turn = false
 		this.owns_current_leg = false
-		this.stats = {};
+		this.stats = {
+			sets_won: 0,
+			legs_won: 0,
+			average_per_turn: parseFloat(0).toFixed(2),
+			highest: 0,
+		};
 		this.last_turn = undefined;
 		this.score_to_throw_from = undefined;
 		this.updateStats();
@@ -72,8 +77,7 @@ export default class User {
 
 	getAveragePerTurn(){
 		if(this.turns.length == 0) return 0;
-		let average = this.turns.reduce((t,a) => {return t+=a.thrown_score}, 0) / this.turns.length;
-		return parseFloat(average).toFixed(2);
+		return this.turns.reduce((t,a) => {return t+=a.thrown_score}, 0) / this.turns.length;
 	}
 
 	getHighestTurn(){
@@ -82,12 +86,16 @@ export default class User {
 	}
 
 	updateStats(){
-		this.stats = {
-			sets_won: this.sets_won,
-			legs_won: this.legs_won,
+		this.stats.sets_won = this.sets_won;
+		this.stats.legs_won = this.legs_won;
+
+		anime({
+			targets: this.stats,
 			average_per_turn: this.getAveragePerTurn(),
-			highest: this.getHighestTurn()
-		}
+			highest: this.getHighestTurn(),
+			duration: 500,
+			easing: "easeInOutQuint",
+		});
 	}
 
 	getCheckout() {

@@ -24,7 +24,7 @@
 			:key="`stats_${stat.name}`"
 			class="last:rounded-b-lg border-b-2 border-gray-200 border-opacity-50 flex bg-white text-blue-500 font-semibold px-2 py-1 text-base xsm:text-lg"
 		>
-			<info-table-row :stat="stat" :users="users" />
+			<info-table-row :stat="stat" :users="users" :decimal="stat.decimal"/>
 	</div>
 	</div>
 </template>
@@ -40,18 +40,22 @@ export default {
 				{
 					name: "Sets",
 					key: "sets_won",
+					decimal: 0
 				},
 				{
 					name: "Legs",
 					key: "legs_won",
+					decimal: 0
 				},
 				{
 					name: "Gem.",
 					key: "average_per_turn",
+					decimal: 2,
 				},
 				{
 					name: "Hoogst",
 					key: "highest",
+					decimal: 0
 				},
 			],
 		};
