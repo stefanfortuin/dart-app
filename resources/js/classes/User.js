@@ -36,17 +36,20 @@ export default class User {
 	addTurn(turn) {
 		this.turns.push(turn);
 		this.last_turn = turn;
-		anime({
-			targets: this,
-			score_to_throw_from: turn.new_score_to_throw_from,
-			duration: 700,
-			easing: "easeInOutQuint",
-		});
+
+		if(turn.new_score_to_throw_from > 0){
+			anime({
+				targets: this,
+				score_to_throw_from: turn.new_score_to_throw_from,
+				duration: 700,
+				easing: "easeInOutQuint",
+			});
+		}
 		return this;
 	}
 
 	hasReachedZero(){
-		return this.score_to_throw_from <= 0
+		return this.last_turn.new_score_to_throw_from <= 0
 	}
 
 	addWonLeg(){
@@ -72,6 +75,7 @@ export default class User {
 
 	clearTurns(){
 		this.turns = [];
+		this.score_to_throw_from = this.start_score;
 		this.updateStats();
 	}
 
@@ -99,9 +103,9 @@ export default class User {
 	}
 
 	getCheckout() {
-		if (this.score_to_throw_from > 170 || this.score_to_throw_from < 2) return;
+		if (this.last_turn.new_score_to_throw_from > 170 || this.last_turn.new_score_to_throw_from < 2) return;
 
-		fetch(`/api/checkout/${this.score_to_throw_from}`)
+		fetch(`/api/checkout/${this.last_turn.new_score_to_throw_from}`)
 			.then(response => response.json())
 			.then(response => {
 				this.checkout = response.join(" ");

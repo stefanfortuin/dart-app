@@ -13,10 +13,6 @@
 				>
 					{{ user.name }}
 				</div>
-				<div
-					v-if="user.owns_current_leg"
-					class="rounded-full ml-1 h-2 w-2 bg-white"
-				></div>
 			</div>
 		</div>
 		<div
@@ -32,8 +28,9 @@
 <script>
 import { mapState } from "vuex";
 import InfoTableRow from "./InfoTableRow.vue";
+import UserOwnsLeg from '../UserCard/UserOwnsLeg.vue';
 export default {
-	components: { InfoTableRow },
+	components: { InfoTableRow, UserOwnsLeg },
 	data() {
 		return {
 			stats: [

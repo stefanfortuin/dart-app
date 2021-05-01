@@ -93,6 +93,7 @@ export default {
 					this.resetForNextLeg();
 				}
 
+				this.user_on_turn.updateStats();
 				this.switchUserThatStartsNextLeg();
 				this.resetScoreField();
 			}
