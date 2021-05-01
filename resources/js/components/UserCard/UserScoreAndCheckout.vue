@@ -1,7 +1,7 @@
 <template>
   <div class="flex justify-between items-baseline">
     <div class="text-4xl xsm:text-5xl xs:text-6xl font-bold inline-flex">
-      {{ animatedScore }}
+      {{ user.score_to_throw_from.toFixed(0) }}
     </div>
     <div class="flex text-right opacity-80 text-sm leading-3 xs:leading-normal">
       <transition name="checkout-text" mode="out-in">
@@ -15,31 +15,7 @@
 </template>
 
 <script>
-import anime from "animejs";
 export default {
   props: ["user"],
-  data() {
-    return {
-      tweenedScore: null,
-    };
-  },
-  created() {
-    this.tweenedScore = this.user.start_score;
-  },
-  computed: {
-    animatedScore() {
-      return this.tweenedScore.toFixed(0);
-    },
-  },
-  watch: {
-    "user.score_to_throw_from": function (newValue) {
-      anime({
-        targets: this.$data,
-        tweenedScore: newValue,
-        duration: 700,
-        easing: "easeInOutQuint",
-      });
-    },
-  },
 };
 </script>

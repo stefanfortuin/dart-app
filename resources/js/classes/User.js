@@ -1,3 +1,5 @@
+import anime from 'animejs';
+
 export default class User {
 	constructor() {
 		this.turns = [];
@@ -8,6 +10,8 @@ export default class User {
 		this.is_on_turn = false
 		this.owns_current_leg = false
 		this.stats = {};
+		this.last_turn = undefined;
+		this.score_to_throw_from = undefined;
 		this.updateStats();
 	}
 
@@ -20,11 +24,19 @@ export default class User {
 
 	setStartScore(start_score){
 		this.start_score = start_score;
+		this.score_to_throw_from = start_score;
 		return this;
 	}
 
 	addTurn(turn) {
 		this.turns.push(turn);
+		this.last_turn = turn;
+		anime({
+			targets: this,
+			score_to_throw_from: turn.new_score_to_throw_from,
+			duration: 700,
+			easing: "easeInOutQuint",
+		});
 		return this;
 	}
 
@@ -56,16 +68,6 @@ export default class User {
 	clearTurns(){
 		this.turns = [];
 		this.updateStats();
-	}
-
-	get score_to_throw_from() {
-		return (this.last_turn != undefined)
-			? this.last_turn.new_score_to_throw_from
-			: this.start_score;
-	}
-
-	get last_turn() {
-		return this.turns.slice(-1)[0];
 	}
 
 	getAveragePerTurn(){
