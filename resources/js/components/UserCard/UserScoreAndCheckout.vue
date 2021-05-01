@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-between items-baseline mb-1">
+  <div class="flex justify-between items-baseline">
     <div class="text-4xl xsm:text-5xl xs:text-6xl font-bold inline-flex">
       {{ animatedScore }}
     </div>

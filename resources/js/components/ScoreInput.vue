@@ -1,6 +1,6 @@
 <template>
   <div
-    class="relative grid grid-rows-4 grid-cols-3 w-full h-full min-h-40 max-h-52 gap-1"
+    class="relative grid grid-rows-4 grid-cols-3 w-full h-full min-h-32 max-h-52 gap-1"
   >
     <transition name="custom-score">
       <div
