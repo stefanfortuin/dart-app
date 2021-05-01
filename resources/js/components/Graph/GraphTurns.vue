@@ -71,7 +71,7 @@
 					@click="setCurrentGraphIndex(i)"
 				/>
 			</svg>
-			
+
 			<!-- showing the score from the selected index turn -->
 			<transition
 				name="tab-fade"
@@ -80,7 +80,7 @@
 				<div
 					v-if="graphTurnData != null"
 					:key="`graph_point_${graphTurnData.point[0]}`"
-					class="absolute z-40 h-full text-white p-2 rounded text-sm font-bold"
+					class="absolute z-40 h-full text-white p-2 rounded text-sm font-bold pointer-events-none"
 					:style="{
 					left: `${graphTurnData.point[0] - scale_x}px`, 
 					width: `${scale_x}px`,}"
