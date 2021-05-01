@@ -5,7 +5,7 @@
 			<transition name="tab-fade" mode="out-in">
 			<keep-alive>
 				<graph-turns v-if="selected_index == 0" />
-				<sets-and-legs-table v-else-if="selected_index == 1" />
+				<info-table v-else-if="selected_index == 1" />
 			</keep-alive>
 			</transition>
 		</div>
@@ -27,7 +27,7 @@
 
 <script>
 import GraphTurns from '../Graph/GraphTurns.vue';
-import SetsAndLegsTable from '../Info/SetsAndLegsTable.vue';
+import InfoTable from '../Info/InfoTable.vue';
 
 export default {
 	data() {
@@ -38,7 +38,7 @@ export default {
 	},
 	components: {
 		GraphTurns,
-		SetsAndLegsTable,
+		InfoTable,
 	},
 	mounted() {
 		this.selectTab(0)
