@@ -6,6 +6,16 @@
 	height: 24px;
 }
 
+.icon-sm{
+	width:20px;
+	height:20px;
+}
+
+.icon-xs{
+	width:14px;
+	height:14px;
+}
+
 .view-fade-enter-active, .view-fade-leave-active {
   transition: all .2s;
 }
