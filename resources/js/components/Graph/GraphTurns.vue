@@ -60,69 +60,49 @@
 			>
 				<rect
 					v-for="(point, i) in graph_points"
-					:key="point"
+					:key="`rect_${point}`"
 					:x="i * scale_x"
 					:y="0"
 					rx="0.25rem"
 					:width="`${1 * scale_x}px`"
 					:height="`${height}px`"
-					class="fill-current"
-					:class="
-          currentGraphIndex == i ? 'text-blue-100 opacity-40' : 'opacity-0'
-        "
+					class="fill-current transition-opacity duration-150"
+					:class="currentGraphIndex == i ? 'text-blue-100 opacity-40' : 'text-blue-100 opacity-0'"
 					@click="setCurrentGraphIndex(i)"
 				/>
-				<transition
-					name="tab-fade"
-					mode="out-in"
-				>
-					<g
-						v-if="graphTurnData != null"
-						:key="`graph_index_${currentGraphIndex}`"
-						class="stroke-white"
-					>
-						<circle
-							:cx="graphTurnData.point[0]"
-							:cy="graphTurnData.point[1]"
-							class="fill-current text-white stroke-darkblue"
-							stroke-width="1"
-							r="0.16rem"
-						></circle>
-					</g>
-				</transition>
 			</svg>
-
-		</div>
-
-		<!-- showing the score from the selected index turn -->
-		<transition
-			name="tab-fade"
-			mode="out-in"
-		>
-			<div
-				v-if="graphTurnData != null"
-				:key="`graph_point_${graphTurnData.point[0]}`"
-				class="absolute z-40 h-full text-white p-2 rounded text-xs font-bold"
-				:style="{
-					left: `${graphTurnData.point[0] - scale_x}px`, 
-					width: `${scale_x}px`,}"
+			
+			<!-- showing the score from the selected index turn -->
+			<transition
+				name="tab-fade"
+				mode="out-in"
 			>
 				<div
-					class="flex flex-col items-center h-full"
-					:class="(graphTurnData.point[1] < (this.height / 2)) ? 'justify-end' : 'justify-start'"
+					v-if="graphTurnData != null"
+					:key="`graph_point_${graphTurnData.point[0]}`"
+					class="absolute z-40 h-full text-white p-2 rounded text-sm font-bold"
+					:style="{
+					left: `${graphTurnData.point[0] - scale_x}px`, 
+					width: `${scale_x}px`,}"
 				>
-					<div>
-						{{ graphTurnData.turn.old_score_to_throw_from }}
-					</div>
-					<svg class="icon-xs">
-						<use xlink:href="assets/sprite.svg#chevron-right"></use>
-					</svg>
-					<div>
-						{{graphTurnData.turn.new_score_to_throw_from}}
+					<div
+						class="flex flex-col items-center h-full"
+						:class="(graphTurnData.point[1] < (this.height / 2)) ? 'justify-end' : 'justify-start'"
+					>
+						<div>
+							{{ graphTurnData.turn.old_score_to_throw_from }}
+						</div>
+						<svg class="icon-xs">
+							<use xlink:href="assets/sprite.svg#chevron-right"></use>
+						</svg>
+						<div>
+							{{graphTurnData.turn.new_score_to_throw_from}}
+						</div>
 					</div>
 				</div>
-			</div>
-		</transition>
+			</transition>
+		</div>
+
 	</div>
 </template>
 
