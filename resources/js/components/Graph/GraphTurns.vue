@@ -107,7 +107,6 @@ export default {
 			scale_y: null,
 			scale_x: null,
 			graph_points: 4, //default
-			paths: [],
 			currentGraphIndex: undefined,
 			last_scroll_position: 0,
 		};
