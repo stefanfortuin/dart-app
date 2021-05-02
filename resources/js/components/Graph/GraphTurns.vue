@@ -67,9 +67,10 @@
 					v-if="graphTurnData != null"
 					class="absolute transition-all duration-300 ease-in-out z-40 h-full bg-blue-100 bg-opacity-40 text-white p-2 rounded text-sm font-bold pointer-events-none"
 					:style="{
-					left: 0,
-					transform: `translateX(${currentGraphIndex * scale_x}px)`, 
-					width: `${scale_x + 1}px`,}"
+						left: 0,
+						transform: `translateX(${currentGraphIndex * scale_x}px)`, 
+						width: `${scale_x + 1}px`
+					}"
 				>
 					<div
 						class="flex flex-col items-center h-full"
