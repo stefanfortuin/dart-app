@@ -3,7 +3,7 @@
 
 		<div class="relative bg-blue-100 rounded-lg z-0">
 			<div
-				class="absolute shadow transition-transform duration-300 ease-in-out left-0 bg-blue-500 px-3 py-2 w-full h-1/2 rounded-lg z-10"
+				class="absolute shadow transition-transform duration-300 ease-in-out left-0 bg-blue-500 px-3 py-2 w-full h-1/2 rounded-lg z-20"
 				:style="this.users[0] == this.user_on_turn
 					? 'transform: translateY(0)'
 					: 'transform: translateY(100%)'"
