@@ -1,15 +1,27 @@
 <template>
 	<div class="w-full h-full flex flex-col ">
 
-		<div>
-			<user-card-score
+		<div class="relative bg-blue-100 rounded-lg z-0">
+			<div
+				class="absolute transition-transform duration-300 ease-in-out left-0 bg-blue-500 px-3 py-2 w-full h-1/2 rounded-lg z-10"
+				:style="this.users[0] == this.user_on_turn
+					? 'transform: translateY(0)'
+					: 'transform: translateY(100%)'"
+			></div>
+
+			<user-card
 				v-for="user in users"
 				:key="user.id"
 				:user="user"
 			/>
+			
 		</div>
 		<tabs></tabs>
-		<score-input @handleTurn="handleTurn" :min="0" :max="180" />
+		<score-input
+			@handleTurn="handleTurn"
+			:min="0"
+			:max="180"
+		/>
 	</div>
 </template>
 
@@ -20,7 +32,7 @@ import DartTurn from '../classes/DartTurn';
 
 import Tabs from '../components/Tabs/Tabs.vue';
 import ScoreInput from '../components/ScoreInput.vue';
-import UserCardScore from '../components/UserCard/UserCard.vue';
+import UserCard from '../components/UserCard/UserCard.vue';
 
 export default {
 	data() {
@@ -30,7 +42,7 @@ export default {
 	},
 	components: {
 		ScoreInput,
-		UserCardScore,
+		UserCard,
 		Tabs,
 	},
 	methods: {
@@ -66,7 +78,7 @@ export default {
 			this.user_on_turn
 				.addTurn(turn)
 				.getCheckout()
-			
+
 			this.addTurnToGame(turn);
 
 			this.canMakeTurn = false;

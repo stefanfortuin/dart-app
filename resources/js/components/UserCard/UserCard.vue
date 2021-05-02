@@ -1,10 +1,10 @@
 <template>
 	<div
-		class="transition-colors first:rounded-t-lg last:rounded-b-lg px-3 py-2"
+		class="relative z-30 transition-colors duration-500 ease-in-out px-3 py-2"
 		:class="
       user.is_on_turn
-        ? 'bg-blue-500 text-white shadow-md'
-        : 'bg-blue-100 text-blue-600 opacity-50 shadow'
+        ? 'text-white'
+        : 'opacity-50 text-blue-600'
     "
 	>
 		<div class="flex items-baseline">
