@@ -175,8 +175,8 @@ export default {
 			}
 
 			if (this.user_on_turn.turns.length >= this.graph_points + 1) {
-				this.graph_points += 1;
 				this.last_scroll_position = (this.graph_points - 5) * this.scale_x;
+				this.graph_points += 1;
 				this.scrollToLeft();
 			}
 		},
@@ -189,8 +189,8 @@ export default {
 			anime({
 				targets: scroll_element,
 				scrollLeft: value_to_scroll_to,
-				duration: 500,
-				easing: "easeInOutQuad",
+				duration: 1000,
+				easing: "easeInOutQuint",
 			});
 		},
 
