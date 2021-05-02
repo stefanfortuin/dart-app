@@ -189,8 +189,8 @@ export default {
 			anime({
 				targets: scroll_element,
 				scrollLeft: value_to_scroll_to,
-				duration: 1000,
-				easing: "easeInOutQuint",
+				duration: 500,
+				easing: "easeOutQuint",
 				complete: () => {
 					this.last_scroll_position = value_to_scroll_to
 				}
@@ -245,7 +245,7 @@ export default {
 				anime({
 					targets: path_element,
 					strokeDashoffset: 0,
-					duration: 250,
+					duration: 500,
 					easing: "easeOutQuad",
 				});
 			}
