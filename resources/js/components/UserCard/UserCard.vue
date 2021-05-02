@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="relative transition-colors duration-500 ease-in-out px-3 py-2"
+		class="relative transition-all duration-500 ease-in-out px-3 py-2"
 		:class="
       user.is_on_turn
         ? 'text-white z-30'
