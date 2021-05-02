@@ -4,98 +4,88 @@
 			ref="graph"
 			class="flex justify-center items-center h-full w-full overflow-scroll absolute"
 		>
-			<!-- the animated user paths -->
+
 			<svg
-				v-for="user in users"
-				:key="user.id"
 				xmlns="http://www.w3.org/2000/svg"
 				height="100%"
 				:width="`${graph_points * scale_x}px`"
 				:viewBox="`-2 -4 ${graph_points * scale_x + 3} ${height + 4}`"
 				preserveAspectRatio="none"
 				class="absolute top-0 left-0"
-				:class="user.is_on_turn ? 'stroke-white z-20' : 'stroke-lightblue z-10'"
 			>
-				<path
-					:ref="`graph_line_${user.id}`"
-					:id="`graph_line_${user.id}`"
-					:d="getLinePath(user)"
-					fill="none"
-					stroke-width="3"
-					:pathLength="user.turns.length"
-					:stroke-linecap="user.turns.length >= 1 ? 'round' : ''"
-					style="transition: stroke 0.3s ease-in-out"
-				/>
-			</svg>
+				<!-- the animated user paths -->
+				<g
+					v-for="user in users"
+					:key="user.id"
+					:class="user.is_on_turn ? 'stroke-white z-20' : 'stroke-lightblue z-10'"
+				>
+					<path
+						:ref="`graph_line_${user.id}`"
+						:id="`graph_line_${user.id}`"
+						:d="getLinePath(user)"
+						fill="none"
+						stroke-width="3"
+						:pathLength="user.turns.length"
+						:stroke-linecap="user.turns.length >= 1 ? 'round' : ''"
+						style="transition: stroke 0.3s ease-in-out"
+					/>
+				</g>
 
-			<!-- y-axis lines -->
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				:width="`${graph_points * scale_x}px`"
-				:viewBox="`-2 -4 ${graph_points * scale_x + 3} ${height + 4}`"
-				height="100%"
-				preserveAspectRatio="none"
-				class="absolute z-0 top-0 left-0"
-			>
-				<line
-					v-for="(point, i) in graph_points + 1"
-					:key="point"
-					:x1="i * scale_x"
-					:y1="0"
-					:x2="i * scale_x"
-					:y2="height"
-					stroke-width="2.5px"
-					class="stroke-graphaxis opacity-10"
-				></line>
-			</svg>
+				<!-- y-axis lines -->
+				<g>
+					<line
+						v-for="(point, i) in graph_points + 1"
+						:key="point"
+						:x1="i * scale_x"
+						:y1="0"
+						:x2="i * scale_x"
+						:y2="height"
+						stroke-width="2.5px"
+						class="stroke-graphaxis opacity-10"
+					></line>
+				</g>
 
-			<!-- clickable bars with circle showing point -->
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				:width="`${graph_points * scale_x}px`"
-				:viewBox="`-2 -4 ${graph_points * scale_x + 3} ${height + 4}`"
-				height="100%"
-				preserveAspectRatio="none"
-				class="absolute z-30 top-0 left-0"
-			>
-				<rect
-					v-for="(point, i) in graph_points"
-					:key="`rect_${point}`"
-					:x="i * scale_x"
-					:y="0"
-					rx="0.25rem"
-					:width="`${1 * scale_x}px`"
-					:height="`${height}px`"
-					class="fill-current transition-opacity duration-150 opacity-0"
-					@click="setCurrentGraphIndex(i)"
-				/>
+				<!-- clickable bars with circle showing point -->
+				<g>
+					<rect
+						v-for="(point, i) in graph_points"
+						:key="`rect_${point}`"
+						:x="i * scale_x"
+						:y="0"
+						rx="0.25rem"
+						:width="`${1 * scale_x}px`"
+						:height="`${height}px`"
+						class="fill-current z-30 transition-opacity duration-150 opacity-0"
+						@click="setCurrentGraphIndex(i)"
+					/>
+				</g>
 			</svg>
 
 			<!-- showing the score from the selected index turn -->
 			<transition name="tab-fade">
-			<div
-				v-if="graphTurnData != null"
-				class="absolute transition-all duration-300 ease-in-out z-40 h-full bg-blue-100 bg-opacity-40 text-white p-2 rounded text-sm font-bold pointer-events-none"
-				:style="{
+				<div
+					v-if="graphTurnData != null"
+					class="absolute transition-all duration-300 ease-in-out z-40 h-full bg-blue-100 bg-opacity-40 text-white p-2 rounded text-sm font-bold pointer-events-none"
+					:style="{
 					left: 0,
 					transform: `translateX(${currentGraphIndex * scale_x}px)`, 
 					width: `${scale_x + 1}px`,}"
-			>
-				<div
-					class="flex flex-col items-center h-full"
-					:class="(graphTurnData.point[1] < (this.height / 2)) ? 'justify-end' : 'justify-start'"
 				>
-					<div>
-						{{ graphTurnData.turn.old_score_to_throw_from }}
-					</div>
-					<svg class="icon-xs">
-						<use xlink:href="assets/sprite.svg#chevron-right"></use>
-					</svg>
-					<div>
-						{{graphTurnData.turn.new_score_to_throw_from}}
+					<div
+						class="flex flex-col items-center h-full"
+						:class="(graphTurnData.point[1] < (this.height / 2)) ? 'justify-end' : 'justify-start'"
+					>
+						<div>
+							{{ graphTurnData.turn.old_score_to_throw_from }}
+						</div>
+						<svg class="icon-xs">
+							<use xlink:href="assets/sprite.svg#chevron-right"></use>
+						</svg>
+						<div>
+							{{graphTurnData.turn.new_score_to_throw_from}}
+						</div>
 					</div>
 				</div>
-			</div>
 			</transition>
 		</div>
 
@@ -132,9 +122,9 @@ export default {
 
 		let scroll_element = this.$refs.graph;
 		scroll_element.scrollLeft = this.last_scroll_position;
-		
+
 	},
-	deactivated(){
+	deactivated() {
 		this.currentGraphIndex = undefined;
 	},
 	computed: {
