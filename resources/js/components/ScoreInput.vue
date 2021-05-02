@@ -81,7 +81,7 @@ export default {
       const score = this.score.join("");
       if (this.scoreIsOutOfRange(this.min, this.max, score)) {
         this.notify({
-          title: "Score moet tussen 0 en 180",
+          title: `Score moet tussen 0 en ${this.max}`,
           type: "error",
         });
         return;

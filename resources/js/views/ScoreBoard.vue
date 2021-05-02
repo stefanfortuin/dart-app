@@ -14,13 +14,13 @@
 				:key="user.id"
 				:user="user"
 			/>
-			
+
 		</div>
 		<tabs></tabs>
 		<score-input
 			@handleTurn="handleTurn"
 			:min="0"
-			:max="180"
+			:max="(user_on_turn.last_turn && user_on_turn.last_turn.new_score_to_throw_from <= 170) ? user_on_turn.last_turn.new_score_to_throw_from : 180"
 		/>
 	</div>
 </template>
