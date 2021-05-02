@@ -66,40 +66,36 @@
 					rx="0.25rem"
 					:width="`${1 * scale_x}px`"
 					:height="`${height}px`"
-					class="fill-current transition-opacity duration-150"
-					:class="currentGraphIndex == i ? 'text-blue-100 opacity-40' : 'text-blue-100 opacity-0'"
+					class="fill-current transition-opacity duration-150 opacity-0"
 					@click="setCurrentGraphIndex(i)"
 				/>
 			</svg>
 
 			<!-- showing the score from the selected index turn -->
-			<transition
-				name="tab-fade"
-				mode="out-in"
+			<transition name="tab-fade">
+			<div
+				v-if="graphTurnData != null"
+				class="absolute transition-all duration-300 ease-in-out z-40 h-full bg-blue-100 bg-opacity-40 text-white p-2 rounded text-sm font-bold pointer-events-none"
+				:style="{
+					left: 0,
+					transform: `translateX(${currentGraphIndex * scale_x}px)`, 
+					width: `${scale_x + 1}px`,}"
 			>
 				<div
-					v-if="graphTurnData != null"
-					:key="`graph_point_${graphTurnData.point[0]}`"
-					class="absolute z-40 h-full text-white p-2 rounded text-sm font-bold pointer-events-none"
-					:style="{
-					left: `${graphTurnData.point[0] - scale_x}px`, 
-					width: `${scale_x}px`,}"
+					class="flex flex-col items-center h-full"
+					:class="(graphTurnData.point[1] < (this.height / 2)) ? 'justify-end' : 'justify-start'"
 				>
-					<div
-						class="flex flex-col items-center h-full"
-						:class="(graphTurnData.point[1] < (this.height / 2)) ? 'justify-end' : 'justify-start'"
-					>
-						<div>
-							{{ graphTurnData.turn.old_score_to_throw_from }}
-						</div>
-						<svg class="icon-xs">
-							<use xlink:href="assets/sprite.svg#chevron-right"></use>
-						</svg>
-						<div>
-							{{graphTurnData.turn.new_score_to_throw_from}}
-						</div>
+					<div>
+						{{ graphTurnData.turn.old_score_to_throw_from }}
+					</div>
+					<svg class="icon-xs">
+						<use xlink:href="assets/sprite.svg#chevron-right"></use>
+					</svg>
+					<div>
+						{{graphTurnData.turn.new_score_to_throw_from}}
 					</div>
 				</div>
+			</div>
 			</transition>
 		</div>
 
@@ -136,6 +132,10 @@ export default {
 
 		let scroll_element = this.$refs.graph;
 		scroll_element.scrollLeft = this.last_scroll_position;
+		
+	},
+	deactivated(){
+		this.currentGraphIndex = undefined;
 	},
 	computed: {
 		...mapState({
@@ -191,6 +191,9 @@ export default {
 				scrollLeft: value_to_scroll_to,
 				duration: 1000,
 				easing: "easeInOutQuint",
+				complete: () => {
+					this.last_scroll_position = value_to_scroll_to
+				}
 			});
 		},
 
