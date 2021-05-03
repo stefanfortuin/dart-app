@@ -17,7 +17,8 @@
 				<g
 					v-for="user in users"
 					:key="user.id"
-					:class="user.is_on_turn ? 'stroke-white z-20' : 'stroke-lightblue z-10'"
+					:id="`graph_element_${user.id}`"
+					:class="user.is_on_turn ? 'stroke-white' : 'stroke-lightblue'"
 				>
 					<path
 						:ref="`graph_line_${user.id}`"
@@ -30,6 +31,7 @@
 						style="transition: stroke 0.3s ease-in-out"
 					/>
 				</g>
+				<use :xlink:href="`#graph_element_${user_on_turn.id}`" />
 
 				<!-- y-axis lines -->
 				<g>
