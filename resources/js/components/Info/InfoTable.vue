@@ -28,9 +28,9 @@
 <script>
 import { mapState } from "vuex";
 import InfoTableRow from "./InfoTableRow.vue";
-import UserOwnsLeg from '../UserCard/UserOwnsLeg.vue';
+
 export default {
-	components: { InfoTableRow, UserOwnsLeg },
+	components: { InfoTableRow },
 	data() {
 		return {
 			stats: [
