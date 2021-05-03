@@ -70,27 +70,9 @@
           :style="{
             left: 0,
             transform: `translateX(${currentGraphIndex * scale_x}px)`,
-            width: `${scale_x + 1}px`,
+            width: `${scale_x}px`,
           }"
         >
-          <div
-            class="absolute transition-transform duration-300 ease-in-out top-0 bg-blue-600 rounded-full h-1.5 w-1.5"
-            :style="{
-              transform: `translateY(${
-                graphTurnData.first_point[1]
-              }px)`,
-			  left: '-2px'
-            }"
-          ></div>
-          <div
-            class="absolute transition-transform duration-300 ease-in-out top-0 bg-blue-600 rounded-full h-1.5 w-1.5"
-            :style="{
-              transform: `translateY(${
-                graphTurnData.last_point[1]
-              }px)`,
-			  right: '-2px'
-            }"
-          ></div>
           <div
             class="flex flex-col items-center h-full"
             :class="
