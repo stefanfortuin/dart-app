@@ -77,7 +77,7 @@
             class="absolute transition-transform duration-300 ease-in-out top-0 bg-blue-600 rounded-full h-1.5 w-1.5"
             :style="{
               transform: `translateY(${
-                height - graphTurnData.turn.old_score_to_throw_from * scale_y
+                graphTurnData.first_point[1]
               }px)`,
 			  left: '-2px'
             }"
@@ -86,7 +86,7 @@
             class="absolute transition-transform duration-300 ease-in-out top-0 bg-blue-600 rounded-full h-1.5 w-1.5"
             :style="{
               transform: `translateY(${
-                height - graphTurnData.turn.new_score_to_throw_from * scale_y
+                graphTurnData.last_point[1]
               }px)`,
 			  right: '-2px'
             }"
@@ -94,7 +94,7 @@
           <div
             class="flex flex-col items-center h-full"
             :class="
-              graphTurnData.point[1] < this.height / 2
+              graphTurnData.last_point[1] < this.height / 2
                 ? 'justify-end'
                 : 'justify-start'
             "
@@ -157,12 +157,13 @@ export default {
 
     graphTurnData() {
       if (this.currentGraphIndex == undefined) return null;
+
+	  let points = this.getPointsFromTurns(this.user_on_turn.turns)
       let graph_data = {
         user_name: this.user_on_turn.name,
         turn: this.user_on_turn.turns[this.currentGraphIndex],
-        point: this.getPointsFromTurns(this.user_on_turn.turns)[
-          this.currentGraphIndex + 1
-        ],
+        first_point: points[this.currentGraphIndex],
+		last_point: points[this.currentGraphIndex + 1]
       };
 
       return graph_data;
