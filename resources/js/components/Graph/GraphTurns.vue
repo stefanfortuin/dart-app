@@ -7,8 +7,8 @@
       <svg
         xmlns="http://www.w3.org/2000/svg"
         height="100%"
-        :width="`${graph_points * scale_x}px`"
-        :viewBox="`-2 -4 ${graph_points * scale_x + 3} ${height + 4}`"
+        :width="`${graph_points * scale_x + 2}px`"
+        :viewBox="`-2 -4 ${graph_points * scale_x + 2} ${height + 4}`"
         preserveAspectRatio="none"
         class="absolute top-0 left-0"
       >
@@ -35,7 +35,7 @@
         <!-- y-axis lines -->
         <g>
           <line
-            v-for="(point, i) in graph_points + 1"
+            v-for="(point, i) in graph_points"
             :key="point"
             :x1="i * scale_x"
             :y1="0"
@@ -55,7 +55,7 @@
             :y="0"
             rx="0.25rem"
             :width="`${1 * scale_x}px`"
-            :height="`${height}px`"
+            height="100%"
             class="fill-current z-30 transition-opacity duration-150 opacity-0"
             @click="setCurrentGraphIndex(i)"
           />
@@ -66,9 +66,9 @@
       <transition name="tab-fade">
         <div
           v-if="graphTurnData != null"
-          class="absolute transition-all duration-300 ease-in-out z-40 h-full bg-blue-100 bg-opacity-40 text-white p-2 rounded text-sm font-bold pointer-events-none"
+          class="absolute transition-all duration-300 ease-in-out z-40 h-full bg-blue-100 bg-opacity-40 text-white p-1 rounded text-sm font-bold pointer-events-none"
           :style="{
-            left: 0,
+            left: '2px',
             transform: `translateX(${currentGraphIndex * scale_x}px)`,
             width: `${scale_x}px`,
           }"
