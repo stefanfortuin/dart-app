@@ -15,7 +15,7 @@
 				:key="index"
 				@click="selectTab(index)"
 				class="p-3 first:rounded-tr-lg last:rounded-br-lg"
-				:class="index == selected_index ? 'bg-blue-500 text-blue-100' : 'bg-blue-200 text-blue-400'"
+				:class="index == selected_index ? 'bg-blue-500 text-blue-100' : 'bg-blue-100 text-blue-500 text-opacity-75'"
 			>
 				<svg class="icon">
 					<use :xlink:href="'assets/sprite.svg#'+ tab"></use>

@@ -4,7 +4,7 @@
 		:class="
       user.is_on_turn
         ? 'text-white z-30'
-        : 'opacity-50 text-blue-600 z-10'
+        : 'text-blue-500 text-opacity-75 z-10'
     "
 	>
 		<div class="flex items-baseline">
