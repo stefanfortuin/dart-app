@@ -66,7 +66,7 @@
       <transition name="tab-fade">
         <div
           v-if="graphTurnData != null"
-          class="absolute transition-all duration-300 ease-in-out z-40 h-full bg-blue-100 bg-opacity-40 text-white p-1 rounded text-sm font-bold pointer-events-none"
+          class="absolute transition-all duration-300 ease-in-out z-40 h-full bg-blue-100 bg-opacity-40 text-white rounded text-base font-bold pointer-events-none"
           :style="{
             left: '2px',
             transform: `translateX(${currentGraphIndex * scale_x}px)`,
@@ -178,7 +178,7 @@ export default {
     scrollToLeft() {
       if (this.$refs.graph == undefined) return;
       let scroll_element = this.$refs.graph;
-      let value_to_scroll_to = this.last_scroll_position + 1 * this.scale_x;
+      let value_to_scroll_to = this.last_scroll_position + 1 * this.scale_x + 2;
 
       anime({
         targets: scroll_element,
