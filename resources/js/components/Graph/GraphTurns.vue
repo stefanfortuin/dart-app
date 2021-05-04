@@ -30,7 +30,7 @@
             style="transition: stroke 0.3s ease-in-out"
           />
         </g>
-        <use :xlink:href="`#graph_element_${user_on_turn.id}`" />
+        <use :href="`#graph_element_${user_on_turn.id}`" />
 
         <!-- y-axis lines -->
         <g>
@@ -85,7 +85,7 @@
               {{ graphTurnData.turn.old_score_to_throw_from }}
             </div>
             <svg class="icon-xs">
-              <use xlink:href="assets/sprite.svg#chevron-right"></use>
+              <use href="assets/sprite.svg#chevron-right"></use>
             </svg>
             <div>
               {{ graphTurnData.turn.new_score_to_throw_from }}

@@ -18,7 +18,7 @@
 				:class="index == selected_index ? 'bg-blue-500 text-blue-100' : 'bg-blue-100 text-blue-500 text-opacity-75'"
 			>
 				<svg class="icon">
-					<use :xlink:href="'assets/sprite.svg#'+ tab"></use>
+					<use :href="'assets/sprite.svg#'+ tab"></use>
 				</svg>
 			</div>
 		</div>
