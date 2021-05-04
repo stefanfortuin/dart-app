@@ -40,7 +40,7 @@
 				<div class="flex flex-col mb-2">
 					<label for="password_confirmation" class="mb-1 text-lg font-semibold text-blue-400">Wachtwoord
 						bevestigen</label>
-					<input type="password_confirmation" id="password_confirmation" name="password_confirmation" required
+					<input type="password" id="password_confirmation" name="password_confirmation" required
 						class="border-2 border-blue-200 py-1 px-3 placeholder-blue-100 rounded-lg text-xl">
 				</div>
 			</form>
