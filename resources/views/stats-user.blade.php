@@ -9,7 +9,4 @@
 		<x-stats-block title="Gem. per beurt" :metric="$average_per_turn" />
 		
 	</div>
-	<div class="mt-auto">
-		<x-button-action href="/stats">Terug</x-button-action>
-	</div>
 </x-base>
