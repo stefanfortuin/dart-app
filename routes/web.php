@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Game;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -31,8 +32,8 @@ Route::get('/profile', function () {
 });
 
 Route::get('/stats', function () {
-	$users = User::all();
-    return view('stats', ['users' => $users]);
+	$total_games = Game::count();
+    return view('stats', ['total_games' => $total_games]);
 });
 
 Route::get('/stats/{id}', function (String $id) {
