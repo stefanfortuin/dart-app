@@ -31,8 +31,11 @@ Route::get('/feed', function () {
 });
 
 Route::get('/profile', function () {
-    return view('profile');
-});
+	$user = Auth::user();
+
+    return view('profile', ['user' => $user]);
+
+})->middleware('auth');
 
 Route::get('/stats', function () {
 	$total_games = Game::count();
