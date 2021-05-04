@@ -7,7 +7,7 @@
             Deze pagina bestaat niet.
         </div>
         <svg class="w-full h-64">
-            <use href="assets/sprite.svg#404"></use>
+            <use href="/assets/sprite.svg#404"></use>
         </svg>
         <div class="text-blue-500 text-lg">
             404

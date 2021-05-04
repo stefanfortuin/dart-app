@@ -28,7 +28,7 @@
       class="rounded flex justify-center items-center max-h-12 bg-blue-100 active:bg-blue-400 text-blue-900"
     >
       <svg class="icon">
-        <use href="assets/sprite.svg#backspace"></use>
+        <use href="/assets/sprite.svg#backspace"></use>
       </svg>
     </div>
     <div
@@ -42,7 +42,7 @@
       class="rounded flex justify-center items-center max-h-12 bg-blue-500 active:bg-blue-600 text-white"
     >
       <svg class="icon">
-        <use href="assets/sprite.svg#arrow-right"></use>
+        <use href="/assets/sprite.svg#arrow-right"></use>
       </svg>
     </div>
   </div>

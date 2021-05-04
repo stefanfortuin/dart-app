@@ -85,7 +85,7 @@
               {{ graphTurnData.turn.old_score_to_throw_from }}
             </div>
             <svg class="icon-xs">
-              <use href="assets/sprite.svg#chevron-right"></use>
+              <use href="/assets/sprite.svg#chevron-right"></use>
             </svg>
             <div>
               {{ graphTurnData.turn.new_score_to_throw_from }}
