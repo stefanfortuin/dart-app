@@ -8,9 +8,7 @@
 			@click="handleWhoBegins(user)"
 			class="p-4 bg-blue-500 font-bold h-48 rounded-lg shadow-md text-white flex flex-col justify-between my-2"
 		>
-			<div class="text-5xl">
-				{{user.name}}
-			</div>
+			<user-name :user="user" />
 			<div v-if="user.latest_game != false" class="font-thin">
 				Laatste spel <span class="font-semibold">{{user.latest_game}}</span>
 			</div>
@@ -22,8 +20,12 @@
 </template>
 
 <script>
+import UserName from '../components/UserCard/UserName.vue';
 import { mapState, mapMutations } from 'vuex'
 export default {
+	components: {
+		UserName,
+	},
 	computed: {
 		...mapState({
 			users: state => state.users,
