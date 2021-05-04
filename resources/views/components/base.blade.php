@@ -11,6 +11,8 @@
 
 <body class="font-sans antialiased max-w-md mx-auto p-3 flex flex-col">
 	{{ $slot }}
+
+	<x-nav-bar/>
 </body>
 
 </html>

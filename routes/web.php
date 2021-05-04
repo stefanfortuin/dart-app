@@ -14,8 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/play', function () {
     return view('app');
+});
+
+Route::get('/feed', function () {
+    return view('feed');
 });
 
 Route::get('/stats', function () {
