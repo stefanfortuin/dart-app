@@ -16,7 +16,7 @@ mix.js('resources/js/app.js', 'public/js')
 	.copy('resources/assets/sprite.svg', 'public/assets')
 	.vue({runtimeOnly: true})
 	.postCss('resources/css/app.css', 'public/css', [
-		require('@tailwindcss/jit'),
+		require('tailwindcss'),
 	])
 	.webpackConfig({
 		devServer: {
