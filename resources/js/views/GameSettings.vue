@@ -11,21 +11,15 @@
         label="Speler 2"
         v-model="data.user_two"
       />
-      <div class="flex flex-col w-full mb-2">
-        <input-number-field
-          label="Start score"
-          v-model="start_score"
-          max="501"
-          min="101"
-        />
-      </div>
-      <div class="grid grid-cols-2 gap-2 w-full mb-2">
-        <div class="flex flex-col">
-          <input-number-field label="Sets" v-model="total_sets" min="1" />
-        </div>
-        <div class="flex flex-col">
-          <input-number-field label="Legs/set" v-model="total_legs" min="1" />
-        </div>
+      <input-number-field
+        label="Start score"
+        v-model="start_score"
+        max="501"
+        min="101"
+      />
+      <div class="grid grid-cols-2 gap-2 w-full">
+        <input-number-field label="Sets" v-model="total_sets" min="1" />
+        <input-number-field label="Legs/set" v-model="total_legs" min="1" />
       </div>
     </div>
 
