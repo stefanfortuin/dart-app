@@ -1,6 +1,6 @@
 <a href="{{$href}}"
     class="flex flex-col justify-center items-center active:bg-blue-100
-        {{ Request::is($href) ? 'text-blue-500' : 'text-gray-500'}}
+        {{ '/'.Request::segment(1) == $href ? 'text-blue-500' : 'text-gray-500'}}
     ">
     <svg class="icon fill-current">
         <use href="/assets/sprite.svg#{{$icon}}"></use>
