@@ -22,6 +22,10 @@ Route::get('/feed', function () {
     return view('feed');
 });
 
+Route::get('/profile', function () {
+    return view('profile');
+});
+
 Route::get('/stats', function () {
 	$users = User::all();
     return view('stats', ['users' => $users]);
