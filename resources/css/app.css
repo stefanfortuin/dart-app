@@ -76,5 +76,5 @@ select:-webkit-autofill:focus {
 }
 
 html, body{
-	height: 100%;
+	height: calc(100% - 1.75rem);
 }
