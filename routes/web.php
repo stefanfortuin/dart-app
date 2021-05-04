@@ -2,6 +2,7 @@
 
 use App\Models\Game;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Auth::routes();
 
 Route::get('/play', function () {
     return view('app');
@@ -28,8 +31,11 @@ Route::get('/feed', function () {
 });
 
 Route::get('/profile', function () {
-    return view('profile');
-});
+	$user = Auth::user();
+
+    return view('profile', ['user' => $user]);
+
+})->middleware('auth');
 
 Route::get('/stats', function () {
 	$total_games = Game::count();
