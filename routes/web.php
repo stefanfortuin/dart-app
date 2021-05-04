@@ -18,6 +18,10 @@ Route::get('/play', function () {
     return view('app');
 });
 
+Route::get('/', function () {
+    return view('home');
+});
+
 Route::get('/feed', function () {
     return view('feed');
 });
