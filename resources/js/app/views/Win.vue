@@ -40,6 +40,7 @@ export default {
 		...mapState({
 			users: state => state.users,
 			sets: state => state.sets,
+			start_score: state => state.start_score,
 			current_user: state => state.users.find(user => user.is_on_turn)
 		}),
 
@@ -69,6 +70,7 @@ export default {
 				users: this.users,
 				game: {
 					sets: this.sets,
+					start_score: this.start_score,
 					winner_id: this.current_user.id,
 				}
 			}

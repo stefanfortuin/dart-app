@@ -87,6 +87,23 @@ class User extends Authenticatable
 		});
 	}
 
+	// Legs
+	public function getTotalLegsWonAttribute(){
+		return $this->games->reduce(function ($carry, $game){
+			return $carry + $game->sets->reduce(function ($carry, $set) {
+				return $carry + $set->legs->where('winner_id', $this->id)->count();
+			});
+		});
+	}
+
+	public function getTotalLegsAttribute(){
+		return $this->games->reduce(function ($carry, $game) {
+			return $carry + $game->sets->reduce(function ($carry, $set) {
+				return $carry + $set->legs->count();
+			});
+		});
+	}
+
 	// Turns
 	public function getAveragePerTurnAttribute(){
 		return round($this->turns->average('thrown_score'), 2);

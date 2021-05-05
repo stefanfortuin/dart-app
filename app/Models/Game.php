@@ -12,6 +12,7 @@ class Game extends Model
 
 	protected $fillable = [
 		'sets',
+		'start_score',
         'winner_id',
     ];
 
@@ -58,6 +59,6 @@ class Game extends Model
 	}
 
 	public function getPlayedAtAttribute(){
-		return Carbon::parse($this->created_at)->locale('nl_NL')->setTimezone('Europe/Amsterdam')->translatedFormat('j F Y h:i');
+		return Carbon::parse($this->created_at)->locale('nl_NL')->setTimezone('Europe/Amsterdam')->translatedFormat('j F Y H:i');
 	}
 }

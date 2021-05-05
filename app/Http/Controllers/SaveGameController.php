@@ -23,6 +23,7 @@ class SaveGameController extends Controller
 			]);
 
 			$game->sets = $request_game['sets'];
+			$game->start_score = $request_game['start_score'];
 			$game->save();
 
 			$game->users()->sync($users_only_ids);

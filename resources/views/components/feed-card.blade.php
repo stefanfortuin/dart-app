@@ -8,10 +8,7 @@
         <div class="text-sm font-light opacity-75">{{$game->played_at}}</div>
     </div>
     <div class="grid grid-col-8">
-        <div class="col-span-6">
-            <x-feed-card-graph />
-        </div>
-        <div class="col-span-2 grid grid-cols-2">
+        <div class="col-span-6 grid grid-cols-2">
             <div class="flex flex-col leading-4">
                 <div class="text-sm font-light">Sets.</div>
                 <div class="">{{$game->setsWonForUser($game->users[0]->id)}}</div>

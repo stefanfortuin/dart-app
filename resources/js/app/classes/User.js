@@ -81,6 +81,7 @@ export default class User {
 	clearTurns(){
 		this.turns = [];
 		this.score_to_throw_from = this.start_score;
+		this.last_turn = undefined;
 		this.updateStats();
 	}
 
