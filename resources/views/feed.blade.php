@@ -4,5 +4,4 @@
             <x-feed-card :game="$game"/>
         @endforeach
     </div>
-    <script src="{{mix('js/feed.js')}}"></script>
 </x-base>
