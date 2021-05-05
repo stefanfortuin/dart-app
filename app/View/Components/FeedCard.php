@@ -25,6 +25,6 @@ class FeedGame extends Component
      */
     public function render()
     {
-        return view('components.feed-game');
+        return view('components.feed-card');
     }
 }
