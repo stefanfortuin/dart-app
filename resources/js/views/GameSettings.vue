@@ -5,6 +5,7 @@
         id="player_one"
         label="Speler 1"
         v-model="users.user_one.name"
+        :readonly="(users.user_one.inserted) ? true : false" 
       />
       <input-text-field
         id="player_two"
@@ -52,6 +53,7 @@ export default {
   created() {
     if(window.logged_in_user){
       this.users.user_one = window.logged_in_user;
+      this.users.user_one.inserted = true
     }
   },
   components: {

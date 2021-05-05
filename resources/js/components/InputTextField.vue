@@ -5,6 +5,7 @@
 			type="text"
 			:value="modelValue"
 			:id="id"
+			:readonly="readonly"
 			placeholder="Phil Taylor"
 			@input="$emit('update:modelValue', $event.target.value)"
 			class="border-2 border-blue-200 py-1 px-3 placeholder-blue-100 rounded-lg text-3xl font-bold text-blue-500"
@@ -17,7 +18,8 @@ export default {
 	props: [
 		'modelValue',
 		'id',
-		'label'
+		'label',
+		'readonly'
 	]
 }
 </script>
