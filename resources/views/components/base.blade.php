@@ -10,6 +10,10 @@
 </head>
 
 <body class="font-sans antialiased max-w-md mx-auto p-3 flex flex-col">
+	{{-- @if ('/'.Request::segment(1) != '/' || '/'.Request::segment(1) == '/play')
+		<x-page-bar />
+	@endif --}}
+
 	<div class="h-full overflow-scroll">
 		{{ $slot }}
 	</div>

@@ -1,3 +1,3 @@
 <x-base>
-    Homepage
+    Dit is de home pagina
 </x-base>
