@@ -14,6 +14,7 @@ class DartLeg extends Model
 		'turns',
 		'set_id',
 		'winner_id',
+		'game_id'
 	];
 
 	protected $with = ['turns'];
@@ -27,6 +28,12 @@ class DartLeg extends Model
 	}
 
 	public function setTurnsAttribute($turns){
-		$this->turns()->createMany($turns);
+		// $this->turns()->createMany($turns);
+
+		foreach ($turns as $turn) {
+			$turn['game_id'] = $this->game_id;
+			$new_turn = $this->turns()->create($turn);
+			$new_turn->save();
+		}
 	}
 }

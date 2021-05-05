@@ -46,14 +46,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-	protected $with = ['games', 'turns'];
+	// protected $with = ['games', 'turns'];
 
 	public function turns(){
 		return $this->hasMany(DartTurn::class);
 	}
 
 	public function games(){
-		return $this->belongsToMany(Game::class, 'game_user');
+		return $this->belongsToMany(Game::class, 'game_user')->orderByDesc('created_at');
 	}
 
 	public function getLatestGameDateAttribute(){

@@ -10,8 +10,10 @@
 </head>
 
 <body class="font-sans antialiased max-w-md mx-auto p-3 flex flex-col">
-	{{ $slot }}
-
+	<div class="h-full overflow-scroll">
+		{{ $slot }}
+	</div>
+		
 	<x-nav-bar/>
 </body>
 

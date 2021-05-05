@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Game extends Model
 {
@@ -36,11 +37,27 @@ class Game extends Model
 		return $this->hasOne(User::class, 'winner_id');
 	}
 
+	public function setsWonForUser($user_id){
+		return $this->sets()->where('winner_id', $user_id)->count();
+	}
+
+	public function legsWonForUser($user_id){
+		return $this->legs()->where('winner_id', $user_id)->count();
+	}
+
+	public function averagePerTurnForUser($user_id){
+		return round($this->turns()->where('user_id', $user_id)->average('thrown_score'), 2);
+	}
+
 	public function setSetsAttribute($sets){
 		foreach ($sets as $set) {
 			$new_set = $this->sets()->create(['winner_id' => $set['winner_id']]);
 			$new_set->legs = $set['legs'];
 			$new_set->save();
 		}
+	}
+
+	public function getPlayedAtAttribute(){
+		return Carbon::parse($this->created_at)->locale('nl_NL')->setTimezone('Europe/Amsterdam')->translatedFormat('j F Y h:i');
 	}
 }

@@ -32,7 +32,7 @@ class DartSet extends Model
 
 	public function setLegsAttribute($legs){
 		foreach ($legs as $leg) {
-			$new_leg = $this->legs()->create(['winner_id' => $leg['winner_id']]);
+			$new_leg = $this->legs()->create(['winner_id' => $leg['winner_id'], 'game_id' => $this->game_id]);
 			$new_leg->turns = $leg['turns'];
 			$new_leg->save();
 		}

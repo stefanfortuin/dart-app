@@ -18,7 +18,9 @@ class CreateDartlegsTable extends Migration
             $table->timestamps();
 			$table->unsignedBigInteger('set_id')->nullable();
 			$table->unsignedBigInteger('winner_id')->nullable();
+            $table->unsignedBigInteger('game_id')->nullable();
 
+			$table->foreign('game_id')->references('id')->on('games');
 			$table->foreign('set_id')->references('id')->on('dart_sets');
 			$table->foreign('winner_id')->references('id')->on('users');
         });

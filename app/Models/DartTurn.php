@@ -12,6 +12,7 @@ class DartTurn extends Model
 	protected $fillable = [
         'leg_id',
         'user_id',
+		'game_id',
 		'thrown_score',
 		'old_score_to_throw_from',
 		'new_score_to_throw_from'
@@ -23,5 +24,9 @@ class DartTurn extends Model
 
 	public function user(){
 		return $this->belongsTo(User::class, 'user_id');
+	}
+
+	public function game(){
+		return $this->belongsTo(Game::class, 'game_id');
 	}
 }

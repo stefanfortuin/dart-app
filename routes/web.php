@@ -34,8 +34,11 @@ Route::get('/me', function () {
 })->middleware('auth');
 
 Route::get('/feed', function () {
-    return view('feed');
-});
+	$user = User::find(Auth::id());
+	$games = $user->games;
+
+    return view('feed', ['games' => $games]);
+})->middleware('auth');
 
 Route::get('/profile', function () {
 	$user = Auth::user();
