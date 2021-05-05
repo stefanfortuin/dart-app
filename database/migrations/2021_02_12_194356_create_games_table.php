@@ -16,7 +16,7 @@ class CreateGamesTable extends Migration
         Schema::create('games', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-			$table->unsignedBigInteger('winner_id');
+			$table->unsignedBigInteger('winner_id')->nullable();
 
 			$table->foreign('winner_id')->references('id')->on('users');
 

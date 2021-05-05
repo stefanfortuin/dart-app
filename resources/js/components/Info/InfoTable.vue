@@ -4,7 +4,7 @@
 			<div class="w-4/12"></div>
 			<div
 				v-for="user in users"
-				:key="user.id"
+				:key="user.uuid"
 				class="w-4/12 flex px-2 items-baseline justify-end"
 			>
 				<div

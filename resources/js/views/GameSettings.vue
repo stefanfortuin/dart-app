@@ -4,12 +4,12 @@
       <input-text-field
         id="player_one"
         label="Speler 1"
-        v-model="data.user_one"
+        v-model="users.user_one.name"
       />
       <input-text-field
         id="player_two"
         label="Speler 2"
-        v-model="data.user_two"
+        v-model="users.user_two.name"
       />
       <input-number-field
         label="Start score"
@@ -40,14 +40,19 @@ import ButtonAction from "../components/ButtonAction.vue";
 export default {
   data() {
     return {
-      data: {
-        user_one: "",
-        user_two: "",
+      users: {
+        user_one: { id: null, name: "" },
+        user_two: { id: null, name: "" },
       },
       start_score: 501,
       total_sets: 1,
       total_legs: 1,
     };
+  },
+  created() {
+    if(window.logged_in_user){
+      this.users.user_one = window.logged_in_user;
+    }
   },
   components: {
     InputTextField,
@@ -61,14 +66,15 @@ export default {
 
     usersAreNotTheSame() {
       return (
-        this.data.user_one.toLowerCase() != this.data.user_two.toLowerCase()
+        this.users.user_one.name.toLowerCase() !=
+        this.users.user_two.name.toLowerCase()
       );
     },
 
     fieldsAreNotEmpty() {
       return (
-        this.data.user_one != "" &&
-        this.data.user_two != "" &&
+        this.users.user_one.name != "" &&
+        this.users.user_two.name != "" &&
         this.start_score != ""
       );
     },
@@ -89,18 +95,8 @@ export default {
       this.setTotalSets(this.total_sets);
       this.setTotalLegs(this.total_legs);
 
-      fetch(`/api/users`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(this.data),
-      })
-        .then((response) => response.json())
-        .then((response) => {
-          this.setUsers(response);
-          this.goToNextStep();
-        });
+      this.setUsers(this.users);
+      this.goToNextStep();
     },
   },
 };

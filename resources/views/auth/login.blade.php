@@ -28,7 +28,7 @@
 
 			<div class="flex items-center mb-2">
 				<input type="checkbox" id="remember" name="remember" {{ old('remember') ? 'checked' : '' }} class="mr-1 h-5 w-5 border-blue-500 text-blue-500">
-				<label for="remember" class="text-blue-500 font-semibold">Onthou mij.</label>
+				<label for="remember" class="text-blue-400 font-semibold">Onthou mij.</label>
 			</div>
 		</form>
 

@@ -15,13 +15,13 @@
         <!-- the animated user paths -->
         <g
           v-for="user in users"
-          :key="user.id"
-          :id="`graph_element_${user.id}`"
+          :key="user.uuid"
+          :id="`graph_element_${user.uuid}`"
           :class="user.is_on_turn ? 'stroke-white' : 'stroke-lightblue'"
         >
           <path
-            :ref="`graph_line_${user.id}`"
-            :id="`graph_line_${user.id}`"
+            :ref="`graph_line_${user.uuid}`"
+            :id="`graph_line_${user.uuid}`"
             :d="getLinePath(user)"
             fill="none"
             stroke-width="3"
@@ -217,7 +217,7 @@ export default {
     },
 
     getLinePath(user) {
-      let element = this.$refs[`graph_line_${user.id}`];
+      let element = this.$refs[`graph_line_${user.uuid}`];
 
       let points = this.getPointsFromTurns(user.turns);
 

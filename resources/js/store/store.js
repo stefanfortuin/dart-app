@@ -20,13 +20,19 @@ export default createStore({
 	},
 	mutations: {
 		setUsers(state, users) {
-			users.forEach(user => {
-				let new_user = new User()
-									.setDataFromDatabase(user)
-									.setStartScore(state.start_score)
-									
-				state.users.push(new_user)
-			});
+			let user_one = new User()
+								.setDataFromObject(users.user_one)
+								.setUuid(1)
+								.setStartScore(state.start_score)
+								
+			state.users.push(user_one)
+
+			let user_two = new User()
+								.setDataFromObject(users.user_two)
+								.setUuid(2)
+								.setStartScore(state.start_score)
+								
+			state.users.push(user_two)
 		},
 
 		goToNextStep(state) {

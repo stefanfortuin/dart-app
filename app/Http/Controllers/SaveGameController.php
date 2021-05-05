@@ -11,7 +11,9 @@ class SaveGameController extends Controller
 	{
 		$request_game = $request->game;
 		$users = collect($request->users);
-		$users_only_ids = $users->map(function ($user) {
+		$users_only_ids = $users->filter(function ($user) {
+			return $user['id'] != null;
+		})->map(function ($user) {
 			return $user['id'];
 		});
 		
@@ -28,7 +30,11 @@ class SaveGameController extends Controller
 			$game->refresh();
 		}
 		catch(\Exception $e){
-			return response()->json(['success' => false, 'message' => 'Kon het spel niet opslaan']);
+			return response()->json([
+				'success' => false, 
+				'message' => 'Kon het spel niet opslaan',
+				'error' => env('APP_DEBUG') == true ? $e : '', 
+			]);
 		}
 		
 		return response()->json(['success' => true, 'message' => 'Spel opgeslagen!']);

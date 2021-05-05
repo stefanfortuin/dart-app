@@ -11,7 +11,7 @@
 
 			<user-card
 				v-for="user in users"
-				:key="user.id"
+				:key="user.uuid"
 				:user="user"
 			/>
 

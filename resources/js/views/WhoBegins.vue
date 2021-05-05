@@ -9,7 +9,7 @@
 			class="p-4 bg-blue-500 font-bold h-48 rounded-lg shadow-md text-white flex flex-col justify-between my-2"
 		>
 			<user-name :user="user" />
-			<div v-if="user.latest_game != false" class="font-thin">
+			<div v-if="user.latest_game && user.latest_game != false" class="font-thin">
 				Laatste spel <span class="font-semibold">{{user.latest_game}}</span>
 			</div>
 			<div v-else class="font-thin">

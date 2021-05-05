@@ -20,10 +20,15 @@ export default class User {
 		this.updateStats();
 	}
 
-	setDataFromDatabase(user){
+	setDataFromObject(user){
 		for (const key in user) {
 			this[key] = user[key]
 		}
+		return this;
+	}
+
+	setUuid(id){
+		this.uuid = id
 		return this;
 	}
 

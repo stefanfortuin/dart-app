@@ -16,6 +16,6 @@ use App\Http\Controllers\SaveGameController;
 |
 */
 
-Route::post('/users', [DartController::class, 'users']);
+// Route::post('/users', [DartController::class, 'users']);
 Route::post('/game', [SaveGameController::class, 'game']);
 Route::get('/checkout/{score}', [DartController::class, 'checkout']);

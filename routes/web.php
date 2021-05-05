@@ -2,6 +2,7 @@
 
 use App\Models\Game;
 use App\Models\User;
+use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -19,12 +20,18 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/play', function () {
-    return view('app');
+	$logged_in_user = new UserResource(Auth::user());
+    return view('app', ['logged_in_user' => $logged_in_user]);
 });
 
 Route::get('/', function () {
     return view('home');
 });
+
+Route::get('/me', function () {
+	$user = Auth::user();
+    return new UserResource($user);
+})->middleware('auth');
 
 Route::get('/feed', function () {
     return view('feed');
