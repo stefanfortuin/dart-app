@@ -1,7 +1,7 @@
 <x-base>
 	<div class="w-full h-full px-4 flex flex-col justify-center items-center">
 
-			<form id="register-form" action="{{route('register')}}" method="post" class="w-full">
+			<form id="register-form" action="{{route('register')}}" method="post" class="w-full flex flex-col items-center">
 				@csrf
 
 				<div class="flex flex-col mb-2">
@@ -43,12 +43,8 @@
 					<input type="password" id="password_confirmation" name="password_confirmation" required
 						class="border-2 border-blue-200 py-1 px-3 placeholder-blue-100 rounded-lg text-xl">
 				</div>
-			</form>
 
-			<a onclick="event.preventDefault(); document.getElementById('register-form').submit();"
-				href="{{route('register')}}"
-				class="w-1/2 font-semibold text-lg text-white p-2 rounded-lg shadow my-2 flex justify-center items-center bg-blue-500 select-none">
-				Registreren
-			</a>
+				<input type="submit" value="Registreren" class="w-1/2 font-semibold text-lg text-white p-2 rounded-lg shadow my-2 flex justify-center items-center bg-blue-500 select-none">
+			</form>
 	</div>
 </x-base>
