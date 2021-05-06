@@ -4,7 +4,7 @@
 			<form id="register-form" action="{{route('register')}}" method="post" class="w-full flex flex-col items-center">
 				@csrf
 
-				<div class="flex flex-col mb-2">
+				<div class="flex flex-col w-full mb-2">
 					<label for="name" class="mb-1 text-lg font-semibold text-blue-400">Naam</label>
 					<input type="name" id="name" name="name" value="{{old('name')}}" required autocomplete="name"
 						autofocus class="border-2 border-blue-200 py-1 px-3 placeholder-blue-100 rounded-lg text-xl">
@@ -15,7 +15,7 @@
 					@enderror
 				</div>
 
-				<div class="flex flex-col mb-2">
+				<div class="flex flex-col w-full mb-2">
 					<label for="email" class="mb-1 text-lg font-semibold text-blue-400">Email</label>
 					<input type="email" id="email" name="email" value="{{old('email')}}" required autocomplete="email"
 						autofocus class="border-2 border-blue-200 py-1 px-3 placeholder-blue-100 rounded-lg text-xl">
@@ -26,7 +26,7 @@
 					@enderror
 				</div>
 
-				<div class="flex flex-col mb-2">
+				<div class="flex flex-col w-full mb-2">
 					<label for="password" class="mb-1 text-lg font-semibold text-blue-400">Wachtwoord</label>
 					<input type="password" id="password" name="password" required
 						class="border-2 border-blue-200 py-1 px-3 placeholder-blue-100 rounded-lg text-xl">
@@ -37,14 +37,14 @@
 					@enderror
 				</div>
 
-				<div class="flex flex-col mb-2">
+				<div class="flex flex-col w-full mb-2">
 					<label for="password_confirmation" class="mb-1 text-lg font-semibold text-blue-400">Wachtwoord
 						bevestigen</label>
 					<input type="password" id="password_confirmation" name="password_confirmation" required
 						class="border-2 border-blue-200 py-1 px-3 placeholder-blue-100 rounded-lg text-xl">
 				</div>
 
-				<input type="submit" value="Registreren" class="w-1/2 font-semibold text-lg text-white p-2 rounded-lg shadow my-2 flex justify-center items-center bg-blue-500 select-none">
+				<input type="submit" value="Registreren" class="w-full font-semibold text-lg text-white p-2 rounded-lg shadow my-2 flex justify-center items-center bg-blue-500 select-none">
 			</form>
 	</div>
 </x-base>
