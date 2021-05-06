@@ -116,7 +116,7 @@ select:-webkit-autofill:focus {
 }
 
 html, body{
-	@apply text-gray-900;
+	@apply text-gray-800;
 	font-family: 'Poppins', sans-serif;
 	height: calc(100% - 1.75rem);
 }
