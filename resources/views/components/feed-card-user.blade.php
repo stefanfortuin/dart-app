@@ -1,7 +1,7 @@
-<div class="flex justify-between items-baseline my-3 w-full {{($align == 'right') ? 'flex-row-reverse' : ''}}">
+<div class="flex justify-between items-center my-2 w-full {{($align == 'right') ? 'flex-row-reverse' : ''}}">
     <x-avatar :user="$user" />
-    <x-user-name>
+    <x-user-name :textAlign="$align">
         {{($user != null) ? $user->name : 'gast'}}
     </x-user-name>
-    <div class="flex-shrink-0">{{$game->setsWonForUser(($user != null) ? $user->id : null)}}</div>
+    <div class="flex-shrink-0 font-bold text-xl flex justify-center items-center rounded">{{$game->setsWonForUser(($user != null) ? $user->id : null)}}</div>
 </div>
