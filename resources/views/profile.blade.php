@@ -11,18 +11,11 @@
 		</div>
 	</div>
 
-	<div>
-		<h3 class="mb-3 font-bold text-lg">Statistieken</h3>
-		<div class="grid grid-cols-2 grid-rows-2 gap-2">
-			<x-stats-block title="Gewonnen" :metric="$user->total_games_won" />
-			<x-stats-block title="Verloren" :metric="$user->total_games_lost" />
-			<x-stats-block title="Sets" :metric="$user->total_sets_won" />
-			<x-stats-block title="Legs" :metric="$user->total_legs_won" />
-			<x-stats-block title="Total Sets" :metric="$user->total_sets" />
-			<x-stats-block title="Total Legs" :metric="$user->total_legs" />
-		</div>
+	<div class="my-3">
+		<x-stats-block title="Gewonnen" :max="$user->total_games" :value="$user->total_games_won" />
+		<x-stats-block title="Sets Gewonnen" :max="$user->total_sets" :value="$user->total_sets_won" />
+		<x-stats-block title="Legs Gewonnen" :max="$user->total_legs" :value="$user->total_legs_won" />
 	</div>
-
 
 
 	<a onclick="event.preventDefault(); document.getElementById('logout-form').submit();"

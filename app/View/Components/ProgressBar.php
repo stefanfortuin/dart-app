@@ -4,24 +4,24 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class StatsBlock extends Component
+class ProgressBar extends Component
 {
-	public $title;
-
-	public $max;
+    public $max;
 
     public $value;
-	
+
+    public $width;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($title, $max, $value)
+    public function __construct($max, $value)
     {
-        $this->title = $title;
-		$this->max = $max;
+        $this->max = $max;
         $this->value = $value;
+        $this->width = $this->calculateWidth();
     }
 
     /**
@@ -31,6 +31,10 @@ class StatsBlock extends Component
      */
     public function render()
     {
-        return view('components.stats-block');
+        return view('components.progress-bar');
+    }
+
+    private function calculateWidth(){
+        return $this->value / $this->max * 100;
     }
 }

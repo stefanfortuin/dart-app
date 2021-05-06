@@ -1,8 +1,11 @@
-<div class="py-1 px-3 flex flex-col items-baseline justify-between border-2 border-blue-400 rounded-lg ">
-	<div class="text-lg font-bold text-gray-700 leading-6">
-		{{$metric}}
+<div class="flex flex-col mb-2">
+	<div class="flex justify-between text-sm">
+		<div class="font-thin">
+			{{$title}}
+		</div>
+		<div class="font-bold">
+			{{round($value / $max * 100, 2)}}%
+		</div>
 	</div>
-	<div class="text-sm font-light text-gray-600">
-		{{$title}}
-	</div>
+	<x-progress-bar :max="$max" :value="$value" />
 </div>
