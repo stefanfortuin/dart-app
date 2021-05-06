@@ -4,16 +4,18 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class UserName extends Component
+class Avatar extends Component
 {
+    public $user;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($user)
     {
-
+        $this->user = $user;
     }
 
     /**
@@ -23,6 +25,6 @@ class UserName extends Component
      */
     public function render()
     {
-        return view('components.user-name');
+        return view('components.avatar');
     }
 }

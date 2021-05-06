@@ -1,3 +1,3 @@
-<div class="text-xl overflow-hidden whitespace-nowrap overflow-ellipsis" style="max-width: 90%">
-    {{ $name }}
+<div class="overflow-hidden whitespace-nowrap overflow-ellipsis" style="max-width: 90%">
+    {{ $slot }}
 </div>

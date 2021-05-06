@@ -4,16 +4,21 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class UserName extends Component
+class FeedCardUserStats extends Component
 {
+    public $title;
+
+    public $metric;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($title, $metric)
     {
-
+        $this->title = $title;
+        $this->metric = $metric;
     }
 
     /**
@@ -23,6 +28,6 @@ class UserName extends Component
      */
     public function render()
     {
-        return view('components.user-name');
+        return view('components.feed-card-user-stats');
     }
 }

@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use App\Models\Match;
 use App\Models\DartTurn;
+use Illuminate\Support\Str;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -54,6 +55,10 @@ class User extends Authenticatable
 
 	public function games(){
 		return $this->belongsToMany(Game::class, 'game_user')->orderByDesc('created_at');
+	}
+
+	public function getInitialsAttribute(){
+		return Str::of($this->name)->substr(0,2)->upper();
 	}
 
 	public function getLatestGameDateAttribute(){
