@@ -11,11 +11,13 @@
 		</div>
 	</div>
 
-	<div class="my-3">
-		<x-stats-block title="Gewonnen" :max="$user->total_games" :value="$user->total_games_won" />
-		<x-stats-block title="Sets Gewonnen" :max="$user->total_sets" :value="$user->total_sets_won" />
-		<x-stats-block title="Legs Gewonnen" :max="$user->total_legs" :value="$user->total_legs_won" />
-	</div>
+	@if (count($user->games) > 0)
+		<div class="my-3">
+			<x-stats-block title="Gewonnen" :max="$user->total_games" :value="$user->total_games_won" />
+			<x-stats-block title="Sets Gewonnen" :max="$user->total_sets" :value="$user->total_sets_won" />
+			<x-stats-block title="Legs Gewonnen" :max="$user->total_legs" :value="$user->total_legs_won" />
+		</div>
+	@endif
 
 
 	<a onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
