@@ -14,6 +14,7 @@ require('laravel-mix-bundle-analyzer');
 
 mix.js('resources/js/app/app.js', 'public/js')
 	.copy('resources/assets/sprite.svg', 'public/assets')
+	.copy('resources/assets/fonts/*', 'public/assets/fonts')
 	.vue({runtimeOnly: true})
 	.postCss('resources/css/app.css', 'public/css', [
 		require('tailwindcss'),

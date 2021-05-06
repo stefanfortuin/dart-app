@@ -1,5 +1,20 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
-    "/assets/sprite.svg": "/assets/sprite.svg"
+    "/assets/sprite.svg": "/assets/sprite.svg",
+    "/assets/fonts/poppins-v15-latin-600.eot": "/assets/fonts/poppins-v15-latin-600.eot",
+    "/assets/fonts/poppins-v15-latin-600.svg": "/assets/fonts/poppins-v15-latin-600.svg",
+    "/assets/fonts/poppins-v15-latin-600.ttf": "/assets/fonts/poppins-v15-latin-600.ttf",
+    "/assets/fonts/poppins-v15-latin-600.woff": "/assets/fonts/poppins-v15-latin-600.woff",
+    "/assets/fonts/poppins-v15-latin-600.woff2": "/assets/fonts/poppins-v15-latin-600.woff2",
+    "/assets/fonts/poppins-v15-latin-700.eot": "/assets/fonts/poppins-v15-latin-700.eot",
+    "/assets/fonts/poppins-v15-latin-700.svg": "/assets/fonts/poppins-v15-latin-700.svg",
+    "/assets/fonts/poppins-v15-latin-700.ttf": "/assets/fonts/poppins-v15-latin-700.ttf",
+    "/assets/fonts/poppins-v15-latin-700.woff": "/assets/fonts/poppins-v15-latin-700.woff",
+    "/assets/fonts/poppins-v15-latin-700.woff2": "/assets/fonts/poppins-v15-latin-700.woff2",
+    "/assets/fonts/poppins-v15-latin-regular.eot": "/assets/fonts/poppins-v15-latin-regular.eot",
+    "/assets/fonts/poppins-v15-latin-regular.svg": "/assets/fonts/poppins-v15-latin-regular.svg",
+    "/assets/fonts/poppins-v15-latin-regular.ttf": "/assets/fonts/poppins-v15-latin-regular.ttf",
+    "/assets/fonts/poppins-v15-latin-regular.woff": "/assets/fonts/poppins-v15-latin-regular.woff",
+    "/assets/fonts/poppins-v15-latin-regular.woff2": "/assets/fonts/poppins-v15-latin-regular.woff2"
 }
