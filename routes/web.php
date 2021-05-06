@@ -37,14 +37,14 @@ Route::get('/me', function () {
 })->middleware('auth');
 
 Route::get('/feed', function () {
-	$user = User::find(Auth::id());
+	$user = User::with('games')->find(Auth::id());
 	$games = $user->games;
 
     return view('feed', ['games' => $games]);
 })->middleware('auth');
 
 Route::get('/profile', function () {
-	$user = Auth::user();
+	$user = User::with('games')->find(Auth::id());
 
     return view('profile', ['user' => $user]);
 
