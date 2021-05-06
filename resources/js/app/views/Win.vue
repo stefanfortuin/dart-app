@@ -34,13 +34,16 @@ export default {
 		GraphTurns
 	},
 	created() {
-		this.uploadGame();
+		if(window.logged_in_user)
+			this.uploadGame();
 	},
 	computed: {
 		...mapState({
 			users: state => state.users,
 			sets: state => state.sets,
 			start_score: state => state.start_score,
+			total_sets: state => state.total_sets,
+			total_legs: state => state.total_legs,
 			current_user: state => state.users.find(user => user.is_on_turn)
 		}),
 
@@ -71,14 +74,17 @@ export default {
 				game: {
 					sets: this.sets,
 					start_score: this.start_score,
+					total_sets: this.total_sets,
+					total_legs: this.total_legs,
 					winner_id: this.current_user.id,
 				}
 			}
 
-			fetch(`/api/game`, {
+			fetch(`/play/upload-game`, {
 				method: 'POST',
 				headers: {
-					'Content-Type': 'application/json'
+					'Content-Type': 'application/json',
+					'X-CSRF-Token': window.csrf_token
 				},
 				body: JSON.stringify(game),
 			})

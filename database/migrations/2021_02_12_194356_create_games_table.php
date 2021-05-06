@@ -17,6 +17,8 @@ class CreateGamesTable extends Migration
             $table->id();
             $table->timestamps();
             $table->integer('start_score')->nullable();
+            $table->integer('total_sets')->nullable();
+            $table->integer('total_legs')->nullable();
 			$table->unsignedBigInteger('winner_id')->nullable();
 
 			$table->foreign('winner_id')->references('id')->on('users');

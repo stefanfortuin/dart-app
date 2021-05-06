@@ -24,6 +24,8 @@ class SaveGameController extends Controller
 
 			$game->sets = $request_game['sets'];
 			$game->start_score = $request_game['start_score'];
+			$game->total_sets = $request_game['total_sets'];
+			$game->total_legs = $request_game['total_legs'];
 			$game->save();
 
 			$game->users()->sync($users_only_ids);

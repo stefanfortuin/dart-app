@@ -5,6 +5,7 @@ use App\Models\User;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SaveGameController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,8 @@ Route::get('/play', function () {
 	$logged_in_user = new UserResource(Auth::user());
     return view('app', ['logged_in_user' => $logged_in_user]);
 });
+
+Route::post('/play/upload-game', [SaveGameController::class, 'game'])->middleware('auth');
 
 Route::get('/', function () {
     return view('home');
