@@ -79,6 +79,10 @@ class User extends Authenticatable
 		return $this->games->where('winner_id', $this->id)->count();
 	}
 
+	public function getTotalGamesLostAttribute(){
+		return $this->total_games - $this->total_games_won;
+	}
+
 	// Sets
 	public function getTotalSetsAttribute(){
 		return $this->games->reduce(function ($carry, $game) {

@@ -1,6 +1,6 @@
 <x-base>
 
-	<div class="w-full h-12 flex justify-between">
+	<div class="w-full h-12 flex justify-between items-center border-b-2 border-blue-200">
 		<div class="font-bold text-2xl">
 			{{$user->name}}
 		</div>
@@ -15,6 +15,7 @@
 		<h3 class="mb-3 font-bold text-lg">Statistieken</h3>
 		<div class="grid grid-cols-2 grid-rows-2 gap-2">
 			<x-stats-block title="Gewonnen" :metric="$user->total_games_won" />
+			<x-stats-block title="Verloren" :metric="$user->total_games_lost" />
 			<x-stats-block title="Sets" :metric="$user->total_sets_won" />
 			<x-stats-block title="Legs" :metric="$user->total_legs_won" />
 			<x-stats-block title="Total Sets" :metric="$user->total_sets" />
