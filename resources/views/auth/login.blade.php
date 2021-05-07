@@ -1,5 +1,5 @@
 <x-base>
-	<div class="w-full h-full px-4 flex flex-col justify-center items-center">
+	<div class="w-full h-full flex flex-col justify-center items-center">
 
 		<form id="login-form" action="{{route('login')}}" method="post" class="w-full flex flex-col items-center">
 			@csrf
