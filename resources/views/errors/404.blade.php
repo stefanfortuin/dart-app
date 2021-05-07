@@ -3,7 +3,7 @@
         <div class="text-red-500 text-3xl">
             Oei, je gooide mis.
         </div>
-        <div class="text-blue-500 text-2xl">
+        <div class="text-blue-500 text-xl">
             Deze pagina bestaat niet.
         </div>
         <svg class="w-full h-64">
