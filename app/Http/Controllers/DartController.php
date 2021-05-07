@@ -34,15 +34,33 @@ class DartController extends Controller
 				"T20",
 				"Bull"
 			],
+			"169" => [
+				"Kan niet uit",
+			],
+			"168" => [
+				"Kan niet uit",
+			],
 			"167" => [
 				"T20",
 				"T19",
 				"Bull"
 			],
+			"166" => [
+				"Kan niet uit",
+			],
+			"165" => [
+				"Kan niet uit",
+			],
 			"164" => [
 				"T19",
 				"T19",
 				"Bull"
+			],
+			"163" => [
+				"Kan niet uit",
+			],
+			"162" => [
+				"Kan niet uit",
 			],
 			"161" => [
 				"T20",
@@ -53,6 +71,9 @@ class DartController extends Controller
 				"T20",
 				"T20",
 				"D20"
+			],
+			"159" => [
+				"Kan niet uit",
 			],
 			"158" => [
 				"T20",
@@ -629,6 +650,7 @@ class DartController extends Controller
 		];
 
 		$result = $checkout[$score];
+		if(!$result) return "Kan niet uit";
 		return $result;
 	}
 }

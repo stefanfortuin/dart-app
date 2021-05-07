@@ -34,10 +34,13 @@
       </div>
       <div
         @click="startspeech()"
-        class="rounded flex justify-center items-center max-h-12 active:bg-blue-500 active:text-white "
+        class="rounded flex justify-center items-center max-h-12 active:bg-blue-500 active:text-white"
         :class="isListening ? 'bg-blue-500' : 'bg-blue-100'"
       >
-        <svg class="icon fill-current" :class="isListening ? 'text-white' : 'text-blue-900'">
+        <svg
+          class="icon fill-current"
+          :class="isListening ? 'text-white' : 'text-blue-900'"
+        >
           <use href="/assets/sprite.svg#microphone"></use>
         </svg>
       </div>
@@ -81,7 +84,6 @@ export default {
       recognition: undefined,
       recognitionList: undefined,
       isListening: false,
-
     };
   },
   created() {
@@ -89,8 +91,6 @@ export default {
       window.SpeechRecognition || window.webkitSpeechRecognition;
     let SpeechGrammarList =
       window.SpeechGrammarList || window.webkitSpeechGrammarList;
-    let SpeechRecognitionEvent =
-      window.SpeechRecognitionEvent || window.webkitSpeechRecognitionEvent;
 
     this.recognition = new SpeechRecognition();
     this.recognitionList = new SpeechGrammarList();
@@ -111,21 +111,17 @@ export default {
 
     this.recognition.onresult = (event) => {
       let number = event.results[0][0].transcript;
-      console.log(number)
+      console.log(number);
       if (numbers.includes(number)) {
         let numbers = number.split("");
-        console.log(numbers);
 
-        numbers.forEach(n => {
-          setTimeout(() => {
+        numbers.forEach((n) => {
             this.addNumberToScore(n);
-          }, 200);
-        })
+        });
 
         setTimeout(() => {
           this.applyScore();
-        }, 650);
-
+        }, 500);
       } else {
         this.notify({
           title: `We konden geen score herkennen.`,
@@ -141,10 +137,10 @@ export default {
 
     this.recognition.onnomatch = (event) => {
       this.notify({
-          title: `We konden geen score herkennen.`,
-          type: "error",
-        });
-    }
+        title: `We konden geen score herkennen.`,
+        type: "error",
+      });
+    };
   },
   computed: {
     ...mapState({
@@ -161,7 +157,7 @@ export default {
     }),
 
     startspeech() {
-      if(this.isListening){
+      if (this.isListening) {
         this.isListening = !this.isListening;
         this.recognition.stop();
         return;
@@ -191,17 +187,17 @@ export default {
         return;
       }
 
-      if (this.scoreIsUnthrowableCheckout(score)) {
+      if (this.scoreIsUnthrowable(score)) {
         this.notify({
-          title: `${score} is niet uit te gooien.`,
+          title: `${score} is niet te gooien.`,
           type: "error",
         });
         return;
       }
 
-      if (this.scoreIsUnthrowable(score)) {
+      if (this.scoreIsNotValidToCheckout(score)) {
         this.notify({
-          title: `${score} is niet te gooien.`,
+          title: `${score} is niet uit te gooien.`,
           type: "error",
         });
         return;
@@ -219,12 +215,15 @@ export default {
       return this.unthrowableScores.includes(score);
     },
 
-    scoreIsUnthrowableCheckout(score) {
+    userIsAbleToCheckout() {
+      return this.user_on_turn.score_to_throw_from <= 170;
+    },
+
+    scoreIsNotValidToCheckout(score) {
       return (
-        (score > 170 &&
-          this.user_on_turn.last_turn &&
-          this.user_on_turn.last_turn.new_score_to_throw_from == score) ||
-        this.unthrowableEndScores.includes(score)
+        this.unthrowableEndScores.includes(score) ||
+        (score > 170 && this.user_on_turn.score_to_throw_from > 170 &&
+          this.user_on_turn.score_to_throw_from <= 180)
       );
     },
   },
