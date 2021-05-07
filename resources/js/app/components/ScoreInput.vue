@@ -23,13 +23,24 @@
     >
       {{ i }}
     </div>
-    <div
-      @click="backspace()"
-      class="rounded flex justify-center items-center max-h-12 bg-blue-100 active:bg-blue-400 text-blue-900"
-    >
-      <svg class="icon">
-        <use href="/assets/sprite.svg#backspace"></use>
-      </svg>
+    <div class="grid grid-cols-2 gap-1">
+      <div
+        @click="backspace()"
+        class="rounded flex justify-center items-center max-h-12 bg-blue-100 active:bg-blue-400 text-blue-900"
+      >
+        <svg class="icon">
+          <use href="/assets/sprite.svg#backspace"></use>
+        </svg>
+      </div>
+      <div
+        @click="startspeech()"
+        class="rounded flex justify-center items-center max-h-12 bg-blue-100 active:bg-blue-400 text-blue-900"
+        :class="isListening ? 'bg-blue-400' : ''"
+      >
+        <svg class="icon">
+          <use href="/assets/sprite.svg#microphone"></use>
+        </svg>
+      </div>
     </div>
     <div
       @click="addNumberToScore(0)"
@@ -49,15 +60,86 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 export default {
   props: ["min", "max"],
   data() {
     return {
       score: [],
+      unthrowableScores: [
+        "179",
+        "178",
+        "176",
+        "175",
+        "173",
+        "172",
+        "169",
+        "166",
+        "163",
+      ],
+      unthrowableEndScores: ["169", "168", "166", "165", "163", "162", "159"],
+      recognition: undefined,
+      recognitionList: undefined,
+      isListening: false,
+
     };
   },
+  created() {
+    let SpeechRecognition =
+      window.SpeechRecognition || window.webkitSpeechRecognition;
+    let SpeechGrammarList =
+      window.SpeechGrammarList || window.webkitSpeechGrammarList;
+    let SpeechRecognitionEvent =
+      window.SpeechRecognitionEvent || window.webkitSpeechRecognitionEvent;
+
+    this.recognition = new SpeechRecognition();
+    this.recognitionList = new SpeechGrammarList();
+
+    const numbers = [...Array(181)].map((v, i) => `${i}`);
+    const grammar =
+      "#JSGF V1.0; grammar numbers; public <number> = " +
+      numbers.join(" | ") +
+      " ;";
+
+    this.recognitionList.addFromString(grammar, 1);
+
+    this.recognition.grammars = this.recognitionList;
+    this.recognition.continuous = false;
+    this.recognition.lang = "nl-NL";
+    this.recognition.interimResults = false;
+    this.recognition.maxAlternatives = 1;
+
+    this.recognition.onresult = (event) => {
+      let number = event.results[0][0].transcript;
+      console.log(number)
+      if (numbers.includes(number)) {
+        this.score = number.split("");
+        this.applyScore();
+      } else {
+        this.notify({
+          title: `We konden geen score herkennen.`,
+          type: "error",
+        });
+      }
+    };
+
+    this.recognition.onspeechend = () => {
+      this.recognition.stop();
+      this.isListening = false;
+    };
+
+    this.recognition.onnomatch = (event) => {
+      this.notify({
+          title: `We konden geen score herkennen.`,
+          type: "error",
+        });
+    }
+  },
   computed: {
+    ...mapState({
+      user_on_turn: (state) => state.users.find((u) => u.is_on_turn),
+    }),
+
     formattedScore() {
       return this.score.join("");
     },
@@ -66,6 +148,11 @@ export default {
     ...mapActions({
       notify: "toast/add",
     }),
+
+    startspeech() {
+      this.recognition.start();
+      this.isListening = true;
+    },
 
     backspace() {
       this.score.splice(this.score.length - 1, 1);
@@ -79,9 +166,26 @@ export default {
       if (this.score.length == 0) return;
 
       const score = this.score.join("");
+
       if (this.scoreIsOutOfRange(this.min, this.max, score)) {
         this.notify({
           title: `Score moet tussen 0 en ${this.max}`,
+          type: "error",
+        });
+        return;
+      }
+
+      if (this.scoreIsUnthrowableCheckout(score)) {
+        this.notify({
+          title: `${score} is niet uit te gooien.`,
+          type: "error",
+        });
+        return;
+      }
+
+      if (this.scoreIsUnthrowable(score)) {
+        this.notify({
+          title: `${score} is niet te gooien.`,
           type: "error",
         });
         return;
@@ -93,6 +197,19 @@ export default {
 
     scoreIsOutOfRange(min, max, score) {
       return score < min || score > max;
+    },
+
+    scoreIsUnthrowable(score) {
+      return this.unthrowableScores.includes(score);
+    },
+
+    scoreIsUnthrowableCheckout(score) {
+      return (
+        (score > 170 &&
+          this.user_on_turn.last_turn &&
+          this.user_on_turn.last_turn.new_score_to_throw_from == score) ||
+        this.unthrowableEndScores.includes(score)
+      );
     },
   },
 };
