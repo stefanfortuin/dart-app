@@ -30,7 +30,7 @@
             style="transition: stroke 0.3s ease-in-out"
           />
         </g>
-        <use :href="`#graph_element_${user_on_turn.id}`" />
+        <use :href="`#graph_element_${user_on_turn.uuid}`" />
 
         <!-- y-axis lines -->
         <g>
