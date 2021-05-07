@@ -113,8 +113,19 @@ export default {
       let number = event.results[0][0].transcript;
       console.log(number)
       if (numbers.includes(number)) {
-        this.score = number.split("");
-        this.applyScore();
+        let numbers = number.split("");
+        console.log(numbers);
+
+        numbers.forEach(n => {
+          setTimeout(() => {
+            this.addNumberToScore(n);
+          }, 200);
+        })
+
+        setTimeout(() => {
+          this.applyScore();
+        }, 650);
+
       } else {
         this.notify({
           title: `We konden geen score herkennen.`,
