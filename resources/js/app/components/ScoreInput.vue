@@ -19,14 +19,14 @@
       v-for="i in 9"
       :key="'num-' + i"
       @click="addNumberToScore(i)"
-      class="flex justify-center items-center max-h-12 text-blue-800 bg-blue-100 active:bg-blue-400 font-semibold text-2xl rounded z-20"
+      class="flex justify-center items-center max-h-12 text-blue-800 bg-blue-100 active:bg-blue-500 active:text-white font-semibold text-2xl rounded z-20"
     >
       {{ i }}
     </div>
     <div class="grid grid-cols-2 gap-1">
       <div
         @click="backspace()"
-        class="rounded flex justify-center items-center max-h-12 bg-blue-100 active:bg-blue-400 text-blue-900"
+        class="rounded flex justify-center items-center max-h-12 bg-blue-100 active:bg-blue-500 active:text-white text-blue-900"
       >
         <svg class="icon">
           <use href="/assets/sprite.svg#backspace"></use>
@@ -34,10 +34,10 @@
       </div>
       <div
         @click="startspeech()"
-        class="rounded flex justify-center items-center max-h-12 bg-blue-100 active:bg-blue-400 text-blue-900"
-        :class="isListening ? 'bg-blue-400' : ''"
+        class="rounded flex justify-center items-center max-h-12 active:bg-blue-500 active:text-white "
+        :class="isListening ? 'bg-blue-500' : 'bg-blue-100'"
       >
-        <svg class="icon">
+        <svg class="icon fill-current" :class="isListening ? 'text-white' : 'text-blue-900'">
           <use href="/assets/sprite.svg#microphone"></use>
         </svg>
       </div>
@@ -161,6 +161,11 @@ export default {
     }),
 
     startspeech() {
+      if(this.isListening){
+        this.isListening = !this.isListening;
+        this.recognition.stop();
+        return;
+      }
       this.recognition.start();
       this.isListening = true;
     },
