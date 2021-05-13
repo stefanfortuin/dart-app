@@ -2,6 +2,7 @@
 
 use App\Models\Game;
 use App\Models\User;
+use Illuminate\Http\Request;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -22,37 +23,46 @@ Auth::routes();
 
 Route::get('/play', function () {
 	$logged_in_user = new UserResource(Auth::user());
-    return view('app', ['logged_in_user' => $logged_in_user]);
+	return view('app', ['logged_in_user' => $logged_in_user]);
 });
 
 Route::post('/play/upload-game', [SaveGameController::class, 'game'])->middleware('auth');
 
 Route::get('/', function () {
-    return view('home');
+	return view('home');
 });
 
 Route::get('/me', function () {
 	$user = Auth::user();
-    return new UserResource($user);
+	return new UserResource($user);
 })->middleware('auth');
 
 Route::get('/feed', function () {
 	$user = User::with('games')->find(Auth::id());
 	$games = $user->games;
 
-    return view('feed', ['games' => $games]);
+	return view('feed', ['games' => $games]);
 })->middleware('auth');
 
-Route::get('/profile', function () {
-	$user = User::with('games')->find(Auth::id());
 
-    return view('profile', ['user' => $user]);
+Route::middleware('auth')->group(function () {
+	Route::get('/profile', function () {
+		$user = User::with('games')->find(Auth::id());
+		// dd($user->settings);
+		return view('profile', ['user' => $user]);
+	});
 
-})->middleware('auth');
+	Route::post('/profile/settings', function (Request $request) {
+		$user = User::with('games')->find(Auth::id());
+
+		dd($request);
+		return redirect('/profile');
+	});
+});
 
 Route::get('/stats', function () {
 	$total_games = Game::count();
-    return view('stats', ['total_games' => $total_games]);
+	return view('stats', ['total_games' => $total_games]);
 });
 
 Route::get('/stats/{id}', function (String $id) {
@@ -68,7 +78,7 @@ Route::get('/stats/{id}', function (String $id) {
 	$won = $user->total_games_won;
 	$lost = $total_games - $won;
 
-    return view('stats-user', [
+	return view('stats-user', [
 		'user' => $user,
 		'total_games' => $total_games,
 		'total_sets' => $total_sets,

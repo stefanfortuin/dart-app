@@ -4,11 +4,6 @@
 		<div class="font-bold text-2xl">
 			{{$user->name}}
 		</div>
-		<div>
-			<svg class="icon fill-current">
-				<use href="/assets/sprite.svg#settings"></use>
-			</svg>
-		</div>
 	</div>
 
 	@if (count($user->games) > 0)
@@ -20,8 +15,20 @@
 	@endif
 
 
+	{{-- <form action="/profile/settings" method="post">
+		@csrf
+
+		<div>
+			<label for="microphone-input">Microfoon</label>
+			<input type="checkbox" name="microphone-input" id="microphone-input" checked>
+		</div>
+
+		<input type="submit" value="Instellingen opslaan" class="w-full font-semibold text-lg text-white p-2 rounded-lg shadow my-2 flex justify-center items-center bg-blue-500 select-none" />
+	</form> --}}
+
+
 	<a onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-		href="{{route('logout')}}" class="font-semibold text-xl text-white p-3 rounded-lg shadow my-2 flex justify-center items-center bg-blue-500 select-none">Uitloggen</a>
+		href="{{route('logout')}}" class="font-semibold text-xl text-red-500 p-3 rounded-lg shadow my-2 flex justify-center items-center bg-red-100 border-2 border-red-500 select-none">Uitloggen</a>
 	<form id="logout-form" action="{{route('logout')}}" method="post" class="hidden">
 		@csrf
 	</form>
