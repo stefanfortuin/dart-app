@@ -1,6 +1,7 @@
 {
-    "name": "",
-    "short_name": "",
+    "name": "ikwildarten",
+    "short_name": "ikwildarten",
+	"start_url": "../play",
     "icons": [
         {
             "src": "/assets/favicon/android-chrome-192x192.png",
