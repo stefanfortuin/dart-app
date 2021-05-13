@@ -16,5 +16,19 @@
     "/assets/fonts/poppins-v15-latin-regular.svg": "/assets/fonts/poppins-v15-latin-regular.svg",
     "/assets/fonts/poppins-v15-latin-regular.ttf": "/assets/fonts/poppins-v15-latin-regular.ttf",
     "/assets/fonts/poppins-v15-latin-regular.woff": "/assets/fonts/poppins-v15-latin-regular.woff",
-    "/assets/fonts/poppins-v15-latin-regular.woff2": "/assets/fonts/poppins-v15-latin-regular.woff2"
+    "/assets/fonts/poppins-v15-latin-regular.woff2": "/assets/fonts/poppins-v15-latin-regular.woff2",
+    "/assets/favicon/android-chrome-192x192.png": "/assets/favicon/android-chrome-192x192.png",
+    "/assets/favicon/android-chrome-512x512.png": "/assets/favicon/android-chrome-512x512.png",
+    "/assets/favicon/apple-touch-icon.png": "/assets/favicon/apple-touch-icon.png",
+    "/assets/favicon/browserconfig.xml": "/assets/favicon/browserconfig.xml",
+    "/assets/favicon/favicon-16x16.png": "/assets/favicon/favicon-16x16.png",
+    "/assets/favicon/favicon-32x32.png": "/assets/favicon/favicon-32x32.png",
+    "/assets/favicon/favicon.ico": "/assets/favicon/favicon.ico",
+    "/assets/favicon/mstile-144x144.png": "/assets/favicon/mstile-144x144.png",
+    "/assets/favicon/mstile-150x150.png": "/assets/favicon/mstile-150x150.png",
+    "/assets/favicon/mstile-310x150.png": "/assets/favicon/mstile-310x150.png",
+    "/assets/favicon/mstile-310x310.png": "/assets/favicon/mstile-310x310.png",
+    "/assets/favicon/mstile-70x70.png": "/assets/favicon/mstile-70x70.png",
+    "/assets/favicon/safari-pinned-tab.svg": "/assets/favicon/safari-pinned-tab.svg",
+    "/assets/favicon/site.webmanifest": "/assets/favicon/site.webmanifest"
 }
