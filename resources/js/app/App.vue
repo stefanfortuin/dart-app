@@ -34,7 +34,8 @@ export default {
 	},
 	created(){
 		window.onbeforeunload = (event) => {
-			event.returnValue = "Data will be lost";
+			if(this.current_step == 2)
+				event.returnValue = "Data will be lost";
 		}
 	}
 }
