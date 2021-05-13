@@ -31,6 +31,11 @@ export default {
 		...mapState({
 			current_step: state => state.current_step
 		})
+	},
+	created(){
+		window.onbeforeunload = (event) => {
+			event.returnValue = "Data will be lost";
+		}
 	}
 }
 </script>
