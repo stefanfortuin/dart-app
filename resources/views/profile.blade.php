@@ -33,16 +33,23 @@
 		</div>
 	</div>
 
-	@if (count($user->games) > 0)
-	<div class="my-3">
-		<x-stats-block title="Gewonnen" :max="$user->total_games" :value="$user->total_games_won" />
-		<x-stats-block title="Sets Gewonnen" :max="$user->total_sets" :value="$user->total_sets_won" />
-		<x-stats-block title="Legs Gewonnen" :max="$user->total_legs" :value="$user->total_legs_won" />
+
+	<div class="my-3 text-lg">
+		<h2 class="text-xl font-bold mb-1">Statistieken</h2>
+		@if (count($user->games) > 0)
+			<x-stats-block title="Gewonnen" :max="$user->total_games" :value="$user->total_games_won" />
+			<x-stats-block title="Sets Gewonnen" :max="$user->total_sets" :value="$user->total_sets_won" />
+			<x-stats-block title="Legs Gewonnen" :max="$user->total_legs" :value="$user->total_legs_won" />
+		@else
+			<div>
+				No geen spellen gespeeld!
+			</div>
+		@endif
 	</div>
-	@endif
+
 
 	<div class="my-3">
-		<h2 class="text-xl font-bold">Instellingen</h2>
+		<h2 class="text-xl font-bold mb-1">Instellingen</h2>
 		<form action="/profile/settings" method="post" id="form-settings">
 			@csrf
 
@@ -61,7 +68,7 @@
 
 
 	<a onclick="event.preventDefault(); document.getElementById('logout-form').submit();" href="{{route('logout')}}"
-		class="font-semibold text-xl text-red-500 p-3 rounded-lg shadow my-2 flex justify-center items-center bg-red-100 border-2 border-red-500 select-none">Uitloggen</a>
+		class="font-semibold text-lg text-red-500 p-2 rounded-lg shadow my-2 flex justify-center items-center bg-red-100 border-2 border-red-500 select-none">Uitloggen</a>
 	<form id="logout-form" action="{{route('logout')}}" method="post" class="hidden">
 		@csrf
 	</form>

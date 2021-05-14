@@ -1,6 +1,6 @@
 <div class="flex flex-col mb-2">
-	<div class="flex justify-between text-sm">
-		<div class="font-thin">
+	<div class="flex justify-between text-sm px-1">
+		<div class="font-semibold text-blue-500">
 			{{$title}}
 		</div>
 		<div class="font-bold">
