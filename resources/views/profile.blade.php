@@ -7,8 +7,19 @@
 		fetch("/profile/settings", {
 			method: "post",
 			body: formData,
-		}).then(response => response.json())
-		.then(response => console.log(response))
+		}).then(() => {
+			let button = document.getElementById('save-settings');
+
+			button.innerText = "Opgeslagen"
+			button.classList.toggle('bg-blue-500');
+			button.classList.toggle('bg-green-500')
+
+			setTimeout(() => {
+				button.classList.toggle('bg-green-500')
+				button.classList.toggle('bg-blue-500')
+				button.innerText = "Instellingen opslaan"
+			}, 1000);
+		})
 	}
 
 </script>
@@ -43,8 +54,8 @@
 
 		</form>
 
-		<a onclick="event.preventDefault(); updateProfileSettings();"
-			class="w-full font-semibold text-lg text-white p-2 rounded-lg shadow my-2 flex justify-center items-center bg-blue-500 select-none">Instellingen
+		<a id="save-settings" onclick="event.preventDefault(); updateProfileSettings();"
+			class="transition-colors w-full font-semibold text-lg text-white p-2 rounded-lg shadow my-2 flex justify-center items-center bg-blue-500 select-none">Instellingen
 			opslaan</a>
 	</div>
 
