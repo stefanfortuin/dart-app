@@ -23,7 +23,7 @@
     >
       {{ i }}
     </div>
-    <div class="grid grid-cols-2 gap-1">
+    <div class="grid gap-1" :class="hasMicrophoneSetting() ?  'grid-cols-2' : 'grid-cols-1' ">
       <div
         @click="backspace()"
         class="rounded flex justify-center items-center max-h-12 bg-blue-100 active:bg-blue-500 active:text-white text-blue-900"
@@ -33,6 +33,7 @@
         </svg>
       </div>
       <div
+	  	v-if="hasMicrophoneSetting()"
         @click="startspeech()"
         class="rounded flex justify-center items-center max-h-12 active:bg-blue-500 active:text-white"
         :class="isListening ? 'bg-blue-500' : 'bg-blue-100'"
@@ -165,6 +166,10 @@ export default {
       this.recognition.start();
       this.isListening = true;
     },
+
+	hasMicrophoneSetting(){
+		return window.logged_in_user.settings['microphone_input']
+	},
 
     backspace() {
       this.score.splice(this.score.length - 1, 1);

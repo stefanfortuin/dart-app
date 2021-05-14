@@ -14,6 +14,7 @@
 	<meta name="theme-color" content="#ffffff">
 	<title>Darts</title>
 	<link rel="stylesheet" href="{{mix('/css/app.css')}}">
+	@stack('scripts')
 </head>
 
 <body class="antialiased max-w-md mx-auto p-3 flex flex-col">

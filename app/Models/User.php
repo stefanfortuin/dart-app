@@ -45,7 +45,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-		'settings' => 'array'
+		'settings' => 'array',
     ];
 
 	// protected $with = ['games', 'turns'];
@@ -119,18 +119,18 @@ class User extends Authenticatable
 		return round($this->turns->average('thrown_score'), 2);
 	}
 
-	/**
-     * Accessor for the options attribute.
-     * Defaults to an empty array.
-     */
-    public function getSettingsAttribute($value)  
-    {
-        if (empty($value)) {
-            return [];
-        }
+	// /**
+    //  * Accessor for the options attribute.
+    //  * Defaults to an empty array.
+    //  */
+    // public function getSettingsAttribute($value)  
+    // {
+    //     if (empty($value)) {
+    //         return [];
+    //     }
 
-        return json_decode($value, TRUE);
-    }
+    //     return json_decode($value, TRUE);
+    // }
 
 
     /**

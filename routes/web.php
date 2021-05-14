@@ -55,8 +55,13 @@ Route::middleware('auth')->group(function () {
 	Route::post('/profile/settings', function (Request $request) {
 		$user = User::with('games')->find(Auth::id());
 
-		dd($request);
-		return redirect('/profile');
+		$settings = $request->except('_token');
+
+		$user->settings = $settings;
+
+		$user->save();
+
+		return $user->settings;
 	});
 });
 
