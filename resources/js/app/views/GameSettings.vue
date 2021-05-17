@@ -13,14 +13,15 @@
         v-model="users.user_two.name"
       />
       <input-number-field
+        id="start_score"
         label="Start score"
         v-model="start_score"
         max="501"
         min="101"
       />
       <div class="grid grid-cols-2 gap-2 w-full">
-        <input-number-field label="Sets" v-model="total_sets" min="1" />
-        <input-number-field label="Legs/set" v-model="total_legs" min="1" />
+        <input-number-field id="sets_amount" label="Sets" v-model="total_sets" min="1" />
+        <input-number-field id="legs_amount" label="Legs/set" v-model="total_legs" min="1" />
       </div>
     </div>
 
