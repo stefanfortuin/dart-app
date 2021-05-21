@@ -2,9 +2,9 @@
     class="flex flex-col justify-center items-center active:bg-blue-100
         {{ '/'.Request::segment(1) == $href ? 'text-blue-500 font-bold' : 'text-gray-500 font-light'}}
     ">
-    <svg class="icon fill-current">
-        <use href="/assets/sprite.svg#{{$icon}}"></use>
-    </svg>
+    <div class="icon fill-current">
+    {!! file_get_contents(public_path('/assets/icons/'.$icon.'.svg')) !!}
+    </div>
     <div class="text-xs">
         {{ $title }}
     </div>

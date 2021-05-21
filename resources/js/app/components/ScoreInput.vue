@@ -168,6 +168,7 @@ export default {
     },
 
 	hasMicrophoneSetting(){
+    if(!window.logged_in_user) return false;
 		return window.logged_in_user.settings['microphone_input']
 	},
 

@@ -8,6 +8,8 @@
 	<link rel="preload" href="/assets/fonts/poppins-v15-latin-regular.woff2" as="font" type="font/woff2" crossorigin="">
 	<link rel="preload" href="/assets/fonts/poppins-v15-latin-600.woff2" as="font" type="font/woff2" crossorigin="">
 	<link rel="preload" href="/assets/fonts/poppins-v15-latin-700.woff2" as="font" type="font/woff2" crossorigin="">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="mobile-web-app-capable" content="yes">
 	<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
@@ -81,6 +83,7 @@
 				format("svg"); /* Legacy iOS */
 	}
 	</style>
+	@stack('links')
 	@stack('scripts')
 </head>
 

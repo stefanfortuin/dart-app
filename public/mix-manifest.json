@@ -30,5 +30,10 @@
     "/assets/favicon/mstile-310x310.png": "/assets/favicon/mstile-310x310.png",
     "/assets/favicon/mstile-70x70.png": "/assets/favicon/mstile-70x70.png",
     "/assets/favicon/safari-pinned-tab.svg": "/assets/favicon/safari-pinned-tab.svg",
-    "/assets/favicon/site.webmanifest": "/assets/favicon/site.webmanifest"
+    "/assets/favicon/site.webmanifest": "/assets/favicon/site.webmanifest",
+    "/assets/icons/feed.svg": "/assets/icons/feed.svg",
+    "/assets/icons/graph.svg": "/assets/icons/graph.svg",
+    "/assets/icons/home.svg": "/assets/icons/home.svg",
+    "/assets/icons/logo.svg": "/assets/icons/logo.svg",
+    "/assets/icons/user.svg": "/assets/icons/user.svg"
 }

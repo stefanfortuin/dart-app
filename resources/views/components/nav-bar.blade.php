@@ -3,7 +3,7 @@
   >
     <x-nav-link href="/" title="Home" icon="home" />
     <x-nav-link href="/feed" title="Feed" icon="feed" />
-    <x-nav-link href="/play" title="Darten" icon="dart-flight" />
+    <x-nav-link href="/play" title="Darten" icon="logo" />
     <x-nav-link href="/stats" title="Stats" icon="graph" />
     <x-nav-link href="/profile" title="Jij" icon="user" />
   </div>

@@ -16,6 +16,7 @@ mix.js('resources/js/app/app.js', 'public/js')
 	.copy('resources/assets/sprite.svg', 'public/assets')
 	.copy('resources/assets/fonts/*', 'public/assets/fonts')
 	.copy('resources/assets/favicon/*', 'public/assets/favicon')
+	.copy('resources/assets/icons/*', 'public/assets/icons')
 	.vue({runtimeOnly: true})
 	.postCss('resources/css/app.css', 'public/css', [
 		require('tailwindcss'),
