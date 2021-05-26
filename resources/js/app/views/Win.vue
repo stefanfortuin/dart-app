@@ -1,16 +1,12 @@
 <template>
 	<div class="flex flex-col w-full h-full">
-		<div class="text-6xl font-bold text-gray-700 mb-4 flex flex-col justify-center items-center">
+		<div class="text-5xl font-bold text-gray-700 mb-2 flex flex-col justify-center items-center">
 			<user-name class="text-blue-500" :user="current_user" />
-			<span class="text-xl">heeft gewonnen</span>
+			<span class="text-base">heeft gewonnen</span>
 		</div>
 
 		<div class="my-1">
 			<game-stats />
-		</div>
-
-		<div class="h-full p-1 bg-blue-500 rounded-lg">
-			<graph-turns/>
 		</div>
 
 		<div class="mt-auto">
@@ -21,7 +17,6 @@
 </template>
 
 <script>
-import StatsBlock from '../components/StatsBlock';
 import { mapState, mapMutations, mapActions } from 'vuex'
 import ButtonAction from '../components/ButtonAction.vue';
 import GraphTurns from '../components/Graph/GraphTurns.vue';
@@ -30,7 +25,6 @@ import GameStats from '../components/Stats/GameStats.vue';
 
 export default {
 	components: {
-		StatsBlock,
 		ButtonAction,
 		GraphTurns,
 		UserName,
