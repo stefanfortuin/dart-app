@@ -156,5 +156,32 @@ export default createStore({
 			commit('makeNewSet');
 			commit('makeNewLeg');
 		},
+
+		uploadGame({state, dispatch}) {
+			let game = {
+				users: state.users,
+				game: {
+					sets: state.sets,
+					start_score: state.start_score,
+					total_sets: state.total_sets,
+					total_legs: state.total_legs,
+					winner_id: state.users.find(user => user.is_on_turn ).id,
+				}
+			}
+
+			fetch(`/play/upload-game`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					'X-CSRF-Token': window.csrf_token
+				},
+				body: JSON.stringify(game),
+			})
+			.then((response) => response.json())
+			.then((response) => {
+				if(response.success == false)
+					dispatch('toast/add', {title: response.message, type: 'error'})
+			});
+		}
 	},
 })

@@ -1,12 +1,12 @@
 <template>
-	<div class="flex justify-between items-center font-bold text-blue-500 text-xl">
-		<user-name :user="users[0]" />
-		<div class="flex text-4xl items-center">
+	<div class="flex justify-between items-center font-bold w-full text-blue-500 text-xl">
+		<user-name class="w-5/12" :user="users[0]" />
+		<div class="w-2/12 flex text-4xl justify-center items-center">
 			<div class="font-bold">{{ users[0].stats["sets_won"] }}</div>
 			<div class="mx-1 text-xl">:</div>
 			<div class="font-bold">{{ users[1].stats["sets_won"] }}</div>
 		</div>
-		<user-name :user="users[1]" />
+		<user-name class="w-5/12 text-right" :user="users[1]" />
 	</div>
 
 	<div class="my-1">

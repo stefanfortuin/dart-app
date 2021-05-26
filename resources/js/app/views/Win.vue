@@ -36,11 +36,6 @@ export default {
 	},
 	computed: {
 		...mapState({
-			users: state => state.users,
-			sets: state => state.sets,
-			start_score: state => state.start_score,
-			total_sets: state => state.total_sets,
-			total_legs: state => state.total_legs,
 			current_user: state => state.users.find(user => user.is_on_turn)
 		}),
 	},
@@ -49,40 +44,11 @@ export default {
 			'resetCurrentStep',
 		]),
 
-		...mapActions({
-			notify: 'toast/add',
-		}),
+		...mapActions(['uploadGame']),
 
 		handleNewGame() {
 			this.resetCurrentStep()
 		},
-
-		uploadGame() {
-			let game = {
-				users: this.users,
-				game: {
-					sets: this.sets,
-					start_score: this.start_score,
-					total_sets: this.total_sets,
-					total_legs: this.total_legs,
-					winner_id: this.current_user.id,
-				}
-			}
-
-			fetch(`/play/upload-game`, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					'X-CSRF-Token': window.csrf_token
-				},
-				body: JSON.stringify(game),
-			})
-			.then((response) => response.json())
-			.then((response) => {
-				if(response.success == false)
-					this.notify({title: response.message, type: 'error'})
-			});
-		}
 	}
 }
 </script>
