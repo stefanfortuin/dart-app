@@ -1,17 +1,15 @@
 <template>
 	<div class="flex flex-col w-full h-full">
-		<div class="text-5xl font-bold text-gray-700 mb-7">
-			<span class="bg-clip-text text-transparent bg-blue-500">{{current_user.name}}</span> heeft gewonnen!
+		<div class="text-6xl font-bold text-gray-700 mb-4 flex flex-col justify-center items-center">
+			<user-name class="text-blue-500" :user="current_user" />
+			<span class="text-xl">heeft gewonnen</span>
 		</div>
 
-		<div
-			class="grid grid-cols-2 gap-2"
-		>
-			<stats-block :title="'Gem/beurt'" :metric="parseFloat(averagePerTurn).toFixed(2)" />
-			<stats-block :title="'Hoogste'" :metric="highestTurn" />
+		<div class="my-1">
+			<game-stats />
 		</div>
 
-		<div class="my-4 h-full p-1 bg-blue-500 rounded-lg">
+		<div class="h-full p-1 bg-blue-500 rounded-lg">
 			<graph-turns/>
 		</div>
 
@@ -27,11 +25,16 @@ import StatsBlock from '../components/StatsBlock';
 import { mapState, mapMutations, mapActions } from 'vuex'
 import ButtonAction from '../components/ButtonAction.vue';
 import GraphTurns from '../components/Graph/GraphTurns.vue';
+import UserName from '../components/UserCard/UserName';
+import GameStats from '../components/Stats/GameStats.vue';
+
 export default {
 	components: {
 		StatsBlock,
 		ButtonAction,
-		GraphTurns
+		GraphTurns,
+		UserName,
+		GameStats
 	},
 	created() {
 		if(window.logged_in_user)
@@ -46,14 +49,6 @@ export default {
 			total_legs: state => state.total_legs,
 			current_user: state => state.users.find(user => user.is_on_turn)
 		}),
-
-		averagePerTurn(){
-			return this.current_user.turns.reduce((t,a) => {return t+=a.thrown_score}, 0) / this.current_user.turns.length;
-		},
-
-		highestTurn(){
-			return Math.max.apply(Math, this.current_user.turns.map((turn) => {return turn.thrown_score}));
-		}
 	},
 	methods: {
 		...mapMutations([

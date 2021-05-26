@@ -8,7 +8,7 @@
     "
 	>
 		<div class="flex items-baseline">
-			<user-name :user="user" />
+			<user-name class="text-xl" :user="user" />
 			<user-owns-leg :user="user" />
 		</div>
 		<div class="flex justify-between items-baseline">
