@@ -1,6 +1,7 @@
 export default class DartTurn{
 	constructor(){
 		this.user_id = undefined,
+		this.user_uuid = undefined,
 		this.thrown_score = undefined;
 		this.old_score_to_throw_from = undefined;
 		this.new_score_to_throw_from = undefined;
@@ -8,6 +9,11 @@ export default class DartTurn{
 
 	setUser(id){
 		this.user_id = id;
+		return this;
+	}
+
+	setUuid(id){
+		this.user_uuid = id;
 		return this;
 	}
 

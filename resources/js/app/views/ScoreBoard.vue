@@ -71,6 +71,7 @@ export default {
 
 			let turn = new DartTurn()
 				.setUser(this.user_on_turn.id)
+				.setUuid(this.user_on_turn.uuid)
 				.setThrownScore(thrown_score)
 				.setOldScoreToThrowFrom(this.user_on_turn.score_to_throw_from)
 				.calculateNewScoreToThrowFrom()
@@ -93,7 +94,6 @@ export default {
 
 				if (this.hasWonGame()) {
 					this.setSetWinner(this.user_on_turn);
-					this.user_on_turn.updateStats();
 					this.goToNextStep()
 					return;
 				}
@@ -105,7 +105,6 @@ export default {
 					this.resetForNextLeg();
 				}
 
-				this.user_on_turn.updateStats();
 				this.switchUserThatStartsNextLeg();
 				this.resetScoreField();
 			}
@@ -115,8 +114,6 @@ export default {
 					this.resetScoreField();
 				}, 800);
 			}
-
-			this.user_on_turn.updateStats();
 		},
 
 		resetScoreField() {

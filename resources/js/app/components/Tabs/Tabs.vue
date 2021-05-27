@@ -5,7 +5,7 @@
 			<transition name="tab-fade" mode="out-in">
 			<keep-alive>
 				<graph-turns v-if="selected_index == 0" />
-				<info-table v-else-if="selected_index == 1" />
+				<info-table :leg="current_leg" v-else-if="selected_index == 1" />
 			</keep-alive>
 			</transition>
 		</div>
@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import GraphTurns from '../Graph/GraphTurns.vue';
 import InfoTable from '../Info/InfoTable.vue';
 
@@ -42,6 +43,9 @@ export default {
 	},
 	mounted() {
 		this.selectTab(0)
+	},
+	computed: {
+		...mapState(["current_leg"]),
 	},
 	methods: {
 		selectTab(index) {

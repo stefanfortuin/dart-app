@@ -7,9 +7,9 @@
     >
       <user-name class="w-5/12 text-blue-500" :user="users[0]" />
       <div class="w-2/12 flex text-4xl justify-center items-center">
-        <div class="font-bold">{{ users[0].stats["sets_won"] }}</div>
+        <div class="font-bold">{{ users[0]["sets_won"] }}</div>
         <div class="mx-1 text-xl">:</div>
-        <div class="font-bold">{{ users[1].stats["sets_won"] }}</div>
+        <div class="font-bold">{{ users[1]["sets_won"] }}</div>
       </div>
       <user-name class="w-5/12 text-right text-blue-500" :user="users[1]" />
     </div>
@@ -20,9 +20,8 @@
     >
       <info-table-row
         :stat="stat"
-        :max="stat.max"
+        :leg="leg"
         :users="users"
-        :decimal="stat.decimal"
       />
     </div>
   </div>
@@ -34,6 +33,7 @@ import InfoTableRow from "./InfoTableRow.vue";
 import UserName from "../UserCard/UserName.vue";
 
 export default {
+  props: ['leg'],
   components: { InfoTableRow, UserName },
   computed: {
     ...mapState({
@@ -43,12 +43,6 @@ export default {
 
 	stats(){
 		return [
-        {
-          name: "Legs",
-          key: "legs_won",
-          decimal: 0,
-          max: this.total_legs,
-        },
         {
           name: "Gem.",
           key: "average_per_turn",

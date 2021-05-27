@@ -9,15 +9,14 @@ export default class User {
 		this.sets_won = 0
 		this.is_on_turn = false
 		this.owns_current_leg = false
-		this.stats = {
-			sets_won: 0,
-			legs_won: 0,
-			average_per_turn: parseFloat(0).toFixed(2),
-			highest: 0,
-		};
+		// this.stats = {
+		// 	sets_won: 0,
+		// 	legs_won: 0,
+		// 	average_per_turn: parseFloat(0).toFixed(2),
+		// 	highest: 0,
+		// };
 		this.last_turn = undefined;
 		this.score_to_throw_from = undefined;
-		this.updateStats();
 	}
 
 	setDataFromObject(user){
@@ -82,31 +81,21 @@ export default class User {
 		this.turns = [];
 		this.score_to_throw_from = this.start_score;
 		this.last_turn = undefined;
-		this.updateStats();
+		// this.updateStats();
 	}
 
-	getAveragePerTurn(){
-		if(this.turns.length == 0) return 0;
-		return this.turns.reduce((t,a) => {return t+=a.thrown_score}, 0) / this.turns.length;
-	}
+	// updateStats(){
+	// 	this.stats.sets_won = this.sets_won;
+	// 	this.stats.legs_won = this.legs_won;
 
-	getHighestTurn(){
-		if(this.turns.length == 0) return 0;
-		return Math.max.apply(Math, this.turns.map((turn) => {return turn.thrown_score}));
-	}
-
-	updateStats(){
-		this.stats.sets_won = this.sets_won;
-		this.stats.legs_won = this.legs_won;
-
-		anime({
-			targets: this.stats,
-			average_per_turn: this.getAveragePerTurn(),
-			highest: this.getHighestTurn(),
-			duration: 500,
-			easing: "easeInOutQuint",
-		});
-	}
+	// 	anime({
+	// 		targets: this.stats,
+	// 		average_per_turn: this.getAveragePerTurnCurrentLeg(),
+	// 		highest: this.getHighestTurnCurrentLeg(),
+	// 		duration: 500,
+	// 		easing: "easeInOutQuint",
+	// 	});
+	// }
 
 	getCheckout() {
 		if (this.last_turn.new_score_to_throw_from > 170 || this.last_turn.new_score_to_throw_from < 2) return;

@@ -54,6 +54,7 @@ export default createStore({
 		startGame(state){
 			let dart_set = new DartSet();
 			let dart_leg = new DartLeg();
+			dart_leg.initStats(state.users);
 			state.sets.push(dart_set);
 			state.current_set = dart_set;
 
@@ -75,6 +76,7 @@ export default createStore({
 
 		makeNewLeg(state){
 			let new_leg = new DartLeg();
+			new_leg.initStats(state.users);
 			state.current_set.addLeg(new_leg);
 			state.current_leg = new_leg;
 		},
@@ -184,4 +186,29 @@ export default createStore({
 			});
 		}
 	},
+
+	getters: {
+		// getAveragePerTurnOverallForUser: (state) => (uuid) => {
+		// 	let total_thrown = 0
+		// 	let total_turns = 0
+		// 	state.sets.forEach(set => {
+		// 		set.legs.forEach(leg => {
+		// 			leg.turns.forEach(turn => {
+		// 				if(turn.user_uuid == uuid){
+		// 					total_turns += 1
+		// 					total_thrown += turn.thrown_score;
+		// 				}
+		// 			});
+		// 		});
+		// 	});
+		// 	return total_thrown / total_turns;
+		// },
+
+		getLegData: (state) => (set_index, leg_index) => {
+			let set = state.sets[set_index - 1];
+			let leg = set.legs[leg_index - 1];
+
+			return leg;
+		}
+	}
 })
