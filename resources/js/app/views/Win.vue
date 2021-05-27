@@ -5,8 +5,8 @@
 			<span class="text-base">heeft gewonnen</span>
 		</div>
 
-		<div class="my-1">
-			<game-stats />
+		<div class="my-1 bg-blue-500 p-2 rounded-lg">
+			<info-table />
 		</div>
 
 		<div class="mt-auto">
@@ -21,14 +21,14 @@ import { mapState, mapMutations, mapActions } from 'vuex'
 import ButtonAction from '../components/ButtonAction.vue';
 import GraphTurns from '../components/Graph/GraphTurns.vue';
 import UserName from '../components/UserCard/UserName';
-import GameStats from '../components/Stats/GameStats.vue';
+import InfoTable from '../components/Info/InfoTable.vue';
 
 export default {
 	components: {
 		ButtonAction,
 		GraphTurns,
 		UserName,
-		GameStats
+		InfoTable
 	},
 	created() {
 		if(window.logged_in_user)
