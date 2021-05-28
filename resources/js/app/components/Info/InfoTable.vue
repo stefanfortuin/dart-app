@@ -1,6 +1,6 @@
 <template>
   <div
-    class="text-white px-2 bg-white flex flex-col h-full text-lg rounded-lg overflow-scroll relative first:rounded-t-lg"
+    class="text-white px-2 bg-white flex flex-col text-lg rounded-lg overflow-scroll relative first:rounded-t-lg"
   >
     <div
       class="flex justify-between items-center font-bold w-full text-blue-500 bg-white text-xl"

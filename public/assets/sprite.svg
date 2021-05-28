@@ -52,6 +52,14 @@
     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
   </symbol>
 
+  <symbol xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" id="right">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+  </symbol>
+
+  <symbol xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" id="left">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+  </symbol>
+
   <symbol viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg" id="404">
     <circle cx="25" cy="25" r="4" stroke="#3B82F6" stroke-width="2"/>
     <circle cx="25" cy="25" r="9" stroke="#3B82F6" stroke-width="2"/>
