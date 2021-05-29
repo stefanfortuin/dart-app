@@ -4,7 +4,7 @@
 		<div class="p-2 w-10/12 flex-1 bg-blue-500 rounded-b-lg rounded-tl-lg">
 			<transition name="tab-fade" mode="out-in">
 			<keep-alive>
-				<graph-turns v-if="selected_index == 0" />
+				<graph-turns :leg="current_leg" v-if="selected_index == 0" />
 				<info-table :leg="current_leg" v-else-if="selected_index == 1" />
 			</keep-alive>
 			</transition>

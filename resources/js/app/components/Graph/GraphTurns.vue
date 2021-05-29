@@ -102,6 +102,7 @@ import anime from "animejs";
 
 export default {
 	name: "graph-turns",
+	props: ['leg'],
 	data() {
 		return {
 			width: null,
@@ -132,14 +133,13 @@ export default {
 		...mapState({
 			users: (state) => state.users,
 			startScore: (state) => state.start_score,
-			current_leg: (state) => state.current_leg,
 			user_on_turn: (state) => state.users.find((u) => u.is_on_turn),
 		}),
 
 		graphTurnData() {
 			if (this.currentGraphIndex == undefined) return null;
 
-			let turns = this.current_leg.getTurnsFromUser(this.user_on_turn.uuid)
+			let turns = this.leg.getTurnsFromUser(this.user_on_turn.uuid)
 			let points = this.getPointsFromTurns(turns)
 			let graph_data = {
 				user_name: this.user_on_turn.name,
@@ -190,7 +190,7 @@ export default {
 		},
 
 		setCurrentGraphIndex(index) {
-			let turns = this.current_leg.getTurnsFromUser(this.user_on_turn.uuid)
+			let turns = this.leg.getTurnsFromUser(this.user_on_turn.uuid)
 			if (
 				this.currentGraphIndex == index ||
 				index >= turns.length
@@ -216,7 +216,7 @@ export default {
 		},
 
 		getLinePath(user) {
-			let turns = this.current_leg.getTurnsFromUser(user.uuid)
+			let turns = this.leg.getTurnsFromUser(user.uuid)
 			let element = this.$refs[`graph_line_${user.uuid}`];
 
 			let points = this.getPointsFromTurns(turns);
