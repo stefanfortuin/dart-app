@@ -18,6 +18,12 @@ export default class DartLeg {
 		return this;
 	}
 
+	getTurnsFromUser(uuid){
+		return this.turns.filter(turn => {
+			return turn.user_uuid == uuid
+		});
+	}
+
 	initStats(users){
 		users.forEach(user => {
 			this.stats[user.uuid] = {

@@ -77,7 +77,7 @@ export default {
 				.calculateNewScoreToThrowFrom()
 
 			this.user_on_turn
-				.addTurn(turn)
+				.setLastTurn(turn)
 				.getCheckout()
 
 			this.addTurnToGame(turn);

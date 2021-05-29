@@ -137,7 +137,7 @@ export default createStore({
 		resetForNextLeg({commit, state}){
 			state.users.forEach(user => {
 				user.resetCheckout();
-				user.clearTurns();
+				user.clearLastTurn();
 			})
 
 			let userThatIsOnTurn = state.users.find(user => user.is_on_turn );
@@ -148,7 +148,7 @@ export default createStore({
 		resetForNextSet({commit, state}){
 			state.users.forEach(user => {
 				user.resetCheckout();
-				user.clearTurns();
+				user.clearLastTurn();
 				user.legs_won = 0;
 			});
 

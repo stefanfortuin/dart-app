@@ -2,19 +2,12 @@ import anime from 'animejs';
 
 export default class User {
 	constructor() {
-		this.turns = [];
 		this.start_score = undefined;
 		this.checkout = '';
 		this.legs_won = 0
 		this.sets_won = 0
 		this.is_on_turn = false
 		this.owns_current_leg = false
-		// this.stats = {
-		// 	sets_won: 0,
-		// 	legs_won: 0,
-		// 	average_per_turn: parseFloat(0).toFixed(2),
-		// 	highest: 0,
-		// };
 		this.last_turn = undefined;
 		this.score_to_throw_from = undefined;
 	}
@@ -37,8 +30,7 @@ export default class User {
 		return this;
 	}
 
-	addTurn(turn) {
-		this.turns.push(turn);
+	setLastTurn(turn) {
 		this.last_turn = turn;
 
 		if(turn.new_score_to_throw_from > 0){
@@ -77,25 +69,10 @@ export default class User {
 		this.checkout = '';
 	}
 
-	clearTurns(){
-		this.turns = [];
+	clearLastTurn(){
 		this.score_to_throw_from = this.start_score;
 		this.last_turn = undefined;
-		// this.updateStats();
 	}
-
-	// updateStats(){
-	// 	this.stats.sets_won = this.sets_won;
-	// 	this.stats.legs_won = this.legs_won;
-
-	// 	anime({
-	// 		targets: this.stats,
-	// 		average_per_turn: this.getAveragePerTurnCurrentLeg(),
-	// 		highest: this.getHighestTurnCurrentLeg(),
-	// 		duration: 500,
-	// 		easing: "easeInOutQuint",
-	// 	});
-	// }
 
 	getCheckout() {
 		if (this.last_turn.new_score_to_throw_from > 170 || this.last_turn.new_score_to_throw_from < 2) return;
