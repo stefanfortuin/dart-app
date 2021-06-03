@@ -13,18 +13,16 @@
 
 <script>
 import GameSettings from './views/GameSettings';
-import WhoBegins from './views/WhoBegins';
-import ScoreBoard from './views/ScoreBoard';
-import Win from './views/Win';
 import { mapState } from 'vuex';
+import {defineAsyncComponent} from 'vue';
 import ToastWrapper from './components/Toast/ToastWrapper.vue';
 
 export default {
 	components: {
 		GameSettings,
-		WhoBegins,
-		ScoreBoard,
-		Win,
+		WhoBegins: defineAsyncComponent(() => import(/* webpackChunkName: "choose" */ './views/WhoBegins')),
+		ScoreBoard: defineAsyncComponent(() => import(/* webpackChunkName: "game" */ './views/ScoreBoard')),
+		Win: defineAsyncComponent(() => import(/* webpackChunkName: "end" */ './views/Win')),
 		ToastWrapper,
 	},
 	computed: {

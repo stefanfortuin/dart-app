@@ -35,5 +35,9 @@
     "/assets/icons/graph.svg": "/assets/icons/graph.svg",
     "/assets/icons/home.svg": "/assets/icons/home.svg",
     "/assets/icons/logo.svg": "/assets/icons/logo.svg",
-    "/assets/icons/user.svg": "/assets/icons/user.svg"
+    "/assets/icons/user.svg": "/assets/icons/user.svg",
+    "/js/start.js": "/js/start.js",
+    "/js/game.js": "/js/game.js",
+    "/js/end.js": "/js/end.js",
+    "/js/choose.js": "/js/choose.js"
 }
