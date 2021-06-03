@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations, mapActions, mapGetters } from "vuex";
+import { mapState, mapActions, mapMutations } from "vuex";
 import ButtonAction from "../components/ButtonAction.vue";
 import GraphTurns from "../components/Graph/GraphTurns.vue";
 import UserName from "../components/UserCard/UserName";
@@ -96,8 +96,7 @@ export default {
 		},
 	},
 	methods: {
-		...mapMutations(["resetCurrentStep"]),
-
+		...mapMutations(['resetApp']),
 		...mapActions(["uploadGame"]),
 
 		setLegIndex(id) {
@@ -111,7 +110,8 @@ export default {
 		},
 
 		handleNewGame() {
-			this.resetCurrentStep();
+			this.resetApp();
+			this.$router.push({path: '/'})
 		},
 	},
 };

@@ -26,6 +26,9 @@ mix.js('resources/js/app/app.js', 'public/js')
 			host: '0.0.0.0',
 			port: 8080,
 		},
+		output: {
+			chunkFilename: 'js/chunks/[name].[hash].js',
+		},
 	})
 	.options({
 		hmrOptions: {

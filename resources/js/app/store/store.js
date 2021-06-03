@@ -13,7 +13,6 @@ export default createStore({
 		sets: [],
 		total_sets: 1,
 		total_legs: 1,
-		current_step: 0,
 		current_leg: undefined,
 		current_set: undefined,
 		start_score: 501,
@@ -33,10 +32,6 @@ export default createStore({
 								.setStartScore(state.start_score)
 								
 			state.users.push(user_two)
-		},
-
-		goToNextStep(state) {
-			state.current_step++;
 		},
 
 		setStartScore(state, start_score) {
@@ -87,8 +82,7 @@ export default createStore({
 			state.current_set = new_set;
 		},
 
-		resetCurrentStep(state) {
-			state.current_step = 0;
+		resetApp(state) {
 			state.users = []
 			state.sets = []
 			state.start_score = 501;

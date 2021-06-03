@@ -35,5 +35,9 @@
     "/assets/icons/graph.svg": "/assets/icons/graph.svg",
     "/assets/icons/home.svg": "/assets/icons/home.svg",
     "/assets/icons/logo.svg": "/assets/icons/logo.svg",
-    "/assets/icons/user.svg": "/assets/icons/user.svg"
+    "/assets/icons/user.svg": "/assets/icons/user.svg",
+    "/js/chunks/1.js": "/js/chunks/1.js",
+    "/js/chunks/2.js": "/js/chunks/2.js",
+    "/js/chunks/3.js": "/js/chunks/3.js",
+    "/js/chunks/4.js": "/js/chunks/4.js"
 }

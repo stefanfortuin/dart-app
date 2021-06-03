@@ -36,13 +36,12 @@ export default {
 		...mapMutations([
 			'setUserThatDoesTurn',
 			'startGame',
-			'goToNextStep',
 		]),
 
 		handleWhoBegins(user) {
 			this.setUserThatDoesTurn(user);
 			this.startGame()
-			this.goToNextStep();
+			this.$router.push({ path: '/3'})
 		}
 	}
 }

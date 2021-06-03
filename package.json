@@ -26,6 +26,7 @@
         "animejs": "^3.2.1",
         "d3-shape": "^2.0.0",
         "gsap": "^3.6.0",
-        "tailwindcss": "^2.1.2"
+        "tailwindcss": "^2.1.2",
+        "vue-router": "^4.0.8"
     }
 }

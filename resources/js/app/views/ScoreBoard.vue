@@ -50,7 +50,6 @@ export default {
 			'switchUserThatDoesTurn',
 			'setSetWinner',
 			'setLegWinner',
-			'goToNextStep',
 		]),
 
 		...mapActions([
@@ -94,7 +93,7 @@ export default {
 
 				if (this.hasWonGame()) {
 					this.setSetWinner(this.user_on_turn);
-					this.goToNextStep()
+					this.$router.push({ path: '/4'})
 					return;
 				}
 
