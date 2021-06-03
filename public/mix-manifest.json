@@ -39,5 +39,9 @@
     "/js/start.js": "/js/start.js",
     "/js/game.js": "/js/game.js",
     "/js/end.js": "/js/end.js",
-    "/js/choose.js": "/js/choose.js"
+    "/js/choose.js": "/js/choose.js",
+    "/js/1.js": "/js/1.js",
+    "/js/2.js": "/js/2.js",
+    "/js/3.js": "/js/3.js",
+    "/js/4.js": "/js/4.js"
 }
