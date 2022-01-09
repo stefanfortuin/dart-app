@@ -1,4 +1,4 @@
-<div x-show="step == 0" x-transition.duration.500ms>
+<div x-show="step == 0" x-transition.duration.250ms>
     <x-input.text wire:model.lazy="users.0" :label="'Speler 1'" :id="'player_one'" />
 	<x-input.text wire:model.lazy="users.1" :label="'Speler 2'" :id="'player_two'" />
 

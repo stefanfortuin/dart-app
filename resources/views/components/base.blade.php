@@ -82,6 +82,7 @@
 				url("/assets/fonts/poppins-v15-latin-700.svg#Poppins")
 				format("svg"); /* Legacy iOS */
 	}
+	[x-cloak] { display: none !important; }
 	</style>
 	@stack('links')
 	@stack('scripts')
