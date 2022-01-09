@@ -85,6 +85,8 @@
 	</style>
 	@stack('links')
 	@stack('scripts')
+	@livewireStyles
+	<script defer src="https://unpkg.com/alpinejs@3.7.1/dist/cdn.min.js"></script>
 </head>
 
 <body class="antialiased max-w-md mx-auto p-3 flex flex-col">
@@ -97,6 +99,7 @@
 	</div>
 
 	<x-nav-bar />
+	@livewireScripts
 </body>
 
 </html>

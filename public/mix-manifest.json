@@ -1,5 +1,8 @@
 {
     "/js/app.js": "/js/app.js",
+    "/js/choose.js": "/js/choose.js",
+    "/js/game.js": "/js/game.js",
+    "/js/end.js": "/js/end.js",
     "/css/app.css": "/css/app.css",
     "/assets/sprite.svg": "/assets/sprite.svg",
     "/assets/fonts/poppins-v15-latin-600.eot": "/assets/fonts/poppins-v15-latin-600.eot",
@@ -35,13 +38,5 @@
     "/assets/icons/graph.svg": "/assets/icons/graph.svg",
     "/assets/icons/home.svg": "/assets/icons/home.svg",
     "/assets/icons/logo.svg": "/assets/icons/logo.svg",
-    "/assets/icons/user.svg": "/assets/icons/user.svg",
-    "/js/start.js": "/js/start.js",
-    "/js/game.js": "/js/game.js",
-    "/js/end.js": "/js/end.js",
-    "/js/choose.js": "/js/choose.js",
-    "/js/1.js": "/js/1.js",
-    "/js/2.js": "/js/2.js",
-    "/js/3.js": "/js/3.js",
-    "/js/4.js": "/js/4.js"
+    "/assets/icons/user.svg": "/assets/icons/user.svg"
 }

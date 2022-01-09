@@ -22,8 +22,9 @@ use App\Http\Controllers\SaveGameController;
 Auth::routes();
 
 Route::get('/play', function () {
-	$logged_in_user = new UserResource(Auth::user());
-	return view('app', ['logged_in_user' => $logged_in_user]);
+	// $logged_in_user = new UserResource(Auth::user());
+	// return view('app', ['logged_in_user' => $logged_in_user]);
+	return view('app-livewire');
 });
 
 Route::post('/play/upload-game', [SaveGameController::class, 'game'])->middleware('auth');
