@@ -16,9 +16,16 @@ class DartGame extends Component
 	public $currentSet= null;
 	public $startScore = 501;
 
+	public $startingUser;
+
 	public function goToNextStep()
 	{
 		$this->currentStep++;
+	}
+
+	public function setStartingUser($user)
+	{
+		$this->startingUser = $user;
 	}
 
     public function render()

@@ -6,14 +6,18 @@ use Illuminate\View\Component;
 
 class Settings extends Component
 {
+	public $users;
+	public $startingUser;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($users, $startingUser)
     {
-        //
+        $this->users = $users;
+		$this->startingUser = $startingUser;
     }
 
     /**

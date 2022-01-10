@@ -9,6 +9,15 @@
 		<x-input.number wire:model.defer="totalLegs" :id="'legs_amount'" :label="'Legs/set'" min="1" />
 	</div>
 
+	@if ($users)
+		<div class="grid grid-cols-2 gap-2 w-full">
+			@foreach ($users as $index => $user)
+				<x-input.checkbox wire:model.lazy="startingUser" :id="'user-' . $user" :name="'starting-' . $user" :label="$user" :value="$user" />
+			@endforeach
+		</div>
+	@endif
+	
+
 	<x-input.button wire:click="goToNextStep">
 		Start spel
 	</x-input.button>
