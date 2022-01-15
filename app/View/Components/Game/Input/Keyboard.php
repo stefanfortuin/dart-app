@@ -1,26 +1,20 @@
 <?php
 
-namespace App\View\Components\Game;
+namespace App\View\Components\Game\Input;
 
-use App\Models\Game;
 use Illuminate\View\Component;
 
-class Board extends Component
+class Keyboard extends Component
 {
-	public Game $game;
-	public $users;
 	public $score;
-
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct(Game $game, $users, $score)
+    public function __construct($score)
     {
-        $this->game = $game;
-		$this->users = $users;
-		$this->score = $score;
+        $this->score = $score;
     }
 
     /**
@@ -30,6 +24,6 @@ class Board extends Component
      */
     public function render()
     {
-        return view('components.game.board');
+        return view('components.game.input.keyboard');
     }
 }

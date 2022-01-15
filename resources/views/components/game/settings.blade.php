@@ -10,15 +10,18 @@
 	</div>
 
 	@if ($users)
+		<div class="text-lg mb-1 font-semibold text-blue-400">
+			Wie begint?
+		</div>
 		<div class="grid grid-cols-2 gap-2 w-full">
 			@foreach ($users as $index => $user)
-				<x-input.checkbox wire:model.lazy="startingUser" :id="'user-' . $user" :name="'starting-' . $user" :label="$user" :value="$user" />
+				<x-input.radio wire:model.lazy="startingUser" :id="'starting-user-' . $user" :name="'starting-' . $user" :label="$user" :value="$user" />
 			@endforeach
 		</div>
 	@endif
 	
 
-	<x-input.button wire:click="goToNextStep">
+	<x-input.button wire:click="startGame">
 		Start spel
 	</x-input.button>
 </div>
